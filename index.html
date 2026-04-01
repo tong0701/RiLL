@@ -1,0 +1,1651 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RiLL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&family=EB+Garamond:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="home-flash" class="home-flash" aria-hidden="true"></div>
+    <canvas id="ripple-canvas" aria-hidden="true"></canvas>
+
+    <main class="app">
+      <section class="hero" id="home">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-content" id="design-canvas">
+          <img class="hero-logo-ribbon" src="./assets/rill-logo-ribbon.svg" alt="" aria-hidden="true" />
+          <button class="home-hit" id="home-hit-main" type="button" aria-label="Go home"></button>
+          <button class="back-arrow" id="back-arrow" type="button" aria-label="Back">←</button>
+          <button class="top-link top-link-left" type="button">Cn/En</button>
+          <button class="top-link top-link-right" type="button">Menu</button>
+
+          <h1 class="hero-quote" id="hero-quote">See yourself. Then go live.</h1>
+          <p class="hero-philosophy" id="hero-philosophy" hidden>
+            Rill is a self-reflection tool. It uses symbolic systems like tarot and Eastern divination,
+            combined with AI, to help you think more clearly in moments of anxiety and uncertainty. It
+            doesn't predict the future, give definitive answers, or make decisions for you. The cards offer a
+            few different angles on where you are right now, but the final read is always yours. Every session
+            ends with a concrete action step, because life is yours to live.
+          </p>
+          <h2 class="reflection-kicker" id="reflection-kicker" hidden>See what is already there.</h2>
+          <h2 class="reflection-title" id="reflection-title" hidden>What do you seek clarity on today?</h2>
+          <button class="enter-btn" id="enter-btn" type="button" hidden>Enter</button>
+          <section class="mode-select" id="mode-select" hidden aria-label="Reflection mode selection">
+            <article class="mode-card mode-card-left">
+              <img class="mode-icon mode-icon-tarot" src="./assets/reflection-tarot.png" alt="Tarot icon" />
+              <h3 class="mode-title">Tarot</h3>
+              <p class="mode-subtext">22 Major Arcana<br />Symbol-based reflection</p>
+              <button class="enter-btn mode-enter-btn" id="mode-enter-btn" type="button">Enter</button>
+            </article>
+            <article class="mode-card mode-card-right">
+              <img class="mode-icon mode-icon-meihua" src="./assets/reflection-meihua.png" alt="Meihua Yishu icon" />
+              <h3 class="mode-title mode-title-cn">梅花易数</h3>
+              <p class="mode-subtext">Eight Trigrams<br />Pattern-based reflection</p>
+              <p class="mode-soon">Coming Soon...</p>
+            </article>
+          </section>
+          <section class="intent-select" id="intent-select" hidden aria-label="Tarot intent selection">
+            <button class="intent-card" type="button" id="intent-01">
+              <img class="intent-image" src="./assets/intent-clarity.png" alt="Gain Clarity card" />
+              <span class="intent-caption"><span class="intent-num">01</span> Gain Clarity</span>
+            </button>
+            <button class="intent-card" type="button" id="intent-02">
+              <img class="intent-image" src="./assets/intent-relationship.png" alt="Understand a Relationship card" />
+              <span class="intent-caption"><span class="intent-num">02</span> Understand a Relationship</span>
+            </button>
+            <button class="intent-card" type="button" id="intent-03">
+              <img class="intent-image" src="./assets/intent-grounding.png" alt="Ground Yourself card" />
+              <span class="intent-caption"><span class="intent-num">03</span> Ground Yourself</span>
+            </button>
+          </section>
+          <section class="intent-entry" id="intent-entry" hidden aria-label="Intent prompt entry">
+            <h2 class="intent-entry-title" id="intent-entry-title">Understand a Relationship</h2>
+            <p class="intent-entry-copy">
+              Write down what's on your mind in one sentence.<br />
+              Don't overthink it.
+            </p>
+            <p class="intent-entry-hints" id="intent-entry-hints">
+              Should I reach out first?<br />
+              Where do we stand right now?<br />
+              What is this relationship trying to show me?
+            </p>
+            <input
+              class="intent-entry-input"
+              id="intent-entry-input"
+              type="text"
+              placeholder="What's been on your mind..."
+              aria-label="What's been on your mind"
+            />
+            <button class="enter-btn intent-entry-begin" id="intent-entry-begin" type="button">Begin</button>
+            <div class="intent-animation-stage" id="intent-animation-stage" hidden aria-hidden="true"></div>
+          </section>
+          <section class="pre-stage" id="pre-stage" hidden aria-label="Pre animation stage">
+            <h2 class="pre-stage-title" id="pre-stage-title">Understand a Relationship</h2>
+            <p class="pre-stage-copy" id="pre-stage-copy">
+              Take a deep breath.<br />
+              Close your eyes.<br />
+              Hold your question in your mind.
+            </p>
+            <p class="pre-stage-pick-hint" id="pre-stage-pick-hint">Pick one card</p>
+            <div class="pre-deck" id="pre-deck" aria-label="Choose one card">
+              <button class="pre-card" style="--i:0" type="button" data-front="./assets/cards/0.png" aria-label="Card 1">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/0.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:1" type="button" data-front="./assets/cards/1.png" aria-label="Card 2">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/1.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:2" type="button" data-front="./assets/cards/2.png" aria-label="Card 3">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/2.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:3" type="button" data-front="./assets/cards/4.png" aria-label="Card 4">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/4.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:4" type="button" data-front="./assets/cards/5.png" aria-label="Card 5">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/5.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:5" type="button" data-front="./assets/cards/23.png" aria-label="Card 6">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/23.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:6" type="button" data-front="./assets/cards/24.png" aria-label="Card 7">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/24.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:7" type="button" data-front="./assets/cards/25.png" aria-label="Card 8">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/25.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:8" type="button" data-front="./assets/cards/26.png" aria-label="Card 9">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/26.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:9" type="button" data-front="./assets/cards/27.png" aria-label="Card 10">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/27.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:10" type="button" data-front="./assets/cards/28.png" aria-label="Card 11">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/28.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:11" type="button" data-front="./assets/cards/29.png" aria-label="Card 12">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/29.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:12" type="button" data-front="./assets/cards/30.png" aria-label="Card 13">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/30.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:13" type="button" data-front="./assets/cards/31.png" aria-label="Card 14">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/31.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:14" type="button" data-front="./assets/cards/32.png" aria-label="Card 15">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/32.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:15" type="button" data-front="./assets/cards/33.png" aria-label="Card 16">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/33.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:16" type="button" data-front="./assets/cards/34.png" aria-label="Card 17">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/34.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:17" type="button" data-front="./assets/cards/35.png" aria-label="Card 18">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/35.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:18" type="button" data-front="./assets/cards/36.png" aria-label="Card 19">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/36.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:19" type="button" data-front="./assets/cards/37.png" aria-label="Card 20">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/37.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:20" type="button" data-front="./assets/cards/38.png" aria-label="Card 21">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/38.png" alt="" />
+                </span>
+              </button>
+              <button class="pre-card" style="--i:21" type="button" data-front="./assets/cards/39.png" aria-label="Card 22">
+                <span class="pre-card-inner">
+                  <span class="pre-card-face pre-card-back"></span>
+                  <img class="pre-card-face pre-card-front" src="./assets/cards/39.png" alt="" />
+                </span>
+              </button>
+            </div>
+          </section>
+          <section class="reading-result" id="reading-result" hidden aria-label="Reading result">
+            <h2 class="reading-title" id="reading-question-title">What is this relationship trying to show me?</h2>
+            <div class="reading-layout">
+              <aside class="reading-left">
+                <img class="reading-card-image" id="reading-card-image" src="./assets/cards/37.png" alt="Drawn tarot card" />
+                <h3 class="reading-card-name" id="reading-card-name">The Sun · Upright</h3>
+                <p class="reading-card-keywords" id="reading-keywords">Keywords loading...</p>
+              </aside>
+              <section class="reading-right">
+                <div class="reading-scroll" id="reading-scroll-area">
+                  <div class="scroll-down-hint" id="reading-scroll-hint" aria-hidden="true">↓</div>
+                  <div id="reading-error-wrap" class="reading-error-wrap" hidden>
+                    <p class="reading-error-msg">Something went wrong. Please try again.</p>
+                    <button class="takeaway-btn" id="reading-retry-btn" type="button">Retry</button>
+                  </div>
+                  <div id="reading-main-flow" class="reading-main-flow">
+                    <section class="reading-screen reading-screen-main">
+                      <p id="reading-core" class="reading-core is-reading-loading">Reading in progress...</p>
+                      <div id="reading-body" class="reading-body"></div>
+                    </section>
+
+                    <section class="reading-screen reading-screen-takeaway">
+                      <div class="takeaway-panel">
+                        <h3 id="reading-takeaway" class="takeaway-title"></h3>
+                        <div class="takeaway-actions">
+                          <button class="takeaway-btn" id="takeaway-more-btn" type="button">Show me more</button>
+                          <button class="takeaway-btn takeaway-btn-wide" id="takeaway-guidance-btn" type="button">Pull a guidance card</button>
+                          <button class="takeaway-btn" id="takeaway-enough-btn" type="button">I've seen enough</button>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </section>
+          <section class="guidance-result" id="guidance-result" hidden aria-label="Guidance card result">
+            <h2 class="reading-title">Guidance for your next step</h2>
+            <div class="reading-layout">
+              <aside class="reading-left">
+                <img class="reading-card-image" id="guidance-card-image" src="./assets/cards/31.png" alt="Guidance tarot card" />
+                <h3 class="reading-card-name" id="guidance-card-name">Temperance · Upright</h3>
+                <p class="reading-card-keywords" id="guidance-card-keywords"></p>
+              </aside>
+              <section class="reading-right">
+                <div class="reading-scroll" id="guidance-scroll-area">
+                  <div id="guidance-error-wrap" class="reading-error-wrap" hidden>
+                    <p class="reading-error-msg">Something went wrong. Please try again.</p>
+                    <button class="takeaway-btn" id="guidance-retry-btn" type="button">Retry</button>
+                  </div>
+                  <div id="guidance-main-flow" class="reading-main-flow">
+                    <section class="reading-screen reading-screen-main">
+                      <div id="advice-body" class="advice-body"></div>
+                      <div id="advice-action" class="advice-action"></div>
+                      <p id="advice-closing" class="advice-closing"></p>
+                      <div class="guidance-inline-action">
+                        <button class="takeaway-btn takeaway-btn-wide" id="guidance-back-btn" type="button">
+                          Go back to real life
+                        </button>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </section>
+          <section class="ending-screen" id="ending-screen" hidden aria-label="Session complete">
+            <h2 class="ending-title" id="session-end-quote"></h2>
+            <button class="takeaway-btn ending-return-btn" id="ending-return-btn" type="button">Return</button>
+          </section>
+          <section class="ending-screen guidance-farewell-screen" id="guidance-farewell-screen" hidden aria-label="Closing line">
+            <p class="guidance-farewell-text" id="guidance-farewell-text"></p>
+            <button class="takeaway-btn ending-return-btn" id="guidance-farewell-home-btn" type="button">Return</button>
+          </section>
+
+          <div class="chapter-row">
+            <button class="chapter-index" type="button" id="chapter-01">
+              <span class="chapter-num">01</span><span class="chapter-label"> Philosophy</span>
+            </button>
+            <button class="chapter-index" type="button" id="chapter-02">
+              <span class="chapter-num">02</span><span class="chapter-label"> Reflection</span>
+            </button>
+            <button class="chapter-index" type="button" id="chapter-03">
+              <span class="chapter-num">03</span><span class="chapter-label"> Presence</span>
+            </button>
+          </div>
+
+          <p class="hero-proverb" id="hero-proverb">The light settles. I return to myself.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="./rill_api_config.js"></script>
+    <script>
+      const TAROT_DECK_EMBEDDED = null;
+      let tarotDeck =
+        Array.isArray(window.TAROT_DECK) && window.TAROT_DECK.length
+          ? window.TAROT_DECK
+          : Array.isArray(TAROT_DECK_EMBEDDED) && TAROT_DECK_EMBEDDED.length
+            ? TAROT_DECK_EMBEDDED
+            : [];
+      const DECK_JSON_URL = "./deepseek_json_20260312_f34a79.json";
+
+      const homeFlash = document.getElementById("home-flash");
+      const designCanvas = document.getElementById("design-canvas");
+      const heroQuoteEl = document.getElementById("hero-quote");
+      const heroPhilosophyEl = document.getElementById("hero-philosophy");
+      const reflectionKickerEl = document.getElementById("reflection-kicker");
+      const reflectionTitleEl = document.getElementById("reflection-title");
+      const enterBtnEl = document.getElementById("enter-btn");
+      const modeSelectEl = document.getElementById("mode-select");
+      const intentSelectEl = document.getElementById("intent-select");
+      const intentEntryEl = document.getElementById("intent-entry");
+      const intentEntryTitleEl = document.getElementById("intent-entry-title");
+      const intentEntryHintsEl = document.getElementById("intent-entry-hints");
+      const intentEntryBeginEl = document.getElementById("intent-entry-begin");
+      const intentEntryInputEl = document.getElementById("intent-entry-input");
+      const preStageEl = document.getElementById("pre-stage");
+      const preStageTitleEl = document.getElementById("pre-stage-title");
+      const preStageCopyEl = document.getElementById("pre-stage-copy");
+      const preDeckEl = document.getElementById("pre-deck");
+      const preCardEls = Array.from(document.querySelectorAll(".pre-card"));
+      const readingResultEl = document.getElementById("reading-result");
+      const readingQuestionTitleEl = document.getElementById("reading-question-title");
+      const readingCardImageEl = document.getElementById("reading-card-image");
+      const readingCardNameEl = document.getElementById("reading-card-name");
+      const readingKeywordsEl = document.getElementById("reading-keywords");
+      const readingCoreEl = document.getElementById("reading-core");
+      const readingBodyEl = document.getElementById("reading-body");
+      const readingTakeawayEl = document.getElementById("reading-takeaway");
+      const readingErrorWrapEl = document.getElementById("reading-error-wrap");
+      const readingRetryBtnEl = document.getElementById("reading-retry-btn");
+      const readingMainFlowEl = document.getElementById("reading-main-flow");
+      const readingScrollAreaEl = document.getElementById("reading-scroll-area");
+      const guidanceScrollAreaEl = document.getElementById("guidance-scroll-area");
+      const readingScrollHintEl = document.getElementById("reading-scroll-hint");
+      const guidanceScrollHintEl = document.getElementById("guidance-scroll-hint");
+      const guidanceCardImageEl = document.getElementById("guidance-card-image");
+      const guidanceCardNameEl = document.getElementById("guidance-card-name");
+      const guidanceCardKeywordsEl = document.getElementById("guidance-card-keywords");
+      const adviceBodyEl = document.getElementById("advice-body");
+      const adviceActionEl = document.getElementById("advice-action");
+      const adviceClosingEl = document.getElementById("advice-closing");
+      const guidanceErrorWrapEl = document.getElementById("guidance-error-wrap");
+      const guidanceRetryBtnEl = document.getElementById("guidance-retry-btn");
+      const guidanceMainFlowEl = document.getElementById("guidance-main-flow");
+      const sessionEndQuoteEl = document.getElementById("session-end-quote");
+      const modeEnterBtnEl = document.getElementById("mode-enter-btn");
+      const intent01El = document.getElementById("intent-01");
+      const intent02El = document.getElementById("intent-02");
+      const intent03El = document.getElementById("intent-03");
+      const takeawayMoreBtnEl = document.getElementById("takeaway-more-btn");
+      const takeawayGuidanceBtnEl = document.getElementById("takeaway-guidance-btn");
+      const takeawayEnoughBtnEl = document.getElementById("takeaway-enough-btn");
+      const guidanceBackBtnEl = document.getElementById("guidance-back-btn");
+      const proverbEl = document.getElementById("hero-proverb");
+      const guidanceResultEl = document.getElementById("guidance-result");
+      const endingScreenEl = document.getElementById("ending-screen");
+      const endingReturnBtnEl = document.getElementById("ending-return-btn");
+      const guidanceFarewellScreenEl = document.getElementById("guidance-farewell-screen");
+      const guidanceFarewellTextEl = document.getElementById("guidance-farewell-text");
+      const guidanceFarewellHomeBtnEl = document.getElementById("guidance-farewell-home-btn");
+      const chapter01El = document.getElementById("chapter-01");
+      const chapter02El = document.getElementById("chapter-02");
+      const chapter03El = document.getElementById("chapter-03");
+      const logoHitEl = document.getElementById("home-hit-main");
+      const backArrowEl = document.getElementById("back-arrow");
+      const rippleCanvasEl = document.getElementById("ripple-canvas");
+      let currentState = "home";
+      let reflectionStep = "mode";
+      let selectedIntentLabel = "Understand a Relationship";
+      let preStagePhase = "text";
+      let isTransitioning = false;
+      let preStageTimers = [];
+      let rippleCtx = null;
+      let rippleMouse = { x: 0, y: 0, px: 0, py: 0, speed: 0, active: false };
+      const ripplePoints = [];
+      let rippleAnimId = 0;
+      let lastRippleAt = 0;
+      let currentDraw = null;
+      let currentGuidanceDraw = null;
+      let tarotRound = 1;
+      let sessionReadingSummaries = [];
+      let lastReadingRequest = null;
+      let lastAdviceRequest = null;
+      let cardPickFlow = "reading";
+      const PRE_STAGE_GUIDE_MS = 1300;
+      const INTENT_HINTS = {
+        "Gain Clarity": [
+          "What am I not seeing clearly in this situation?",
+          "What decision am I avoiding right now?",
+          "What matters most in my next step?",
+        ],
+        "Understand a Relationship": [
+          "Should I reach out first?",
+          "Where do we stand right now?",
+          "What is this relationship trying to show me?",
+        ],
+        "Ground Yourself": [
+          "Why do I feel stuck even when I keep trying?",
+          "What can help me feel steady today?",
+          "What do I need to let go of right now?",
+        ],
+      };
+      const MAJOR_ARCANA_IMAGE_ORDER = [0, 1, 2, 4, 5, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39];
+      const DEFAULT_SESSION_END_QUOTE = "Not everything needs to make sense. The next step is enough.";
+
+      function applyIntentHints(label) {
+        if (!intentEntryHintsEl) return;
+        const lines = INTENT_HINTS[label] || INTENT_HINTS["Understand a Relationship"];
+        intentEntryHintsEl.innerHTML = lines.map((line) => escapeHtml(line)).join("<br />");
+      }
+
+      function pickUprightOrReversed() {
+        return Math.random() < 0.5 ? "upright" : "reversed";
+      }
+
+      function sanitizeClosingProverbText(text) {
+        let s = String(text || "").trim();
+        const kw = s.search(/\sKeywords:\s*/i);
+        if (kw >= 0) s = s.slice(0, kw).trim();
+        const cr = s.search(/\sCore:\s*/i);
+        if (cr >= 0) s = s.slice(0, cr).trim();
+        const nl = s.indexOf("\n");
+        if (nl >= 0) s = s.slice(0, nl).trim();
+        const firstSent = s.match(/^([\s\S]+?[.!?])(?=\s|$)/);
+        return (firstSent ? firstSent[1] : s).trim();
+      }
+
+      function lockScrollToMain(scrollEl) {
+        if (!scrollEl) return;
+        scrollEl.classList.add("is-scroll-locked");
+        const snapTop = () => {
+          scrollEl.scrollTop = 0;
+        };
+        snapTop();
+        window.requestAnimationFrame(snapTop);
+        window.requestAnimationFrame(() => window.requestAnimationFrame(snapTop));
+      }
+
+      function unlockScrollMain(scrollEl) {
+        if (!scrollEl) return;
+        scrollEl.classList.remove("is-scroll-locked");
+      }
+
+      function setSessionEndQuote(raw) {
+        const text = (raw && String(raw).trim()) || DEFAULT_SESSION_END_QUOTE;
+        if (sessionEndQuoteEl) {
+          sessionEndQuoteEl.innerHTML = escapeHtml(text).replace(/\n/g, "<br />");
+        }
+      }
+
+      async function ensureDeckLoaded(forceRefetch) {
+        if (!forceRefetch && Array.isArray(tarotDeck) && tarotDeck.length > 0) {
+          return;
+        }
+        if (!forceRefetch && Array.isArray(TAROT_DECK_EMBEDDED) && TAROT_DECK_EMBEDDED.length > 0) {
+          tarotDeck = TAROT_DECK_EMBEDDED;
+          return;
+        }
+        try {
+          const url = forceRefetch ? `${DECK_JSON_URL}?t=${Date.now()}` : DECK_JSON_URL;
+          const response = await fetch(url, forceRefetch ? { cache: "no-store" } : {});
+          if (!response.ok) {
+            return;
+          }
+          const data = await response.json();
+          if (Array.isArray(data) && data.length > 0) {
+            tarotDeck = data;
+          }
+        } catch (error) {
+          console.warn("deck load failed:", error);
+        }
+      }
+
+      function escapeHtml(str) {
+        return String(str || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function inlineMarkdownBoldToSafeHtml(text) {
+        let s = String(text || "");
+        const out = [];
+        const re = /\*\*([\s\S]*?)\*\*/g;
+        let last = 0;
+        let m = re.exec(s);
+        while (m !== null) {
+          out.push(escapeHtml(s.slice(last, m.index)));
+          out.push("<strong>" + escapeHtml(m[1].trim()) + "</strong>");
+          last = m.index + m[0].length;
+          m = re.exec(s);
+        }
+        out.push(escapeHtml(s.slice(last)));
+        return out.join("").replace(/\*\*/g, "");
+      }
+
+      function formatBodyAsHtml(bodyText) {
+        const t = String(bodyText || "").trim();
+        if (!t) return "";
+        const blocks = t.split(/\n\s*\n+/).map((b) => b.trim()).filter(Boolean);
+        let html = "";
+        for (const block of blocks) {
+          const lines = block.split("\n").map((l) => l.trim()).filter(Boolean);
+          if (!lines.length) continue;
+          const title = lines[0];
+          const paras = lines.slice(1);
+          if (!paras.length) {
+            html += `<article class="reading-point"><p>${inlineMarkdownBoldToSafeHtml(title)}</p></article>`;
+          } else {
+            html += `<article class="reading-point"><h4>${inlineMarkdownBoldToSafeHtml(title)}</h4>`;
+            paras.forEach((p) => {
+              html += `<p>${inlineMarkdownBoldToSafeHtml(p)}</p>`;
+            });
+            html += "</article>";
+          }
+        }
+        return html;
+      }
+
+      function parseMainReadingResponse(text) {
+        const raw = String(text || "").replace(/\r\n/g, "\n").trim();
+        const out = { keywords: "", core: "", bodyHtml: "", takeaway: "" };
+        if (!raw) return out;
+
+        let work = raw;
+        const takeMatch = work.match(/(?:^|\n)\s*One-line takeaway:\s*([\s\S]+)$/i);
+        if (takeMatch) {
+          out.takeaway = takeMatch[1].trim().split("\n")[0].trim();
+          work = work.slice(0, takeMatch.index).trim();
+        }
+
+        const lines = work.split("\n");
+        let i = 0;
+        while (i < lines.length && !lines[i].trim()) i += 1;
+        if (lines[i] && /^Keywords:\s*/i.test(lines[i])) {
+          out.keywords = lines[i].replace(/^Keywords:\s*/i, "").trim();
+          i += 1;
+        }
+        while (i < lines.length && !lines[i].trim()) i += 1;
+        if (lines[i] && /^Core:\s*/i.test(lines[i])) {
+          out.core = lines[i].replace(/^Core:\s*/i, "").trim();
+          i += 1;
+        }
+        while (i < lines.length && !lines[i].trim()) i += 1;
+        const bodyText = lines.slice(i).join("\n").trim();
+        out.bodyHtml = formatBodyAsHtml(bodyText);
+        return out;
+      }
+
+      function parseAdviceResponse(text) {
+        const s = String(text || "").replace(/\r\n/g, "\n");
+        const adviceM = s.match(/Advice:\s*([\s\S]*?)(?=^\s*Action:\s*)/im);
+        const actionM = s.match(/Action:\s*([\s\S]*?)(?=^\s*Closing:\s*)/im);
+        const closingM = s.match(/Closing:\s*([\s\S]*)$/im);
+        return {
+          advice: adviceM ? adviceM[1].trim() : "",
+          action: actionM ? actionM[1].trim() : "",
+          closing: closingM ? closingM[1].trim() : "",
+        };
+      }
+
+      async function callDeepSeekProxy(messages) {
+        const response = await fetch("/api/deepseek", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            model: "deepseek-chat",
+            messages,
+          }),
+        });
+        const data = await response.json();
+        if (!response.ok) {
+          const errMsg = data && (data.error && data.error.message) ? data.error.message : response.statusText;
+          throw new Error(errMsg || "API request failed");
+        }
+        const content = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+        if (!content || !String(content).trim()) {
+          throw new Error("Empty model response");
+        }
+        return String(content).trim();
+      }
+
+      async function generateReading(cardName, orientation, intent, question, round, sessionHistory) {
+        const historyBlock =
+          sessionHistory && String(sessionHistory).trim()
+            ? `\nSession history (brief, do not repeat earlier angles):\n${String(sessionHistory).trim()}`
+            : "";
+        const userContent = `Intent: ${intent}\nQuestion: ${question}\nCard: ${cardName} (${orientation})\nRound: ${round}${historyBlock}`;
+        return callDeepSeekProxy([
+          { role: "system", content: typeof SYSTEM_PROMPT !== "undefined" ? SYSTEM_PROMPT : "" },
+          { role: "user", content: userContent },
+        ]);
+      }
+
+      async function generateAdviceReading(cardName, orientation, intent, question, sessionSummary) {
+        const ctx = sessionSummary && sessionSummary.trim() ? `\nContext from earlier reading:\n${sessionSummary.trim()}` : "";
+        const userContent = `Mode: guidance card (final step only).\nIntent: ${intent}\nQuestion: ${question}\nCard: ${cardName} (${orientation})${ctx}\n\nOutput exactly in this format:\nAdvice: [direct clear paragraph]\nAction: [one concrete thing to do now]\nClosing: [one final sentence]`;
+        const adviceSystem =
+          (typeof SYSTEM_PROMPT !== "undefined" ? SYSTEM_PROMPT : "") +
+          "\n\nFor this request only: follow the Advice / Action / Closing format exactly. No extra sections.";
+        return callDeepSeekProxy([
+          { role: "system", content: adviceSystem },
+          { role: "user", content: userContent },
+        ]);
+      }
+
+      function setReadingLoading(isLoading) {
+        if (readingResultEl) readingResultEl.classList.toggle("is-reading-loading", isLoading);
+        if (readingScrollAreaEl) readingScrollAreaEl.classList.toggle("is-reading-loading", isLoading);
+        if (isLoading) {
+          lockScrollToMain(readingScrollAreaEl);
+        } else {
+          unlockScrollMain(readingScrollAreaEl);
+        }
+        if (readingCoreEl) {
+          readingCoreEl.classList.toggle("is-reading-loading", isLoading);
+          if (isLoading) {
+            readingCoreEl.textContent = "Reading in progress...";
+          }
+        }
+        window.requestAnimationFrame(() => updateScrollHintState(readingScrollAreaEl));
+      }
+
+      function showReadingApiError(show) {
+        if (readingErrorWrapEl) readingErrorWrapEl.hidden = !show;
+        if (readingMainFlowEl) readingMainFlowEl.hidden = show;
+        window.requestAnimationFrame(() => updateScrollHintState(readingScrollAreaEl));
+      }
+
+      function showGuidanceApiError(show) {
+        if (guidanceErrorWrapEl) guidanceErrorWrapEl.hidden = !show;
+        if (guidanceMainFlowEl) guidanceMainFlowEl.hidden = show;
+        window.requestAnimationFrame(() => updateScrollHintState(guidanceScrollAreaEl));
+      }
+
+      function updateScrollHintState(scrollEl) {
+        if (!scrollEl) return;
+        const canScroll = scrollEl.scrollHeight - scrollEl.clientHeight > 24;
+        const nearTop = scrollEl.scrollTop < 14;
+        const isBusy = scrollEl.classList.contains("is-reading-loading")
+          || scrollEl.classList.contains("is-advice-loading")
+          || scrollEl.classList.contains("is-scroll-locked");
+        scrollEl.classList.toggle("has-scroll-hint", canScroll && nearTop && !isBusy);
+      }
+
+      function setupScrollHint(scrollEl) {
+        if (!scrollEl) return;
+        const update = () => updateScrollHintState(scrollEl);
+        scrollEl.addEventListener("scroll", update, { passive: true });
+        window.addEventListener("resize", update);
+        window.requestAnimationFrame(() => window.requestAnimationFrame(update));
+      }
+
+      function hideGuidanceFarewellScreen() {
+        if (guidanceFarewellScreenEl) guidanceFarewellScreenEl.hidden = true;
+      }
+
+      function applyParsedReadingToDom(parsed, fallbackKeywords) {
+        if (readingKeywordsEl) {
+          const kw = (parsed.keywords || "").trim();
+          readingKeywordsEl.textContent = kw || (fallbackKeywords || "").trim() || "";
+        }
+        if (readingCoreEl) {
+          readingCoreEl.innerHTML = inlineMarkdownBoldToSafeHtml(parsed.core || "");
+          readingCoreEl.classList.remove("is-reading-loading");
+        }
+        if (readingBodyEl) {
+          readingBodyEl.innerHTML = parsed.bodyHtml || "";
+        }
+        if (readingTakeawayEl) {
+          readingTakeawayEl.innerHTML = inlineMarkdownBoldToSafeHtml(parsed.takeaway || "");
+        }
+      }
+
+      async function runMainReadingApi() {
+        if (!currentDraw || !currentDraw.card) return;
+        const card = currentDraw.card;
+        const orientation = currentDraw.orientation === "reversed" ? "reversed" : "upright";
+        const cardName = card.name_en || card.name || "Unknown";
+        const intent = selectedIntentLabel || "";
+        const question = (intentEntryInputEl && intentEntryInputEl.value) ? intentEntryInputEl.value.trim() : "";
+        const round = tarotRound;
+        const sessionHistory = sessionReadingSummaries.join("\n---\n");
+
+        lastReadingRequest = { cardName, orientation, intent, question, round, sessionHistory };
+
+        showReadingApiError(false);
+        setReadingLoading(true);
+        if (readingBodyEl) readingBodyEl.innerHTML = "";
+        if (readingTakeawayEl) readingTakeawayEl.textContent = "";
+
+        try {
+          const raw = await generateReading(cardName, orientation, intent, question, round, sessionHistory);
+          const parsed = parseMainReadingResponse(raw);
+          applyParsedReadingToDom(parsed, "");
+          if (parsed.takeaway) {
+            sessionReadingSummaries.push(`Round ${round} (${cardName}): ${parsed.takeaway}`);
+          }
+        } catch (e) {
+          console.warn("reading API:", e);
+          showReadingApiError(true);
+          if (readingCoreEl) {
+            readingCoreEl.textContent = "Reading in progress...";
+            readingCoreEl.classList.add("is-reading-loading");
+          }
+        } finally {
+          setReadingLoading(false);
+          window.requestAnimationFrame(() => updateScrollHintState(readingScrollAreaEl));
+        }
+      }
+
+      async function retryMainReading() {
+        if (!lastReadingRequest) {
+          void runMainReadingApi();
+          return;
+        }
+        const { cardName, orientation, intent, question, round, sessionHistory } = lastReadingRequest;
+        showReadingApiError(false);
+        setReadingLoading(true);
+        if (readingBodyEl) readingBodyEl.innerHTML = "";
+        if (readingTakeawayEl) readingTakeawayEl.textContent = "";
+        try {
+          const raw = await generateReading(cardName, orientation, intent, question, round, sessionHistory);
+          const parsed = parseMainReadingResponse(raw);
+          applyParsedReadingToDom(parsed, "");
+          if (parsed.takeaway) {
+            sessionReadingSummaries.push(`Round ${round} (${cardName}): ${parsed.takeaway}`);
+          }
+        } catch (e) {
+          console.warn("reading retry:", e);
+          showReadingApiError(true);
+          if (readingCoreEl) {
+            readingCoreEl.classList.add("is-reading-loading");
+          }
+        } finally {
+          setReadingLoading(false);
+          window.requestAnimationFrame(() => updateScrollHintState(readingScrollAreaEl));
+        }
+      }
+
+      function renderGuidanceCardChrome(draw) {
+        if (!draw || !draw.card) return;
+        const { card, orientation } = draw;
+        const orientationLabel = orientation === "reversed" ? "Reversed" : "Upright";
+        const isReversed = orientation === "reversed";
+        const keywords = isReversed ? card.reversed_keywords : card.upright_keywords;
+        if (guidanceCardNameEl) {
+          guidanceCardNameEl.textContent = `${card.name_en || card.name || "Unknown"} · ${orientationLabel}`;
+        }
+        if (guidanceCardKeywordsEl) {
+          guidanceCardKeywordsEl.textContent = Array.isArray(keywords) ? keywords.slice(0, 3).join(", ") : "";
+        }
+        const primaryPath = resolveAssetUrl(getCardImagePath(card));
+        if (guidanceCardImageEl) {
+          guidanceCardImageEl.removeAttribute("src");
+          window.requestAnimationFrame(() => {
+            guidanceCardImageEl.src = `${primaryPath}${primaryPath.includes("?") ? "&" : "?"}t=${Date.now()}`;
+          });
+          guidanceCardImageEl.classList.toggle("is-reversed", isReversed);
+        }
+      }
+
+      async function runGuidanceAdviceApi() {
+        if (!currentGuidanceDraw || !currentGuidanceDraw.card) return;
+        const card = currentGuidanceDraw.card;
+        const orientation = currentGuidanceDraw.orientation === "reversed" ? "reversed" : "upright";
+        const cardName = card.name_en || card.name || "Unknown";
+        const intent = selectedIntentLabel || "";
+        const question = (intentEntryInputEl && intentEntryInputEl.value) ? intentEntryInputEl.value.trim() : "";
+        const sessionSummary = sessionReadingSummaries.join("\n");
+
+        lastAdviceRequest = { cardName, orientation, intent, question, sessionSummary };
+        showGuidanceApiError(false);
+        if (guidanceScrollAreaEl) {
+          guidanceScrollAreaEl.classList.add("is-advice-loading");
+          lockScrollToMain(guidanceScrollAreaEl);
+        }
+        if (adviceBodyEl) adviceBodyEl.innerHTML = `<p class="advice-loading is-reading-loading">Reading in progress...</p>`;
+        if (adviceActionEl) adviceActionEl.textContent = "";
+        if (adviceClosingEl) adviceClosingEl.textContent = "";
+
+        try {
+          const raw = await generateAdviceReading(cardName, orientation, intent, question, sessionSummary);
+          const p = parseAdviceResponse(raw);
+          if (adviceBodyEl) {
+            adviceBodyEl.innerHTML = "";
+            if (p.advice) {
+              const wrap = document.createElement("div");
+              wrap.className = "advice-block";
+              p.advice.split(/\n+/).forEach((line) => {
+                const t = line.trim();
+                if (!t) return;
+                const pEl = document.createElement("p");
+                pEl.innerHTML = inlineMarkdownBoldToSafeHtml(t);
+                wrap.appendChild(pEl);
+              });
+              adviceBodyEl.appendChild(wrap);
+            }
+          }
+          if (adviceActionEl) {
+            adviceActionEl.innerHTML = "";
+            if (p.action) {
+              const label = document.createElement("p");
+              label.className = "advice-action-label";
+              label.textContent = "One thing you can do now";
+              const pEl = document.createElement("p");
+              pEl.innerHTML = inlineMarkdownBoldToSafeHtml(p.action);
+              adviceActionEl.appendChild(label);
+              adviceActionEl.appendChild(pEl);
+            }
+          }
+          if (adviceClosingEl) {
+            const closingClean = sanitizeClosingProverbText(p.closing || "");
+            adviceClosingEl.innerHTML = inlineMarkdownBoldToSafeHtml(closingClean);
+          }
+        } catch (e) {
+          console.warn("advice API:", e);
+          showGuidanceApiError(true);
+          if (adviceBodyEl) adviceBodyEl.innerHTML = "";
+          if (adviceActionEl) adviceActionEl.innerHTML = "";
+          if (adviceClosingEl) adviceClosingEl.textContent = "";
+        } finally {
+          if (guidanceScrollAreaEl) {
+            guidanceScrollAreaEl.classList.remove("is-advice-loading");
+            unlockScrollMain(guidanceScrollAreaEl);
+          }
+          window.requestAnimationFrame(() => updateScrollHintState(guidanceScrollAreaEl));
+        }
+      }
+
+      async function retryGuidanceAdvice() {
+        showGuidanceApiError(false);
+        await runGuidanceAdviceApi();
+      }
+
+      function applyScale() {
+        const baseW = 1440;
+        const baseH = 1024;
+        const safeBottom = 28;
+        const scale = Math.min(window.innerWidth / baseW, (window.innerHeight - safeBottom) / baseH);
+        designCanvas.style.transform = `translateX(-50%) scale(${Math.max(scale, 0.5)})`;
+      }
+
+      function resizeRippleCanvas() {
+        if (!rippleCanvasEl) return;
+        const dpr = Math.max(window.devicePixelRatio || 1, 1);
+        rippleCanvasEl.width = Math.floor(window.innerWidth * dpr);
+        rippleCanvasEl.height = Math.floor(window.innerHeight * dpr);
+        rippleCanvasEl.style.width = `${window.innerWidth}px`;
+        rippleCanvasEl.style.height = `${window.innerHeight}px`;
+        if (rippleCtx) {
+          rippleCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+      }
+
+      function spawnRipple(x, y, speed) {
+        ripplePoints.push({
+          x,
+          y,
+          r: 12 + Math.min(speed * 0.04, 14),
+          life: 1,
+          growth: 0.75 + Math.min(speed * 0.005, 0.7),
+        });
+      }
+
+      function drawRipples() {
+        if (!rippleCtx || !rippleCanvasEl) return;
+        rippleCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        for (let i = ripplePoints.length - 1; i >= 0; i -= 1) {
+          const p = ripplePoints[i];
+          p.r += p.growth;
+          p.life -= 0.02;
+          if (p.life <= 0) {
+            ripplePoints.splice(i, 1);
+            continue;
+          }
+
+          rippleCtx.beginPath();
+          rippleCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          rippleCtx.strokeStyle = `rgba(250, 244, 230, ${0.24 * p.life})`;
+          rippleCtx.lineWidth = 1.2;
+          rippleCtx.stroke();
+        }
+
+        rippleAnimId = window.requestAnimationFrame(drawRipples);
+      }
+
+      function initRippleEffect() {
+        if (!rippleCanvasEl) return;
+        rippleCtx = rippleCanvasEl.getContext("2d");
+        if (!rippleCtx) return;
+
+        resizeRippleCanvas();
+        window.addEventListener("resize", resizeRippleCanvas);
+
+        window.addEventListener("pointermove", (event) => {
+          const now = performance.now();
+          const dx = event.clientX - rippleMouse.x;
+          const dy = event.clientY - rippleMouse.y;
+          const speed = Math.hypot(dx, dy);
+          rippleMouse.px = rippleMouse.x;
+          rippleMouse.py = rippleMouse.y;
+          rippleMouse.x = event.clientX;
+          rippleMouse.y = event.clientY;
+          rippleMouse.speed = speed;
+          rippleMouse.active = true;
+          if (speed > 1.4 && now - lastRippleAt > 60) {
+            lastRippleAt = now;
+            spawnRipple(event.clientX, event.clientY, speed);
+          }
+        });
+
+        window.addEventListener("pointerleave", () => {
+          rippleMouse.active = false;
+        });
+
+        if (!rippleAnimId) {
+          drawRipples();
+        }
+      }
+
+      function clearActive() {
+        document.body.classList.remove("is-philosophy", "is-reflection");
+        chapter01El.classList.remove("is-active");
+        chapter02El.classList.remove("is-active");
+        chapter03El.classList.remove("is-active");
+      }
+
+      function toTitleCase(input) {
+        return String(input || "")
+          .replace(/[_-]+/g, " ")
+          .replace(/\s+/g, " ")
+          .trim()
+          .replace(/\b\w/g, (c) => c.toUpperCase());
+      }
+
+      function getCardImagePath(card) {
+        if (!card) return "./assets/tarot-option-02.png";
+        const idx = card.number !== undefined && card.number !== null ? Number(card.number) : Number(card.id);
+        if (Number.isFinite(idx) && idx >= 0 && idx < MAJOR_ARCANA_IMAGE_ORDER.length) {
+          const mapped = MAJOR_ARCANA_IMAGE_ORDER[idx];
+          return `./assets/cards/${mapped}.png`;
+        }
+        if (card.image) return card.image;
+        if (card.image_path) return card.image_path;
+        if (card.asset) return card.asset;
+        const slug = String(card.name_en || card.name || "")
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+        return slug ? `./assets/cards/${slug}.png` : "./assets/tarot-option-02.png";
+      }
+
+      function resolveAssetUrl(path) {
+        try {
+          return new URL(path, window.location.href).href;
+        } catch (_) {
+          return path;
+        }
+      }
+
+      function pickRandomCardFromDeck() {
+        if (!Array.isArray(tarotDeck) || tarotDeck.length === 0) {
+          return null;
+        }
+        return tarotDeck[Math.floor(Math.random() * tarotDeck.length)];
+      }
+
+      function applyReadingCardChrome(draw) {
+        if (!draw || !draw.card || !readingCardNameEl || !readingCardImageEl) return;
+        const { card, orientation } = draw;
+        const orientationLabel = orientation === "reversed" ? "Reversed" : "Upright";
+        const isReversed = orientation === "reversed";
+        readingCardNameEl.textContent = `${card.name_en || card.name || "Unknown Card"} · ${orientationLabel}`;
+        if (readingKeywordsEl) readingKeywordsEl.textContent = "Keywords loading...";
+        if (readingCoreEl) {
+          readingCoreEl.textContent = "Reading in progress...";
+          readingCoreEl.classList.add("is-reading-loading");
+        }
+        if (readingBodyEl) readingBodyEl.innerHTML = "";
+        if (readingTakeawayEl) readingTakeawayEl.textContent = "";
+
+        const fallbackPath = (() => {
+          if (card.image) return card.image;
+          if (card.image_path) return card.image_path;
+          if (card.asset) return card.asset;
+          const slug = String(card.name_en || card.name || "")
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+          return slug ? `./assets/cards/${slug}.png` : "./assets/tarot-option-02.png";
+        })();
+
+        const primaryPath = resolveAssetUrl(getCardImagePath(card));
+        readingCardImageEl.removeAttribute("src");
+        readingCardImageEl.dataset.fallbackTried = "0";
+        window.requestAnimationFrame(() => {
+          readingCardImageEl.src = `${primaryPath}${primaryPath.includes("?") ? "&" : "?"}t=${Date.now()}`;
+        });
+        readingCardImageEl.classList.toggle("is-reversed", isReversed);
+        readingCardImageEl.onerror = () => {
+          if (readingCardImageEl.dataset.fallbackTried === "1") {
+            readingCardImageEl.onerror = null;
+            readingCardImageEl.src = resolveAssetUrl("./assets/tarot-option-02.png");
+            return;
+          }
+          readingCardImageEl.dataset.fallbackTried = "1";
+          readingCardImageEl.src = resolveAssetUrl(fallbackPath);
+        };
+        readingCardImageEl.onload = () => {
+          readingCardImageEl.dataset.fallbackTried = "0";
+        };
+      }
+
+      function renderDrawToReading(draw) {
+        if (!draw || !draw.card) return;
+        applyReadingCardChrome(draw);
+        void runMainReadingApi();
+      }
+
+      async function sendDrawEventToApi(draw) {
+        if (!draw || !draw.card) return;
+        const payload = {
+          card: draw.card.name_en || draw.card.name || "",
+          orientation: draw.orientation,
+          intent: selectedIntentLabel,
+          question: (intentEntryInputEl && intentEntryInputEl.value || "").trim(),
+        };
+        try {
+          await fetch("/api/tarot/draw", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+        } catch (error) {
+          console.warn("draw API call failed:", error);
+        }
+      }
+
+      function clearPreStageTimers() {
+        preStageTimers.forEach((timerId) => window.clearTimeout(timerId));
+        preStageTimers = [];
+      }
+
+      function resetPreStageVisuals() {
+        clearPreStageTimers();
+        preStageEl.classList.remove("show-guide", "show-deck", "has-selection");
+        preCardEls.forEach((cardEl) => {
+          cardEl.classList.remove("is-selected", "is-faded", "is-revealed");
+          cardEl.disabled = false;
+        });
+      }
+
+      function syncBackArrow() {
+        backArrowEl.hidden = currentState === "home";
+      }
+
+      function transitionTo(nextView) {
+        if (isTransitioning) {
+          return;
+        }
+        isTransitioning = true;
+        window.setTimeout(() => {
+          nextView();
+        }, 190);
+        window.setTimeout(() => {
+          isTransitioning = false;
+        }, 400);
+      }
+
+      function showHomeDefault() {
+        currentState = "home";
+        reflectionStep = "mode";
+        chapter01El.hidden = false;
+        chapter02El.hidden = false;
+        chapter03El.hidden = false;
+        clearActive();
+        heroQuoteEl.hidden = false;
+        heroPhilosophyEl.hidden = true;
+        reflectionKickerEl.hidden = true;
+        reflectionTitleEl.hidden = true;
+        enterBtnEl.hidden = true;
+        modeSelectEl.hidden = true;
+        intentSelectEl.hidden = true;
+        intentEntryEl.hidden = true;
+        preStageEl.hidden = true;
+        readingResultEl.hidden = true;
+        guidanceResultEl.hidden = true;
+        endingScreenEl.hidden = true;
+        if (guidanceFarewellScreenEl) guidanceFarewellScreenEl.hidden = true;
+        resetPreStageVisuals();
+        proverbEl.classList.remove("is-small-note");
+        proverbEl.textContent = "The light settles. I return to myself.";
+        tarotRound = 1;
+        sessionReadingSummaries = [];
+        currentDraw = null;
+        currentGuidanceDraw = null;
+        lastReadingRequest = null;
+        lastAdviceRequest = null;
+        syncBackArrow();
+      }
+
+      function showPhilosophy() {
+        currentState = "philosophy";
+        chapter01El.hidden = false;
+        chapter02El.hidden = false;
+        chapter03El.hidden = false;
+        clearActive();
+        document.body.classList.add("is-philosophy");
+        chapter01El.classList.add("is-active");
+        heroQuoteEl.hidden = true;
+        heroPhilosophyEl.hidden = false;
+        reflectionKickerEl.hidden = true;
+        reflectionTitleEl.hidden = true;
+        enterBtnEl.hidden = true;
+        modeSelectEl.hidden = true;
+        intentSelectEl.hidden = true;
+        intentEntryEl.hidden = true;
+        preStageEl.hidden = true;
+        readingResultEl.hidden = true;
+        guidanceResultEl.hidden = true;
+        endingScreenEl.hidden = true;
+        hideGuidanceFarewellScreen();
+        resetPreStageVisuals();
+        proverbEl.classList.remove("is-small-note");
+        syncBackArrow();
+      }
+
+      function showReflection() {
+        currentState = "reflection";
+        reflectionStep = "mode";
+        chapter01El.hidden = false;
+        chapter02El.hidden = false;
+        chapter03El.hidden = false;
+        clearActive();
+        document.body.classList.add("is-reflection");
+        chapter02El.classList.add("is-active");
+        heroQuoteEl.hidden = true;
+        heroPhilosophyEl.hidden = true;
+        reflectionKickerEl.hidden = false;
+        reflectionTitleEl.hidden = false;
+        enterBtnEl.hidden = false;
+        modeSelectEl.hidden = true;
+        intentSelectEl.hidden = true;
+        intentEntryEl.hidden = true;
+        preStageEl.hidden = true;
+        readingResultEl.hidden = true;
+        guidanceResultEl.hidden = true;
+        endingScreenEl.hidden = true;
+        hideGuidanceFarewellScreen();
+        resetPreStageVisuals();
+        proverbEl.classList.remove("is-small-note");
+        proverbEl.textContent = "See clearly, then choose your path.";
+        syncBackArrow();
+      }
+
+      function showReflectionModeSelect() {
+        reflectionStep = "select";
+        reflectionKickerEl.hidden = false;
+        reflectionTitleEl.hidden = true;
+        enterBtnEl.hidden = true;
+        modeSelectEl.hidden = false;
+        intentSelectEl.hidden = true;
+        intentEntryEl.hidden = true;
+        preStageEl.hidden = true;
+        readingResultEl.hidden = true;
+        guidanceResultEl.hidden = true;
+        endingScreenEl.hidden = true;
+        hideGuidanceFarewellScreen();
+        resetPreStageVisuals();
+        chapter01El.hidden = true;
+        chapter02El.hidden = true;
+        chapter03El.hidden = true;
+        proverbEl.classList.remove("is-small-note");
+        proverbEl.textContent = "See clearly, then choose your path.";
+      }
+
+      function showTarotIntentSelect() {
+        reflectionStep = "intent";
+        reflectionKickerEl.hidden = false;
+        reflectionTitleEl.hidden = true;
+        enterBtnEl.hidden = true;
+        modeSelectEl.hidden = true;
+        intentSelectEl.hidden = false;
+        intentEntryEl.hidden = true;
+        preStageEl.hidden = true;
+        readingResultEl.hidden = true;
+        guidanceResultEl.hidden = true;
+        endingScreenEl.hidden = true;
+        hideGuidanceFarewellScreen();
+        resetPreStageVisuals();
+        chapter01El.hidden = true;
+        chapter02El.hidden = true;
+        chapter03El.hidden = true;
+        proverbEl.classList.remove("is-small-note");
+        proverbEl.textContent = "See clearly, then choose your path.";
+      }
+
+      function showIntentEntry(label) {
+        reflectionStep = "intent-entry";
+        selectedIntentLabel = label;
+        reflectionKickerEl.hidden = true;
+        reflectionTitleEl.hidden = true;
+        enterBtnEl.hidden = true;
+        modeSelectEl.hidden = true;
+        intentSelectEl.hidden = true;
+        intentEntryEl.hidden = false;
+        preStageEl.hidden = true;
+        readingResultEl.hidden = true;
+        guidanceResultEl.hidden = true;
+        endingScreenEl.hidden = true;
+        hideGuidanceFarewellScreen();
+        resetPreStageVisuals();
+        intentEntryTitleEl.textContent = label;
+        applyIntentHints(label);
+        chapter01El.hidden = true;
+        chapter02El.hidden = true;
+        chapter03El.hidden = true;
+        proverbEl.classList.add("is-small-note");
+        proverbEl.textContent = "Rill doesn't predict the future. It reflects the present";
+      }
+
+      function showPreStageCommon(options = {}) {
+        const withGuideStep = options.withGuideStep !== false;
+        reflectionStep = "pre-stage";
+        preStagePhase = "text";
+        void ensureDeckLoaded();
+        resetPreStageVisuals();
+        reflectionKickerEl.hidden = true;
+        reflectionTitleEl.hidden = true;
+        enterBtnEl.hidden = true;
+        modeSelectEl.hidden = true;
+        intentSelectEl.hidden = true;
+        intentEntryEl.hidden = true;
+        preStageEl.hidden = false;
+        readingResultEl.hidden = true;
+        guidanceResultEl.hidden = true;
+        endingScreenEl.hidden = true;
+        hideGuidanceFarewellScreen();
+        preStageTitleEl.textContent = selectedIntentLabel;
+        chapter01El.hidden = true;
+        chapter02El.hidden = true;
+        chapter03El.hidden = true;
+        proverbEl.classList.add("is-small-note");
+        proverbEl.textContent = "Rill doesn't predict the future. It reflects the present";
+
+        if (withGuideStep) {
+          preStageTimers.push(window.setTimeout(() => {
+            preStageEl.classList.add("show-guide");
+          }, 20));
+
+          preStageTimers.push(window.setTimeout(() => {
+            preStagePhase = "deck";
+            preStageEl.classList.remove("show-guide");
+            preStageEl.classList.add("show-deck");
+          }, PRE_STAGE_GUIDE_MS));
+          return;
+        }
+
+        preStagePhase = "deck";
+        preStageEl.classList.remove("show-guide");
+        preStageEl.classList.add("show-deck");
+      }
+
+      function showPreStageText() {
+        cardPickFlow = "reading";
+        showPreStageCommon({ withGuideStep: true });
+      }
+
+      function showGuidancePreStage() {
+        cardPickFlow = "guidance";
+        showPreStageCommon({ withGuideStep: false });
+      }
+
+      function showPreStageAnimation() {
+        showPreStageText();
+      }
+
+      function showReadingResult() {
+        reflectionStep = "result";
+        resetPreStageVisuals();
+        reflectionKickerEl.hidden = true;
+        reflectionTitleEl.hidden = true;
+        enterBtnEl.hidden = true;
+        modeSelectEl.hidden = true;
+        intentSelectEl.hidden = true;
+        intentEntryEl.hidden = true;
+        preStageEl.hidden = true;
+        readingResultEl.hidden = false;
+        guidanceResultEl.hidden = true;
+        endingScreenEl.hidden = true;
+        hideGuidanceFarewellScreen();
+        chapter01El.hidden = true;
+        chapter02El.hidden = true;
+        chapter03El.hidden = true;
+        proverbEl.classList.add("is-small-note");
+        proverbEl.textContent = "Rill doesn't predict the future. It reflects the present";
+        const q = (intentEntryInputEl && intentEntryInputEl.value) ? intentEntryInputEl.value.trim() : "";
+        if (q && readingQuestionTitleEl) {
+          readingQuestionTitleEl.textContent = q;
+        }
+        showReadingApiError(false);
+        if (currentDraw && currentDraw.card) {
+          renderDrawToReading(currentDraw);
+          void sendDrawEventToApi(currentDraw);
+        } else if (readingErrorWrapEl && readingMainFlowEl) {
+          showReadingApiError(true);
+        }
+        window.requestAnimationFrame(() => {
+          lockScrollToMain(readingScrollAreaEl);
+          updateScrollHintState(readingScrollAreaEl);
+        });
+      }
+
+      function showGuidanceResult() {
+        reflectionStep = "guidance-result";
+        resetPreStageVisuals();
+        reflectionKickerEl.hidden = true;
+        reflectionTitleEl.hidden = true;
+        enterBtnEl.hidden = true;
+        modeSelectEl.hidden = true;
+        intentSelectEl.hidden = true;
+        intentEntryEl.hidden = true;
+        preStageEl.hidden = true;
+        readingResultEl.hidden = true;
+        guidanceResultEl.hidden = false;
+        endingScreenEl.hidden = true;
+        hideGuidanceFarewellScreen();
+        chapter01El.hidden = true;
+        chapter02El.hidden = true;
+        chapter03El.hidden = true;
+        proverbEl.classList.add("is-small-note");
+        proverbEl.textContent = "Rill doesn't predict the future. It reflects the present";
+        window.requestAnimationFrame(() => {
+          lockScrollToMain(guidanceScrollAreaEl);
+          updateScrollHintState(guidanceScrollAreaEl);
+        });
+        if (!currentGuidanceDraw || !currentGuidanceDraw.card) {
+          showGuidanceApiError(true);
+          return;
+        }
+        renderGuidanceCardChrome(currentGuidanceDraw);
+        void runGuidanceAdviceApi();
+      }
+
+      function showGuidanceFarewellScreen() {
+        reflectionStep = "guidance-farewell";
+        resetPreStageVisuals();
+        reflectionKickerEl.hidden = true;
+        reflectionTitleEl.hidden = true;
+        enterBtnEl.hidden = true;
+        modeSelectEl.hidden = true;
+        intentSelectEl.hidden = true;
+        intentEntryEl.hidden = true;
+        preStageEl.hidden = true;
+        readingResultEl.hidden = true;
+        guidanceResultEl.hidden = true;
+        endingScreenEl.hidden = true;
+        if (guidanceFarewellScreenEl) guidanceFarewellScreenEl.hidden = false;
+        chapter01El.hidden = true;
+        chapter02El.hidden = true;
+        chapter03El.hidden = true;
+        proverbEl.classList.add("is-small-note");
+        proverbEl.textContent = "Rill doesn't predict the future. It reflects the present";
+        const raw = adviceClosingEl ? adviceClosingEl.textContent.trim() : "";
+        const cleaned = sanitizeClosingProverbText(raw);
+        if (guidanceFarewellTextEl) {
+          guidanceFarewellTextEl.textContent = cleaned || DEFAULT_SESSION_END_QUOTE;
+        }
+      }
+
+      function showEndingScreen() {
+        reflectionStep = "ending";
+        resetPreStageVisuals();
+        reflectionKickerEl.hidden = true;
+        reflectionTitleEl.hidden = true;
+        enterBtnEl.hidden = true;
+        modeSelectEl.hidden = true;
+        intentSelectEl.hidden = true;
+        intentEntryEl.hidden = true;
+        preStageEl.hidden = true;
+        readingResultEl.hidden = true;
+        guidanceResultEl.hidden = true;
+        endingScreenEl.hidden = false;
+        hideGuidanceFarewellScreen();
+        chapter01El.hidden = true;
+        chapter02El.hidden = true;
+        chapter03El.hidden = true;
+        proverbEl.classList.add("is-small-note");
+        proverbEl.textContent = "Rill doesn't predict the future. It reflects the present";
+      }
+
+      chapter01El.addEventListener("click", () => {
+        if (document.body.classList.contains("is-philosophy")) {
+          transitionTo(showHomeDefault);
+          return;
+        }
+        transitionTo(showPhilosophy);
+      });
+
+      chapter02El.addEventListener("click", () => {
+        if (currentState === "reflection" && reflectionStep === "mode") {
+          transitionTo(showHomeDefault);
+          return;
+        }
+        if (currentState === "reflection" && reflectionStep === "select") {
+          transitionTo(showReflection);
+          return;
+        }
+        if (currentState === "reflection" && reflectionStep === "intent") {
+          transitionTo(showReflectionModeSelect);
+          return;
+        }
+        if (currentState === "reflection" && reflectionStep === "intent-entry") {
+          transitionTo(showTarotIntentSelect);
+          return;
+        }
+        if (currentState === "reflection" && reflectionStep === "pre-stage") {
+          if (cardPickFlow === "guidance") {
+            transitionTo(showReadingResult);
+            return;
+          }
+          transitionTo(() => showIntentEntry(selectedIntentLabel));
+          return;
+        }
+        if (currentState === "reflection" && reflectionStep === "guidance-farewell") {
+          transitionTo(showGuidanceResult);
+          return;
+        }
+        if (currentState === "reflection" && reflectionStep === "result") {
+          transitionTo(showTarotIntentSelect);
+          return;
+        }
+        if (currentState === "reflection" && reflectionStep === "guidance-result") {
+          transitionTo(showReadingResult);
+          return;
+        }
+        if (currentState === "reflection" && reflectionStep === "ending") {
+          return;
+        }
+        transitionTo(showReflection);
+      });
+
+      chapter03El.addEventListener("click", () => transitionTo(showHomeDefault));
+      logoHitEl.addEventListener("click", () => transitionTo(showHomeDefault));
+      enterBtnEl.addEventListener("click", () => transitionTo(showReflectionModeSelect));
+      if (modeEnterBtnEl) {
+        modeEnterBtnEl.addEventListener("click", () => transitionTo(showTarotIntentSelect));
+      }
+      if (intent01El) {
+        intent01El.addEventListener("click", () => transitionTo(() => showIntentEntry("Gain Clarity")));
+      }
+      if (intent02El) {
+        intent02El.addEventListener("click", () => transitionTo(() => showIntentEntry("Understand a Relationship")));
+      }
+      if (intent03El) {
+        intent03El.addEventListener("click", () => transitionTo(() => showIntentEntry("Ground Yourself")));
+      }
+      if (intentEntryBeginEl) {
+        intentEntryBeginEl.addEventListener("click", () => transitionTo(showPreStageText));
+      }
+      if (takeawayMoreBtnEl) {
+        takeawayMoreBtnEl.addEventListener("click", () => {
+          tarotRound += 1;
+          transitionTo(showPreStageAnimation);
+        });
+      }
+      if (readingRetryBtnEl) {
+        readingRetryBtnEl.addEventListener("click", () => {
+          void retryMainReading();
+        });
+      }
+      if (guidanceRetryBtnEl) {
+        guidanceRetryBtnEl.addEventListener("click", () => {
+          void retryGuidanceAdvice();
+        });
+      }
+      if (takeawayGuidanceBtnEl) {
+        takeawayGuidanceBtnEl.addEventListener("click", () => transitionTo(showGuidancePreStage));
+      }
+      if (takeawayEnoughBtnEl) {
+        takeawayEnoughBtnEl.addEventListener("click", () => transitionTo(showEndingScreen));
+      }
+      if (endingReturnBtnEl) {
+        endingReturnBtnEl.addEventListener("click", () => transitionTo(showHomeDefault));
+      }
+      if (guidanceBackBtnEl) {
+        guidanceBackBtnEl.addEventListener("click", () => transitionTo(showGuidanceFarewellScreen));
+      }
+      if (guidanceFarewellHomeBtnEl) {
+        guidanceFarewellHomeBtnEl.addEventListener("click", () => transitionTo(showHomeDefault));
+      }
+
+      setupScrollHint(readingScrollAreaEl);
+      setupScrollHint(guidanceScrollAreaEl);
+      preCardEls.forEach((cardEl) => {
+        cardEl.addEventListener("click", async () => {
+          if (reflectionStep !== "pre-stage" || preStagePhase !== "deck") {
+            return;
+          }
+          if (preStageEl.classList.contains("has-selection")) {
+            return;
+          }
+
+          await ensureDeckLoaded();
+          let drawn = pickRandomCardFromDeck();
+          if (!drawn) {
+            await ensureDeckLoaded(true);
+            drawn = pickRandomCardFromDeck();
+          }
+          if (!drawn) {
+            console.warn("RiLL: tarot deck unavailable. Serve the site over http(s) so deepseek_json can load, or set TAROT_DECK_EMBEDDED / window.TAROT_DECK.");
+            preStagePhase = "deck";
+            preStageEl.classList.remove("has-selection");
+            preCardEls.forEach((el) => {
+              el.classList.remove("is-selected", "is-faded", "is-revealed");
+              el.disabled = false;
+            });
+            return;
+          }
+
+          const orientation = pickUprightOrReversed();
+          if (cardPickFlow === "guidance") {
+            currentGuidanceDraw = { card: drawn, orientation };
+          } else {
+            currentDraw = { card: drawn, orientation };
+            applyReadingCardChrome(currentDraw);
+          }
+          const frontEl = cardEl.querySelector(".pre-card-front");
+          if (frontEl && drawn) {
+            const url = resolveAssetUrl(getCardImagePath(drawn));
+            frontEl.removeAttribute("src");
+            window.requestAnimationFrame(() => {
+              frontEl.src = `${url}${url.includes("?") ? "&" : "?"}t=${Date.now()}`;
+              frontEl.classList.toggle("is-reversed", orientation === "reversed");
+            });
+          }
+
+          preStagePhase = "chosen";
+          preStageEl.classList.add("has-selection");
+          preCardEls.forEach((otherEl) => {
+            if (otherEl === cardEl) {
+              otherEl.classList.add("is-selected");
+            } else {
+              otherEl.classList.add("is-faded");
+              otherEl.disabled = true;
+            }
+          });
+
+          preStageTimers.push(window.setTimeout(() => {
+            cardEl.classList.add("is-revealed");
+          }, 800));
+
+          preStageTimers.push(window.setTimeout(() => {
+            if (cardPickFlow === "guidance") {
+              transitionTo(showGuidanceResult);
+            } else {
+              transitionTo(showReadingResult);
+            }
+          }, 1300));
+        });
+      });
+      backArrowEl.addEventListener("click", () => {
+        if (currentState !== "reflection") {
+          transitionTo(showHomeDefault);
+          return;
+        }
+        if (reflectionStep === "result") {
+          transitionTo(showPreStageAnimation);
+          return;
+        }
+        if (reflectionStep === "guidance-result") {
+          transitionTo(showReadingResult);
+          return;
+        }
+        if (reflectionStep === "ending") {
+          transitionTo(showReadingResult);
+          return;
+        }
+        if (reflectionStep === "pre-stage") {
+          if (cardPickFlow === "guidance") {
+            transitionTo(showReadingResult);
+            return;
+          }
+          transitionTo(() => showIntentEntry(selectedIntentLabel));
+          return;
+        }
+        if (reflectionStep === "guidance-farewell") {
+          transitionTo(showGuidanceResult);
+          return;
+        }
+        if (reflectionStep === "intent-entry") {
+          transitionTo(showTarotIntentSelect);
+          return;
+        }
+        if (reflectionStep === "intent") {
+          transitionTo(showReflectionModeSelect);
+          return;
+        }
+        if (reflectionStep === "select") {
+          transitionTo(showReflection);
+          return;
+        }
+        transitionTo(showHomeDefault);
+      });
+
+      enterBtnEl.hidden = true;
+
+      showHomeDefault();
+      applyScale();
+      initRippleEffect();
+      void ensureDeckLoaded();
+      window.addEventListener("resize", applyScale);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+.env
+*.env
+__pycache__/
+.DS_Store
+*.zip
+*.pdf
+*.docx
+*.pages
+*.numbers
+* copy.*
+deisgn/
+Tarot-card-set-with-mystic-65183085.zip
+Untitled
+rill_copy_*.csv
+rill_copy_*.xlsx
