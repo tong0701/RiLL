@@ -7,10 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&family=EB+Garamond:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=6" />
   </head>
   <body>
     <div id="home-flash" class="home-flash" aria-hidden="true"></div>
@@ -23,51 +23,55 @@
           <img class="hero-logo-ribbon" src="./assets/rill-logo-ribbon.svg" alt="" aria-hidden="true" />
           <button class="home-hit" id="home-hit-main" type="button" aria-label="Go home"></button>
           <button class="back-arrow" id="back-arrow" type="button" aria-label="Back">←</button>
-          <button class="top-link top-link-left" type="button">Cn/En</button>
-          <button class="top-link top-link-right" type="button">Menu</button>
+          <div class="top-link top-link-left lang-toggle" role="group" aria-label="Language">
+            <button class="lang-opt" type="button" data-lang="zh" id="lang-zh">Cn</button>
+            <span class="lang-sep" aria-hidden="true">/</span>
+            <button class="lang-opt" type="button" data-lang="en" id="lang-en">En</button>
+          </div>
+          <button class="top-link top-link-right" type="button" data-i18n="menu">Menu</button>
 
-          <h1 class="hero-quote" id="hero-quote">See yourself. Then go live.</h1>
-          <p class="hero-philosophy" id="hero-philosophy" hidden>
+          <h1 class="hero-quote" id="hero-quote" data-i18n="hero.quote">See yourself. Then go live.</h1>
+          <p class="hero-philosophy" id="hero-philosophy" hidden data-i18n="hero.philosophy">
             Rill is a self-reflection tool. It uses symbolic systems like tarot and Eastern divination,
             combined with AI, to help you think more clearly in moments of anxiety and uncertainty. It
             doesn't predict the future, give definitive answers, or make decisions for you. The cards offer a
             few different angles on where you are right now, but the final read is always yours. Every session
             ends with a concrete action step, because life is yours to live.
           </p>
-          <h2 class="reflection-kicker" id="reflection-kicker" hidden>See what is already there.</h2>
-          <h2 class="reflection-title" id="reflection-title" hidden>What do you seek clarity on today?</h2>
-          <button class="enter-btn" id="enter-btn" type="button" hidden>Enter</button>
+          <h2 class="reflection-kicker" id="reflection-kicker" hidden data-i18n="reflection.kicker">See what is already there.</h2>
+          <h2 class="reflection-title" id="reflection-title" hidden data-i18n="reflection.title">What do you seek clarity on today?</h2>
+          <button class="enter-btn" id="enter-btn" type="button" hidden data-i18n="common.enter">Enter</button>
           <section class="mode-select" id="mode-select" hidden aria-label="Reflection mode selection">
             <article class="mode-card mode-card-left">
               <img class="mode-icon mode-icon-tarot" src="./assets/reflection-tarot.png" alt="Tarot icon" />
-              <h3 class="mode-title">Tarot</h3>
-              <p class="mode-subtext">22 Major Arcana<br />Symbol-based reflection</p>
-              <button class="enter-btn mode-enter-btn" id="mode-enter-btn" type="button">Enter</button>
+              <h3 class="mode-title" data-i18n="mode.tarot.title">Tarot</h3>
+              <p class="mode-subtext" data-i18n-html="mode.tarot.subtext">22 Major Arcana<br />Symbol-based reflection</p>
+              <button class="enter-btn mode-enter-btn" id="mode-enter-btn" type="button" data-i18n="common.enter">Enter</button>
             </article>
             <article class="mode-card mode-card-right">
               <img class="mode-icon mode-icon-meihua" src="./assets/reflection-meihua.png" alt="Meihua Yishu icon" />
               <h3 class="mode-title mode-title-cn">梅花易数</h3>
-              <p class="mode-subtext">Eight Trigrams<br />Pattern-based reflection</p>
-              <p class="mode-soon">Coming Soon...</p>
+              <p class="mode-subtext" data-i18n-html="mode.meihua.subtext">Eight Trigrams<br />Pattern-based reflection</p>
+              <p class="mode-soon" data-i18n="mode.comingSoon">Coming Soon...</p>
             </article>
           </section>
           <section class="intent-select" id="intent-select" hidden aria-label="Tarot intent selection">
             <button class="intent-card" type="button" id="intent-01">
               <img class="intent-image" src="./assets/intent-clarity.png" alt="Gain Clarity card" />
-              <span class="intent-caption"><span class="intent-num">01</span> Gain Clarity</span>
+              <span class="intent-caption"><span class="intent-num">01</span> <span data-i18n="intent.clarity.title">Gain Clarity</span></span>
             </button>
             <button class="intent-card" type="button" id="intent-02">
               <img class="intent-image" src="./assets/intent-relationship.png" alt="Understand a Relationship card" />
-              <span class="intent-caption"><span class="intent-num">02</span> Understand a Relationship</span>
+              <span class="intent-caption"><span class="intent-num">02</span> <span data-i18n="intent.relationship.title">Understand a Relationship</span></span>
             </button>
             <button class="intent-card" type="button" id="intent-03">
               <img class="intent-image" src="./assets/intent-grounding.png" alt="Ground Yourself card" />
-              <span class="intent-caption"><span class="intent-num">03</span> Ground Yourself</span>
+              <span class="intent-caption"><span class="intent-num">03</span> <span data-i18n="intent.grounding.title">Ground Yourself</span></span>
             </button>
           </section>
           <section class="intent-entry" id="intent-entry" hidden aria-label="Intent prompt entry">
             <h2 class="intent-entry-title" id="intent-entry-title">Understand a Relationship</h2>
-            <p class="intent-entry-copy">
+            <p class="intent-entry-copy" data-i18n-html="intentEntry.copy">
               Write down what's on your mind in one sentence.<br />
               Don't overthink it.
             </p>
@@ -82,18 +86,19 @@
               type="text"
               placeholder="What's been on your mind..."
               aria-label="What's been on your mind"
+              data-i18n-placeholder="intentEntry.placeholder"
             />
-            <button class="enter-btn intent-entry-begin" id="intent-entry-begin" type="button">Begin</button>
+            <button class="enter-btn intent-entry-begin" id="intent-entry-begin" type="button" data-i18n="common.begin">Begin</button>
             <div class="intent-animation-stage" id="intent-animation-stage" hidden aria-hidden="true"></div>
           </section>
           <section class="pre-stage" id="pre-stage" hidden aria-label="Pre animation stage">
             <h2 class="pre-stage-title" id="pre-stage-title">Understand a Relationship</h2>
-            <p class="pre-stage-copy" id="pre-stage-copy">
+            <p class="pre-stage-copy" id="pre-stage-copy" data-i18n-html="preStage.copy">
               Take a deep breath.<br />
               Close your eyes.<br />
               Hold your question in your mind.
             </p>
-            <p class="pre-stage-pick-hint" id="pre-stage-pick-hint">Pick one card</p>
+            <p class="pre-stage-pick-hint" id="pre-stage-pick-hint" data-i18n="preStage.pickHint">Pick one card</p>
             <div class="pre-deck" id="pre-deck" aria-label="Choose one card">
               <button class="pre-card" style="--i:0" type="button" data-front="./assets/cards/0.png" aria-label="Card 1">
                 <span class="pre-card-inner">
@@ -233,28 +238,29 @@
             <h2 class="reading-title" id="reading-question-title">What is this relationship trying to show me?</h2>
             <div class="reading-layout">
               <aside class="reading-left">
+                <div class="round-dots" id="round-dots" aria-label="Round progress"></div>
                 <img class="reading-card-image" id="reading-card-image" src="./assets/cards/37.png" alt="Drawn tarot card" />
                 <h3 class="reading-card-name" id="reading-card-name">The Sun · Upright</h3>
-                <p class="reading-card-keywords" id="reading-keywords">Keywords loading...</p>
+                <p class="reading-card-keywords" id="reading-keywords" data-i18n="reading.keywordsLoading">Keywords loading...</p>
               </aside>
               <section class="reading-right">
                 <div class="reading-scroll" id="reading-scroll-area">
-                  <div class="scroll-down-hint" id="reading-scroll-hint" aria-hidden="true">↓</div>
                   <div id="reading-error-wrap" class="reading-error-wrap" hidden>
-                    <p class="reading-error-msg">Something went wrong. Please try again.</p>
-                    <button class="takeaway-btn" id="reading-retry-btn" type="button">Retry</button>
+                    <p class="reading-error-msg" data-i18n="reading.error">Something went wrong. Please try again.</p>
+                    <button class="takeaway-btn" id="reading-retry-btn" type="button" data-i18n="common.retry">Retry</button>
                   </div>
                   <div id="reading-main-flow" class="reading-main-flow">
                     <section class="reading-screen reading-screen-main">
-                      <p id="reading-core" class="reading-core is-reading-loading">Reading in progress...</p>
+                      <p id="reading-core" class="reading-core is-reading-loading" data-i18n="reading.inProgress">Reading in progress...</p>
                       <div id="reading-body" class="reading-body"></div>
+                      <p id="reading-hook" class="reading-hook"></p>
                     </section>
 
                     <section class="reading-screen reading-screen-takeaway">
                       <div class="takeaway-panel">
                         <h3 id="reading-takeaway" class="takeaway-title"></h3>
                         <div class="takeaway-actions">
-                          <button class="takeaway-btn" id="takeaway-more-btn" type="button">Show me more</button>
+                          <button class="takeaway-btn" id="takeaway-more-btn" type="button">See it differently</button>
                           <button class="takeaway-btn takeaway-btn-wide" id="takeaway-guidance-btn" type="button">Pull a guidance card</button>
                           <button class="takeaway-btn" id="takeaway-enough-btn" type="button">I've seen enough</button>
                         </div>
@@ -266,7 +272,6 @@
             </div>
           </section>
           <section class="guidance-result" id="guidance-result" hidden aria-label="Guidance card result">
-            <h2 class="reading-title">Guidance for your next step</h2>
             <div class="reading-layout">
               <aside class="reading-left">
                 <img class="reading-card-image" id="guidance-card-image" src="./assets/cards/31.png" alt="Guidance tarot card" />
@@ -276,16 +281,16 @@
               <section class="reading-right">
                 <div class="reading-scroll" id="guidance-scroll-area">
                   <div id="guidance-error-wrap" class="reading-error-wrap" hidden>
-                    <p class="reading-error-msg">Something went wrong. Please try again.</p>
-                    <button class="takeaway-btn" id="guidance-retry-btn" type="button">Retry</button>
+                    <p class="reading-error-msg" data-i18n="reading.error">Something went wrong. Please try again.</p>
+                    <button class="takeaway-btn" id="guidance-retry-btn" type="button" data-i18n="common.retry">Retry</button>
                   </div>
                   <div id="guidance-main-flow" class="reading-main-flow">
                     <section class="reading-screen reading-screen-main">
-                      <div id="advice-body" class="advice-body"></div>
-                      <div id="advice-action" class="advice-action"></div>
                       <p id="advice-closing" class="advice-closing"></p>
+                      <div id="advice-body" class="advice-body"></div>
+                      <p id="advice-action" class="advice-action"></p>
                       <div class="guidance-inline-action">
-                        <button class="takeaway-btn takeaway-btn-wide" id="guidance-back-btn" type="button">
+                        <button class="takeaway-btn is-primary takeaway-btn-wide" id="guidance-back-btn" type="button" data-i18n="guidance.back">
                           Go back to real life
                         </button>
                       </div>
@@ -297,26 +302,62 @@
           </section>
           <section class="ending-screen" id="ending-screen" hidden aria-label="Session complete">
             <h2 class="ending-title" id="session-end-quote"></h2>
-            <button class="takeaway-btn ending-return-btn" id="ending-return-btn" type="button">Return</button>
+            <button class="takeaway-btn is-primary ending-return-btn" id="ending-return-btn" type="button" data-i18n="common.return">Return</button>
           </section>
           <section class="ending-screen guidance-farewell-screen" id="guidance-farewell-screen" hidden aria-label="Closing line">
             <p class="guidance-farewell-text" id="guidance-farewell-text"></p>
-            <button class="takeaway-btn ending-return-btn" id="guidance-farewell-home-btn" type="button">Return</button>
+            <button class="takeaway-btn is-primary ending-return-btn" id="guidance-farewell-home-btn" type="button" data-i18n="common.return">Return</button>
+          </section>
+
+          <section class="daily-anchor" id="daily-anchor" hidden aria-label="Daily Anchor">
+            <article class="postcard" id="daily-postcard">
+              <aside class="postcard-left">
+                <div class="postcard-card-frame">
+                  <img class="postcard-card-image" id="daily-card-image" src="./assets/cards/15.png" alt="Today's tarot card" />
+                </div>
+                <div class="postcard-date-stamp">
+                  <span class="stamp-line-top" id="daily-stamp-top"></span>
+                  <span class="stamp-line-bot" id="daily-stamp-bot"></span>
+                </div>
+              </aside>
+              <section class="postcard-right">
+                <h2 class="postcard-name" id="daily-card-name">The Devil · Upright</h2>
+                <p class="postcard-keywords" id="daily-keywords">ATTACHMENT · HABIT · TRIGGERS</p>
+                <p class="postcard-core" id="daily-core"></p>
+                <div class="postcard-anchors">
+                  <div class="anchor-col">
+                    <span class="anchor-key" data-i18n="daily.color">COLOR</span>
+                    <p class="anchor-val" id="daily-color"></p>
+                  </div>
+                  <div class="anchor-col">
+                    <span class="anchor-key" data-i18n="daily.object">OBJECT</span>
+                    <p class="anchor-val" id="daily-object"></p>
+                  </div>
+                  <div class="anchor-col">
+                    <span class="anchor-key" data-i18n="daily.moment">MOMENT</span>
+                    <p class="anchor-val" id="daily-moment"></p>
+                  </div>
+                </div>
+                <p class="postcard-takeaway" id="daily-takeaway"></p>
+              </section>
+            </article>
+            <button class="takeaway-btn is-primary daily-got-it" id="daily-got-it" type="button" data-i18n="daily.gotIt">Got it</button>
+            <p class="daily-come-back" id="daily-come-back" hidden data-i18n="daily.alreadyToday">You already opened today's anchor. Come back tomorrow.</p>
           </section>
 
           <div class="chapter-row">
             <button class="chapter-index" type="button" id="chapter-01">
-              <span class="chapter-num">01</span><span class="chapter-label"> Philosophy</span>
+              <span class="chapter-num">01</span><span class="chapter-label" data-i18n="chapter.01"> Philosophy</span>
             </button>
             <button class="chapter-index" type="button" id="chapter-02">
-              <span class="chapter-num">02</span><span class="chapter-label"> Reflection</span>
+              <span class="chapter-num">02</span><span class="chapter-label" data-i18n="chapter.02"> Reflection</span>
             </button>
             <button class="chapter-index" type="button" id="chapter-03">
-              <span class="chapter-num">03</span><span class="chapter-label"> Presence</span>
+              <span class="chapter-num">03</span><span class="chapter-label" data-i18n="chapter.03"> Presence</span>
             </button>
           </div>
 
-          <p class="hero-proverb" id="hero-proverb">The light settles. I return to myself.</p>
+          <p class="hero-proverb" id="hero-proverb" data-i18n="proverb.home">The light settles. I return to myself.</p>
         </div>
       </section>
     </main>
@@ -358,6 +399,7 @@
       const readingKeywordsEl = document.getElementById("reading-keywords");
       const readingCoreEl = document.getElementById("reading-core");
       const readingBodyEl = document.getElementById("reading-body");
+      const readingHookEl = document.getElementById("reading-hook");
       const readingTakeawayEl = document.getElementById("reading-takeaway");
       const readingErrorWrapEl = document.getElementById("reading-error-wrap");
       const readingRetryBtnEl = document.getElementById("reading-retry-btn");
@@ -394,6 +436,19 @@
       const chapter01El = document.getElementById("chapter-01");
       const chapter02El = document.getElementById("chapter-02");
       const chapter03El = document.getElementById("chapter-03");
+      const dailyAnchorEl = document.getElementById("daily-anchor");
+      const dailyCardImageEl = document.getElementById("daily-card-image");
+      const dailyCardNameEl = document.getElementById("daily-card-name");
+      const dailyKeywordsEl = document.getElementById("daily-keywords");
+      const dailyCoreEl = document.getElementById("daily-core");
+      const dailyTakeawayEl = document.getElementById("daily-takeaway");
+      const dailyColorEl = document.getElementById("daily-color");
+      const dailyObjectEl = document.getElementById("daily-object");
+      const dailyMomentEl = document.getElementById("daily-moment");
+      const dailyStampTopEl = document.getElementById("daily-stamp-top");
+      const dailyStampBotEl = document.getElementById("daily-stamp-bot");
+      const dailyGotItBtnEl = document.getElementById("daily-got-it");
+      const dailyComeBackEl = document.getElementById("daily-come-back");
       const logoHitEl = document.getElementById("home-hit-main");
       const backArrowEl = document.getElementById("back-arrow");
       const rippleCanvasEl = document.getElementById("ripple-canvas");
@@ -416,29 +471,301 @@
       let lastAdviceRequest = null;
       let cardPickFlow = "reading";
       const PRE_STAGE_GUIDE_MS = 1300;
-      const INTENT_HINTS = {
-        "Gain Clarity": [
-          "What am I not seeing clearly in this situation?",
-          "What decision am I avoiding right now?",
-          "What matters most in my next step?",
-        ],
-        "Understand a Relationship": [
-          "Should I reach out first?",
-          "Where do we stand right now?",
-          "What is this relationship trying to show me?",
-        ],
-        "Ground Yourself": [
-          "Why do I feel stuck even when I keep trying?",
-          "What can help me feel steady today?",
-          "What do I need to let go of right now?",
-        ],
+
+      const TRANSLATIONS = {
+        "menu": { en: "Menu", zh: "菜单" },
+        "hero.quote": {
+          en: "See yourself. Then go live.",
+          zh: "照见自己，然后去生活。",
+        },
+        "hero.philosophy": {
+          en: "Rill is a self-reflection tool. It uses symbolic systems like tarot and Eastern divination, combined with AI, to help you think more clearly in moments of anxiety and uncertainty. It doesn't predict the future, give definitive answers, or make decisions for you. The cards offer a few different angles on where you are right now, but the final read is always yours. Every session ends with a concrete action step, because life is yours to live.",
+          zh: "此镜是一个自我反思工具。它借用塔罗与东方象征系统，结合 AI，帮你在焦虑与不确定的时刻把事情想得清楚一些。它不预测未来，不给确定的答案，也不替你做决定。牌面只提供几个角度，最终的解读仍然是你的。每一次结束都会落到一个具体的行动——因为生活还是要你自己去过。",
+        },
+        "reflection.kicker": {
+          en: "See what is already there.",
+          zh: "看见此刻就在的。",
+        },
+        "reflection.title": {
+          en: "What do you seek clarity on today?",
+          zh: "今天想照见什么？",
+        },
+        "common.enter": { en: "Enter", zh: "进入" },
+        "common.begin": { en: "Begin", zh: "开始" },
+        "common.retry": { en: "Retry", zh: "重试" },
+        "common.return": { en: "Return", zh: "返回" },
+        "mode.tarot.title": { en: "Tarot", zh: "塔罗" },
+        "mode.tarot.subtext": {
+          en: "22 Major Arcana<br />Symbol-based reflection",
+          zh: "22 张大阿卡纳<br />象征式反思",
+        },
+        "mode.meihua.subtext": {
+          en: "Eight Trigrams<br />Pattern-based reflection",
+          zh: "八卦<br />卦象式反思",
+        },
+        "mode.comingSoon": { en: "Coming Soon...", zh: "即将上线…" },
+        "intent.clarity.title": { en: "Gain Clarity", zh: "我想看清楚一件事" },
+        "intent.relationship.title": { en: "Understand a Relationship", zh: "我想理解一段关系" },
+        "intent.grounding.title": { en: "Ground Yourself", zh: "我想稳住现在的自己" },
+        "intentEntry.copy": {
+          en: "Write down what's on your mind in one sentence.<br />Don't overthink it.",
+          zh: "把你现在最想问的事情，用一句话写下来。<br />不用想太多，第一反应就好。",
+        },
+        "intentEntry.placeholder": {
+          en: "What's been on your mind...",
+          zh: "最近在想的事…",
+        },
+        "preStage.copy": {
+          en: "Take a deep breath.<br />Close your eyes.<br />Hold your question in your mind.",
+          zh: "深吸一口气。<br />闭上眼睛。<br />心里默念你的问题。",
+        },
+        "preStage.pickHint": { en: "Pick one card", zh: "选一张牌" },
+        "reading.keywordsLoading": { en: "Keywords loading...", zh: "关键词加载中…" },
+        "reading.inProgress": { en: "Reading in progress...", zh: "正在解读…" },
+        "reading.error": {
+          en: "Something went wrong. Please try again.",
+          zh: "出了点问题，请再试一次。",
+        },
+        "takeaway.more": { en: "Show me more", zh: "再看一些" },
+        "takeaway.guidance": { en: "Pull a guidance card", zh: "抽一张指引牌" },
+        "takeaway.enough": { en: "I've seen enough", zh: "我看够了" },
+        "guidance.title": { en: "Guidance for your next step", zh: "给你下一步的指引" },
+        "guidance.back": { en: "Go back to real life", zh: "回到真实生活" },
+        "chapter.01": { en: " Philosophy", zh: " 序" },
+        "chapter.02": { en: " Reflection", zh: " 照见" },
+        "chapter.03": { en: " Presence", zh: " 当下" },
+        "proverb.home": {
+          en: "The light settles. I return to myself.",
+          zh: "光落下来，我回到自己。",
+        },
+        "proverb.chapter": {
+          en: "See clearly, then choose your path.",
+          zh: "照见，再走你自己的路。",
+        },
+        "proverb.midSession": {
+          en: "Rill doesn't predict the future. It reflects the present",
+          zh: "此镜不预测未来，只照见当下",
+        },
+        "session.endDefault": {
+          en: "Not everything needs to make sense. The next step is enough.",
+          zh: "不是一切都要被想明白，下一步就够了。",
+        },
+        "reading.orientation.upright": { en: "Upright", zh: "正位" },
+        "reading.orientation.reversed": { en: "Reversed", zh: "逆位" },
+        "advice.actionLabel": { en: "One thing you can do now", zh: "你现在可以做的一件事" },
+        "daily.kicker": { en: "Stay here, with yourself.", zh: "此刻，和你自己在一起。" },
+        "daily.title": {
+          en: "What do you need to stay grounded now?",
+          zh: "现在你需要什么才能稳住？",
+        },
+        "proverb.daily": {
+          en: "Nothing to change. Just be here.",
+          zh: "什么都不用改，就在这里。",
+        },
+        "daily.gotIt": { en: "Got it", zh: "知道了" },
+        "daily.alreadyToday": {
+          en: "You already opened today's anchor. Come back tomorrow.",
+          zh: "今天已经翻开过了，明天再来。",
+        },
+        "daily.color": { en: "COLOR", zh: "颜色" },
+        "daily.object": { en: "OBJECT", zh: "物件" },
+        "daily.moment": { en: "MOMENT", zh: "时刻" },
+        "daily.weekdays": {
+          en: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"],
+          zh: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+        },
+        "daily.months": {
+          en: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+          zh: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+        },
+        "intentHints.clarity": {
+          en: [
+            "What am I not seeing clearly in this situation?",
+            "What decision am I avoiding right now?",
+            "What matters most in my next step?",
+          ],
+          zh: [
+            "这件事里，我还没看清楚什么？",
+            "我现在在回避哪个决定？",
+            "下一步里，最重要的是什么？",
+          ],
+        },
+        "intentHints.relationship": {
+          en: [
+            "Should I reach out first?",
+            "Where do we stand right now?",
+            "What is this relationship trying to show me?",
+          ],
+          zh: [
+            "我该不该先主动？",
+            "我们现在到底是什么关系？",
+            "这段关系想让我看见什么？",
+          ],
+        },
+        "intentHints.grounding": {
+          en: [
+            "Why do I feel stuck even when I keep trying?",
+            "What can help me feel steady today?",
+            "What do I need to let go of right now?",
+          ],
+          zh: [
+            "为什么我一直在努力，却还是卡住了？",
+            "今天什么能让我稳住？",
+            "我现在需要放下什么？",
+          ],
+        },
       };
+
+      const INTENT_KEY_BY_LABEL = {
+        "Gain Clarity": "clarity",
+        "Understand a Relationship": "relationship",
+        "Ground Yourself": "grounding",
+      };
+
+      let currentLang = "en";
+      try {
+        const stored = localStorage.getItem("rill-lang");
+        if (stored === "en" || stored === "zh") currentLang = stored;
+      } catch (_) {}
+
+      function t(key) {
+        const entry = TRANSLATIONS[key];
+        if (!entry) return key;
+        if (entry[currentLang] !== undefined) return entry[currentLang];
+        return entry.en !== undefined ? entry.en : key;
+      }
+
+      function intentDisplayTitle(label) {
+        const k = INTENT_KEY_BY_LABEL[label];
+        return k ? t("intent." + k + ".title") : label;
+      }
+
+      function intentHintsFor(label) {
+        const k = INTENT_KEY_BY_LABEL[label];
+        if (!k) return [];
+        const entry = TRANSLATIONS["intentHints." + k];
+        if (!entry) return [];
+        return entry[currentLang] || entry.en || [];
+      }
+
+      function applyI18n(root) {
+        const scope = root || document;
+        scope.querySelectorAll("[data-i18n]").forEach((el) => {
+          el.textContent = t(el.getAttribute("data-i18n"));
+        });
+        scope.querySelectorAll("[data-i18n-html]").forEach((el) => {
+          el.innerHTML = t(el.getAttribute("data-i18n-html"));
+        });
+        scope.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+          el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder")));
+        });
+      }
+
+      function refreshDynamicI18n() {
+        if (intentEntryTitleEl && intentEntryTitleEl.dataset.i18nIntent) {
+          intentEntryTitleEl.textContent = intentDisplayTitle(intentEntryTitleEl.dataset.i18nIntent);
+        }
+        if (preStageTitleEl && preStageTitleEl.dataset.i18nIntent) {
+          preStageTitleEl.textContent = intentDisplayTitle(preStageTitleEl.dataset.i18nIntent);
+        }
+        if (intentEntryHintsEl && intentEntryHintsEl.dataset.i18nIntent) {
+          const lines = intentHintsFor(intentEntryHintsEl.dataset.i18nIntent);
+          intentEntryHintsEl.innerHTML = lines.map((l) => escapeHtml(l)).join("<br />");
+        }
+        if (proverbEl && proverbEl.dataset.i18nKey) {
+          proverbEl.textContent = t(proverbEl.dataset.i18nKey);
+        }
+        if (readingCardNameEl && readingCardNameEl.dataset.i18nCardName && readingCardNameEl.dataset.i18nOrientation) {
+          const orient = readingCardNameEl.dataset.i18nOrientation;
+          readingCardNameEl.textContent = `${readingCardNameEl.dataset.i18nCardName} · ${t("reading.orientation." + orient)}`;
+        }
+        if (guidanceCardNameEl && guidanceCardNameEl.dataset.i18nCardName && guidanceCardNameEl.dataset.i18nOrientation) {
+          const orient = guidanceCardNameEl.dataset.i18nOrientation;
+          guidanceCardNameEl.textContent = `${guidanceCardNameEl.dataset.i18nCardName} · ${t("reading.orientation." + orient)}`;
+        }
+        if (readingResultEl && !readingResultEl.hidden) {
+          renderTakeawayButtons(tarotRound);
+        }
+      }
+
+      function setLanguage(lang) {
+        if (lang !== "en" && lang !== "zh") return;
+        currentLang = lang;
+        try { localStorage.setItem("rill-lang", lang); } catch (_) {}
+        document.documentElement.lang = lang === "zh" ? "zh" : "en";
+        const zhBtn = document.getElementById("lang-zh");
+        const enBtn = document.getElementById("lang-en");
+        if (zhBtn) zhBtn.classList.toggle("is-active", lang === "zh");
+        if (enBtn) enBtn.classList.toggle("is-active", lang === "en");
+        applyI18n();
+        refreshDynamicI18n();
+      }
+
       const MAJOR_ARCANA_IMAGE_ORDER = [0, 1, 2, 4, 5, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39];
-      const DEFAULT_SESSION_END_QUOTE = "Not everything needs to make sense. The next step is enough.";
+
+      const TAKEAWAY_COPY = {
+        en: {
+          1: { continue: "See it differently",       guidance: "Pull a guidance card",    end: "I've seen enough" },
+          2: { continue: "What else is here?",       guidance: "Pull a guidance card",    end: "This is enough" },
+          3: { continue: "One last card",            guidance: "Ask for one thing to do", end: "That's enough" },
+          4: { continue: "This one, then I'm done",  guidance: "One last suggestion",     end: "End here" },
+          5: { continue: null,                       guidance: "Final suggestion",        end: "Let it rest here" },
+        },
+        zh: {
+          1: { continue: "换个角度看看",   guidance: "抽张建议牌",     end: "我心里有数了" },
+          2: { continue: "再看一层",       guidance: "抽张建议牌",     end: "这些就够了" },
+          3: { continue: "最后一张",       guidance: "问一件该做的事", end: "到这里就好" },
+          4: { continue: "就这一次了",     guidance: "最后一句建议",   end: "结束" },
+          5: { continue: null,             guidance: "最后一句建议",   end: "到这里结束就可以了" },
+        },
+      };
+
+      const PRIMARY_BY_ROUND = { 1: "continue", 2: "continue", 3: "guidance", 4: "guidance", 5: "guidance" };
+
+      function renderRoundDots(round) {
+        const host = document.getElementById("round-dots");
+        if (!host) return;
+        host.innerHTML = "";
+        const n = Math.max(1, Math.min(round, 5));
+        for (let i = 0; i < n; i++) {
+          const d = document.createElement("span");
+          d.className = "dot " + (i === n - 1 ? "active" : "done");
+          host.appendChild(d);
+        }
+      }
+
+      function renderTakeawayButtons(round) {
+        const clamped = Math.max(1, Math.min(round, 5));
+        const table = TAKEAWAY_COPY[currentLang] || TAKEAWAY_COPY.en;
+        const copy = table[clamped];
+        const primary = PRIMARY_BY_ROUND[clamped];
+
+        const contBtn = takeawayMoreBtnEl;
+        const guideBtn = takeawayGuidanceBtnEl;
+        const endBtn = takeawayEnoughBtnEl;
+        if (!contBtn || !guideBtn || !endBtn) return;
+
+        if (copy.continue === null) {
+          contBtn.hidden = true;
+        } else {
+          contBtn.hidden = false;
+          contBtn.textContent = copy.continue;
+        }
+        guideBtn.textContent = copy.guidance;
+        endBtn.textContent = copy.end;
+
+        [contBtn, guideBtn, endBtn].forEach((b) => b.classList.remove("is-primary", "is-ghost"));
+        const map = { continue: contBtn, guidance: guideBtn, end: endBtn };
+        Object.entries(map).forEach(([key, btn]) => {
+          if (key === primary) btn.classList.add("is-primary");
+          else if (key === "end") btn.classList.add("is-ghost");
+        });
+      }
 
       function applyIntentHints(label) {
         if (!intentEntryHintsEl) return;
-        const lines = INTENT_HINTS[label] || INTENT_HINTS["Understand a Relationship"];
+        intentEntryHintsEl.dataset.i18nIntent = label;
+        const lines = intentHintsFor(label);
         intentEntryHintsEl.innerHTML = lines.map((line) => escapeHtml(line)).join("<br />");
       }
 
@@ -475,7 +802,7 @@
       }
 
       function setSessionEndQuote(raw) {
-        const text = (raw && String(raw).trim()) || DEFAULT_SESSION_END_QUOTE;
+        const text = (raw && String(raw).trim()) || t("session.endDefault");
         if (sessionEndQuoteEl) {
           sessionEndQuoteEl.innerHTML = escapeHtml(text).replace(/\n/g, "<br />");
         }
@@ -515,17 +842,21 @@
       function inlineMarkdownBoldToSafeHtml(text) {
         let s = String(text || "");
         const out = [];
-        const re = /\*\*([\s\S]*?)\*\*/g;
+        const re = /\*\*([\s\S]+?)\*\*|\*([^\s*][^*\n]*?)\*/g;
         let last = 0;
         let m = re.exec(s);
         while (m !== null) {
           out.push(escapeHtml(s.slice(last, m.index)));
-          out.push("<strong>" + escapeHtml(m[1].trim()) + "</strong>");
+          if (m[1] !== undefined) {
+            out.push("<strong>" + escapeHtml(m[1].trim()) + "</strong>");
+          } else if (m[2] !== undefined) {
+            out.push("<em>" + escapeHtml(m[2].trim()) + "</em>");
+          }
           last = m.index + m[0].length;
           m = re.exec(s);
         }
         out.push(escapeHtml(s.slice(last)));
-        return out.join("").replace(/\*\*/g, "");
+        return out.join("");
       }
 
       function formatBodyAsHtml(bodyText) {
@@ -552,8 +883,12 @@
       }
 
       function parseMainReadingResponse(text) {
-        const raw = String(text || "").replace(/\r\n/g, "\n").trim();
-        const out = { keywords: "", core: "", bodyHtml: "", takeaway: "" };
+        let raw = String(text || "").replace(/\r\n/g, "\n").trim();
+        // Normalize: the LLM sometimes wraps canonical labels in **markdown bold**.
+        // Strip the wrappers so existing regex matches both `**Keywords:**` and `Keywords:`.
+        raw = raw.replace(/\*\*\s*(Keywords|Core|One-line takeaway|Possible interpretations)\s*:\s*\*\*/gi, "$1:");
+        raw = raw.replace(/\*\*\s*(Keywords|Core|One-line takeaway|Possible interpretations)\s*\*\*\s*:/gi, "$1:");
+        const out = { keywords: "", core: "", bodyHtml: "", hook: "", takeaway: "" };
         if (!raw) return out;
 
         let work = raw;
@@ -576,7 +911,31 @@
           i += 1;
         }
         while (i < lines.length && !lines[i].trim()) i += 1;
-        const bodyText = lines.slice(i).join("\n").trim();
+        // Skip the "Possible interpretations:" boilerplate header that some rounds include.
+        if (lines[i] && /^Possible interpretations:\s*$/i.test(lines[i].trim())) {
+          i += 1;
+          while (i < lines.length && !lines[i].trim()) i += 1;
+        }
+        let bodyText = lines.slice(i).join("\n").trim();
+
+        // Detect a standalone bold question (Round 1 hook) as the last non-empty line of the body.
+        const bodyLines = bodyText.split("\n");
+        let lastIdx = bodyLines.length - 1;
+        while (lastIdx >= 0 && !bodyLines[lastIdx].trim()) lastIdx -= 1;
+        if (lastIdx >= 0) {
+          const candidate = bodyLines[lastIdx].trim();
+          const hookMatch = candidate.match(/^\*\*([\s\S]+\?)\*\*\s*$/);
+          if (hookMatch) {
+            out.hook = hookMatch[1].trim();
+            bodyLines.splice(lastIdx, 1);
+            bodyText = bodyLines.join("\n").trim();
+          } else if (/^[^*\n]+\?$/.test(candidate) && !/^\s*[-*•]/.test(candidate)) {
+            // Plain-text question also qualifies (fallback if LLM drops the bold)
+            out.hook = candidate;
+            bodyLines.splice(lastIdx, 1);
+            bodyText = bodyLines.join("\n").trim();
+          }
+        }
         out.bodyHtml = formatBodyAsHtml(bodyText);
         return out;
       }
@@ -652,7 +1011,8 @@
         if (readingCoreEl) {
           readingCoreEl.classList.toggle("is-reading-loading", isLoading);
           if (isLoading) {
-            readingCoreEl.textContent = "Reading in progress...";
+            readingCoreEl.setAttribute("data-i18n", "reading.inProgress");
+            readingCoreEl.textContent = t("reading.inProgress");
           }
         }
         window.requestAnimationFrame(() => updateScrollHintState(readingScrollAreaEl));
@@ -695,14 +1055,19 @@
       function applyParsedReadingToDom(parsed, fallbackKeywords) {
         if (readingKeywordsEl) {
           const kw = (parsed.keywords || "").trim();
+          readingKeywordsEl.removeAttribute("data-i18n");
           readingKeywordsEl.textContent = kw || (fallbackKeywords || "").trim() || "";
         }
         if (readingCoreEl) {
+          readingCoreEl.removeAttribute("data-i18n");
           readingCoreEl.innerHTML = inlineMarkdownBoldToSafeHtml(parsed.core || "");
           readingCoreEl.classList.remove("is-reading-loading");
         }
         if (readingBodyEl) {
           readingBodyEl.innerHTML = parsed.bodyHtml || "";
+        }
+        if (readingHookEl) {
+          readingHookEl.innerHTML = inlineMarkdownBoldToSafeHtml(parsed.hook || "");
         }
         if (readingTakeawayEl) {
           readingTakeawayEl.innerHTML = inlineMarkdownBoldToSafeHtml(parsed.takeaway || "");
@@ -724,6 +1089,7 @@
         showReadingApiError(false);
         setReadingLoading(true);
         if (readingBodyEl) readingBodyEl.innerHTML = "";
+        if (readingHookEl) readingHookEl.textContent = "";
         if (readingTakeawayEl) readingTakeawayEl.textContent = "";
 
         try {
@@ -737,7 +1103,8 @@
           console.warn("reading API:", e);
           showReadingApiError(true);
           if (readingCoreEl) {
-            readingCoreEl.textContent = "Reading in progress...";
+            readingCoreEl.setAttribute("data-i18n", "reading.inProgress");
+            readingCoreEl.textContent = t("reading.inProgress");
             readingCoreEl.classList.add("is-reading-loading");
           }
         } finally {
@@ -755,6 +1122,7 @@
         showReadingApiError(false);
         setReadingLoading(true);
         if (readingBodyEl) readingBodyEl.innerHTML = "";
+        if (readingHookEl) readingHookEl.textContent = "";
         if (readingTakeawayEl) readingTakeawayEl.textContent = "";
         try {
           const raw = await generateReading(cardName, orientation, intent, question, round, sessionHistory);
@@ -778,11 +1146,14 @@
       function renderGuidanceCardChrome(draw) {
         if (!draw || !draw.card) return;
         const { card, orientation } = draw;
-        const orientationLabel = orientation === "reversed" ? "Reversed" : "Upright";
+        const orientKey = orientation === "reversed" ? "reversed" : "upright";
         const isReversed = orientation === "reversed";
         const keywords = isReversed ? card.reversed_keywords : card.upright_keywords;
         if (guidanceCardNameEl) {
-          guidanceCardNameEl.textContent = `${card.name_en || card.name || "Unknown"} · ${orientationLabel}`;
+          const cardName = card.name_en || card.name || "Unknown";
+          guidanceCardNameEl.dataset.i18nCardName = cardName;
+          guidanceCardNameEl.dataset.i18nOrientation = orientKey;
+          guidanceCardNameEl.textContent = `${cardName} · ${t("reading.orientation." + orientKey)}`;
         }
         if (guidanceCardKeywordsEl) {
           guidanceCardKeywordsEl.textContent = Array.isArray(keywords) ? keywords.slice(0, 3).join(", ") : "";
@@ -812,7 +1183,7 @@
           guidanceScrollAreaEl.classList.add("is-advice-loading");
           lockScrollToMain(guidanceScrollAreaEl);
         }
-        if (adviceBodyEl) adviceBodyEl.innerHTML = `<p class="advice-loading is-reading-loading">Reading in progress...</p>`;
+        if (adviceBodyEl) adviceBodyEl.innerHTML = `<p class="advice-loading is-reading-loading" data-i18n="reading.inProgress">${escapeHtml(t("reading.inProgress"))}</p>`;
         if (adviceActionEl) adviceActionEl.textContent = "";
         if (adviceClosingEl) adviceClosingEl.textContent = "";
 
@@ -835,16 +1206,9 @@
             }
           }
           if (adviceActionEl) {
-            adviceActionEl.innerHTML = "";
-            if (p.action) {
-              const label = document.createElement("p");
-              label.className = "advice-action-label";
-              label.textContent = "One thing you can do now";
-              const pEl = document.createElement("p");
-              pEl.innerHTML = inlineMarkdownBoldToSafeHtml(p.action);
-              adviceActionEl.appendChild(label);
-              adviceActionEl.appendChild(pEl);
-            }
+            adviceActionEl.innerHTML = p.action
+              ? inlineMarkdownBoldToSafeHtml(p.action)
+              : "";
           }
           if (adviceClosingEl) {
             const closingClean = sanitizeClosingProverbText(p.closing || "");
@@ -958,7 +1322,7 @@
       }
 
       function clearActive() {
-        document.body.classList.remove("is-philosophy", "is-reflection");
+        document.body.classList.remove("is-philosophy", "is-reflection", "is-daily");
         chapter01El.classList.remove("is-active");
         chapter02El.classList.remove("is-active");
         chapter03El.classList.remove("is-active");
@@ -1007,15 +1371,23 @@
       function applyReadingCardChrome(draw) {
         if (!draw || !draw.card || !readingCardNameEl || !readingCardImageEl) return;
         const { card, orientation } = draw;
-        const orientationLabel = orientation === "reversed" ? "Reversed" : "Upright";
+        const orientKey = orientation === "reversed" ? "reversed" : "upright";
         const isReversed = orientation === "reversed";
-        readingCardNameEl.textContent = `${card.name_en || card.name || "Unknown Card"} · ${orientationLabel}`;
-        if (readingKeywordsEl) readingKeywordsEl.textContent = "Keywords loading...";
+        const cardName = card.name_en || card.name || "Unknown Card";
+        readingCardNameEl.dataset.i18nCardName = cardName;
+        readingCardNameEl.dataset.i18nOrientation = orientKey;
+        readingCardNameEl.textContent = `${cardName} · ${t("reading.orientation." + orientKey)}`;
+        if (readingKeywordsEl) {
+          readingKeywordsEl.setAttribute("data-i18n", "reading.keywordsLoading");
+          readingKeywordsEl.textContent = t("reading.keywordsLoading");
+        }
         if (readingCoreEl) {
-          readingCoreEl.textContent = "Reading in progress...";
+          readingCoreEl.setAttribute("data-i18n", "reading.inProgress");
+          readingCoreEl.textContent = t("reading.inProgress");
           readingCoreEl.classList.add("is-reading-loading");
         }
         if (readingBodyEl) readingBodyEl.innerHTML = "";
+        if (readingHookEl) readingHookEl.textContent = "";
         if (readingTakeawayEl) readingTakeawayEl.textContent = "";
 
         const fallbackPath = (() => {
@@ -1125,10 +1497,12 @@
         readingResultEl.hidden = true;
         guidanceResultEl.hidden = true;
         endingScreenEl.hidden = true;
+        if (dailyAnchorEl) dailyAnchorEl.hidden = true;
         if (guidanceFarewellScreenEl) guidanceFarewellScreenEl.hidden = true;
         resetPreStageVisuals();
         proverbEl.classList.remove("is-small-note");
-        proverbEl.textContent = "The light settles. I return to myself.";
+        proverbEl.dataset.i18nKey = "proverb.home";
+        proverbEl.textContent = t("proverb.home");
         tarotRound = 1;
         sessionReadingSummaries = [];
         currentDraw = null;
@@ -1158,6 +1532,7 @@
         readingResultEl.hidden = true;
         guidanceResultEl.hidden = true;
         endingScreenEl.hidden = true;
+        if (dailyAnchorEl) dailyAnchorEl.hidden = true;
         hideGuidanceFarewellScreen();
         resetPreStageVisuals();
         proverbEl.classList.remove("is-small-note");
@@ -1178,6 +1553,10 @@
         reflectionKickerEl.hidden = false;
         reflectionTitleEl.hidden = false;
         enterBtnEl.hidden = false;
+        reflectionKickerEl.setAttribute("data-i18n", "reflection.kicker");
+        reflectionKickerEl.textContent = t("reflection.kicker");
+        reflectionTitleEl.setAttribute("data-i18n", "reflection.title");
+        reflectionTitleEl.textContent = t("reflection.title");
         modeSelectEl.hidden = true;
         intentSelectEl.hidden = true;
         intentEntryEl.hidden = true;
@@ -1185,10 +1564,12 @@
         readingResultEl.hidden = true;
         guidanceResultEl.hidden = true;
         endingScreenEl.hidden = true;
+        if (dailyAnchorEl) dailyAnchorEl.hidden = true;
         hideGuidanceFarewellScreen();
         resetPreStageVisuals();
         proverbEl.classList.remove("is-small-note");
-        proverbEl.textContent = "See clearly, then choose your path.";
+        proverbEl.dataset.i18nKey = "proverb.chapter";
+        proverbEl.textContent = t("proverb.chapter");
         syncBackArrow();
       }
 
@@ -1196,6 +1577,8 @@
         reflectionStep = "select";
         reflectionKickerEl.hidden = false;
         reflectionTitleEl.hidden = true;
+        reflectionKickerEl.setAttribute("data-i18n", "reflection.kicker");
+        reflectionKickerEl.textContent = t("reflection.kicker");
         enterBtnEl.hidden = true;
         modeSelectEl.hidden = false;
         intentSelectEl.hidden = true;
@@ -1204,19 +1587,23 @@
         readingResultEl.hidden = true;
         guidanceResultEl.hidden = true;
         endingScreenEl.hidden = true;
+        if (dailyAnchorEl) dailyAnchorEl.hidden = true;
         hideGuidanceFarewellScreen();
         resetPreStageVisuals();
         chapter01El.hidden = true;
         chapter02El.hidden = true;
         chapter03El.hidden = true;
         proverbEl.classList.remove("is-small-note");
-        proverbEl.textContent = "See clearly, then choose your path.";
+        proverbEl.dataset.i18nKey = "proverb.chapter";
+        proverbEl.textContent = t("proverb.chapter");
       }
 
       function showTarotIntentSelect() {
         reflectionStep = "intent";
         reflectionKickerEl.hidden = false;
         reflectionTitleEl.hidden = true;
+        reflectionKickerEl.setAttribute("data-i18n", "reflection.kicker");
+        reflectionKickerEl.textContent = t("reflection.kicker");
         enterBtnEl.hidden = true;
         modeSelectEl.hidden = true;
         intentSelectEl.hidden = false;
@@ -1225,13 +1612,15 @@
         readingResultEl.hidden = true;
         guidanceResultEl.hidden = true;
         endingScreenEl.hidden = true;
+        if (dailyAnchorEl) dailyAnchorEl.hidden = true;
         hideGuidanceFarewellScreen();
         resetPreStageVisuals();
         chapter01El.hidden = true;
         chapter02El.hidden = true;
         chapter03El.hidden = true;
         proverbEl.classList.remove("is-small-note");
-        proverbEl.textContent = "See clearly, then choose your path.";
+        proverbEl.dataset.i18nKey = "proverb.chapter";
+        proverbEl.textContent = t("proverb.chapter");
       }
 
       function showIntentEntry(label) {
@@ -1247,15 +1636,18 @@
         readingResultEl.hidden = true;
         guidanceResultEl.hidden = true;
         endingScreenEl.hidden = true;
+        if (dailyAnchorEl) dailyAnchorEl.hidden = true;
         hideGuidanceFarewellScreen();
         resetPreStageVisuals();
-        intentEntryTitleEl.textContent = label;
+        intentEntryTitleEl.dataset.i18nIntent = label;
+        intentEntryTitleEl.textContent = intentDisplayTitle(label);
         applyIntentHints(label);
         chapter01El.hidden = true;
         chapter02El.hidden = true;
         chapter03El.hidden = true;
         proverbEl.classList.add("is-small-note");
-        proverbEl.textContent = "Rill doesn't predict the future. It reflects the present";
+        proverbEl.dataset.i18nKey = "proverb.midSession";
+        proverbEl.textContent = t("proverb.midSession");
       }
 
       function showPreStageCommon(options = {}) {
@@ -1274,13 +1666,16 @@
         readingResultEl.hidden = true;
         guidanceResultEl.hidden = true;
         endingScreenEl.hidden = true;
+        if (dailyAnchorEl) dailyAnchorEl.hidden = true;
         hideGuidanceFarewellScreen();
-        preStageTitleEl.textContent = selectedIntentLabel;
+        preStageTitleEl.dataset.i18nIntent = selectedIntentLabel;
+        preStageTitleEl.textContent = intentDisplayTitle(selectedIntentLabel);
         chapter01El.hidden = true;
         chapter02El.hidden = true;
         chapter03El.hidden = true;
         proverbEl.classList.add("is-small-note");
-        proverbEl.textContent = "Rill doesn't predict the future. It reflects the present";
+        proverbEl.dataset.i18nKey = "proverb.midSession";
+        proverbEl.textContent = t("proverb.midSession");
 
         if (withGuideStep) {
           preStageTimers.push(window.setTimeout(() => {
@@ -1315,6 +1710,10 @@
       }
 
       function showReadingResult() {
+        if (tarotRound > 5) {
+          showEndingScreen();
+          return;
+        }
         reflectionStep = "result";
         resetPreStageVisuals();
         reflectionKickerEl.hidden = true;
@@ -1327,16 +1726,20 @@
         readingResultEl.hidden = false;
         guidanceResultEl.hidden = true;
         endingScreenEl.hidden = true;
+        if (dailyAnchorEl) dailyAnchorEl.hidden = true;
         hideGuidanceFarewellScreen();
         chapter01El.hidden = true;
         chapter02El.hidden = true;
         chapter03El.hidden = true;
         proverbEl.classList.add("is-small-note");
-        proverbEl.textContent = "Rill doesn't predict the future. It reflects the present";
+        proverbEl.dataset.i18nKey = "proverb.midSession";
+        proverbEl.textContent = t("proverb.midSession");
         const q = (intentEntryInputEl && intentEntryInputEl.value) ? intentEntryInputEl.value.trim() : "";
         if (q && readingQuestionTitleEl) {
           readingQuestionTitleEl.textContent = q;
         }
+        renderRoundDots(tarotRound);
+        renderTakeawayButtons(tarotRound);
         showReadingApiError(false);
         if (currentDraw && currentDraw.card) {
           renderDrawToReading(currentDraw);
@@ -1363,12 +1766,14 @@
         readingResultEl.hidden = true;
         guidanceResultEl.hidden = false;
         endingScreenEl.hidden = true;
+        if (dailyAnchorEl) dailyAnchorEl.hidden = true;
         hideGuidanceFarewellScreen();
         chapter01El.hidden = true;
         chapter02El.hidden = true;
         chapter03El.hidden = true;
         proverbEl.classList.add("is-small-note");
-        proverbEl.textContent = "Rill doesn't predict the future. It reflects the present";
+        proverbEl.dataset.i18nKey = "proverb.midSession";
+        proverbEl.textContent = t("proverb.midSession");
         window.requestAnimationFrame(() => {
           lockScrollToMain(guidanceScrollAreaEl);
           updateScrollHintState(guidanceScrollAreaEl);
@@ -1399,11 +1804,12 @@
         chapter02El.hidden = true;
         chapter03El.hidden = true;
         proverbEl.classList.add("is-small-note");
-        proverbEl.textContent = "Rill doesn't predict the future. It reflects the present";
+        proverbEl.dataset.i18nKey = "proverb.midSession";
+        proverbEl.textContent = t("proverb.midSession");
         const raw = adviceClosingEl ? adviceClosingEl.textContent.trim() : "";
         const cleaned = sanitizeClosingProverbText(raw);
         if (guidanceFarewellTextEl) {
-          guidanceFarewellTextEl.textContent = cleaned || DEFAULT_SESSION_END_QUOTE;
+          guidanceFarewellTextEl.textContent = cleaned || t("session.endDefault");
         }
       }
 
@@ -1420,12 +1826,205 @@
         readingResultEl.hidden = true;
         guidanceResultEl.hidden = true;
         endingScreenEl.hidden = false;
+        if (dailyAnchorEl) dailyAnchorEl.hidden = true;
         hideGuidanceFarewellScreen();
         chapter01El.hidden = true;
         chapter02El.hidden = true;
         chapter03El.hidden = true;
         proverbEl.classList.add("is-small-note");
-        proverbEl.textContent = "Rill doesn't predict the future. It reflects the present";
+        proverbEl.dataset.i18nKey = "proverb.midSession";
+        proverbEl.textContent = t("proverb.midSession");
+      }
+
+      const DAILY_STORAGE_KEY = "rill-daily-anchor";
+
+      function todayKey(date) {
+        const d = date || new Date();
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, "0");
+        const day = String(d.getDate()).padStart(2, "0");
+        return `${y}-${m}-${day}`;
+      }
+
+      function readDailyDraw() {
+        try {
+          const raw = localStorage.getItem(DAILY_STORAGE_KEY);
+          if (!raw) return null;
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.date === todayKey()) return parsed;
+          return null;
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function writeDailyDraw(cardId, orientation) {
+        try {
+          localStorage.setItem(
+            DAILY_STORAGE_KEY,
+            JSON.stringify({ date: todayKey(), cardId, orientation })
+          );
+        } catch (_) {}
+      }
+
+      function formatDailyDateStamp(date) {
+        const d = date || new Date();
+        const weekdays = TRANSLATIONS["daily.weekdays"][currentLang] || TRANSLATIONS["daily.weekdays"].en;
+        const months = TRANSLATIONS["daily.months"][currentLang] || TRANSLATIONS["daily.months"].en;
+        const wd = weekdays[d.getDay()] || "";
+        const mo = months[d.getMonth()] || "";
+        const day = d.getDate();
+        const year = d.getFullYear();
+        if (currentLang === "zh") {
+          return { top: `${wd} · ${mo}${day}日`, bot: String(year) };
+        }
+        return { top: `${wd} · ${mo} ${day}`, bot: String(year) };
+      }
+
+      function renderDailyAnchor(card, orientation, isRepeat) {
+        if (!card) return;
+        const isReversed = orientation === "reversed";
+        const orientKey = isReversed ? "reversed" : "upright";
+
+        if (dailyCardImageEl) {
+          const src = resolveAssetUrl(getCardImagePath(card));
+          dailyCardImageEl.src = `${src}${src.includes("?") ? "&" : "?"}t=${Date.now()}`;
+          dailyCardImageEl.classList.toggle("is-reversed", isReversed);
+        }
+
+        if (dailyCardNameEl) {
+          const cname = currentLang === "zh" ? (card.name_zh || card.name_en || "") : (card.name_en || "");
+          dailyCardNameEl.dataset.i18nCardName = card.name_en || "";
+          dailyCardNameEl.dataset.i18nOrientation = orientKey;
+          dailyCardNameEl.textContent = `${cname} · ${t("reading.orientation." + orientKey)}`;
+        }
+
+        if (dailyKeywordsEl) {
+          const kwList = (isReversed ? card.reversed_keywords : card.upright_keywords) || [];
+          const picked = kwList.slice(0, 3).map((s) => String(s || "").toUpperCase());
+          dailyKeywordsEl.textContent = picked.join(" · ");
+        }
+
+        const daily = isReversed ? card.daily_reversed : card.daily_upright;
+        if (dailyCoreEl) {
+          const coreEn = (daily && daily.core_en) || "";
+          const coreZh = (daily && daily.core_zh) || "";
+          const core = currentLang === "zh" ? (coreZh || coreEn) : coreEn;
+          dailyCoreEl.textContent = core ? `"${core}"` : "";
+        }
+
+        if (dailyTakeawayEl) {
+          const hint = card.action_hint || "";
+          dailyTakeawayEl.textContent = hint;
+        }
+
+        if (dailyColorEl) dailyColorEl.textContent = card.lucky_color || "";
+        if (dailyObjectEl) dailyObjectEl.textContent = card.lucky_item || "";
+        if (dailyMomentEl) {
+          const momentEn = (daily && daily.moment_en) || "";
+          const momentZh = (daily && daily.moment_zh) || "";
+          dailyMomentEl.textContent = currentLang === "zh" ? (momentZh || momentEn) : momentEn;
+        }
+
+        const stamp = formatDailyDateStamp();
+        if (dailyStampTopEl) dailyStampTopEl.textContent = stamp.top;
+        if (dailyStampBotEl) dailyStampBotEl.textContent = stamp.bot;
+
+        if (dailyComeBackEl) dailyComeBackEl.hidden = !isRepeat;
+      }
+
+      function showDailyAnchorEntry() {
+        currentState = "daily";
+        reflectionStep = "entry";
+        resetPreStageVisuals();
+        heroQuoteEl.hidden = true;
+        heroPhilosophyEl.hidden = true;
+        reflectionKickerEl.hidden = false;
+        reflectionTitleEl.hidden = false;
+        enterBtnEl.hidden = false;
+        modeSelectEl.hidden = true;
+        intentSelectEl.hidden = true;
+        intentEntryEl.hidden = true;
+        preStageEl.hidden = true;
+        readingResultEl.hidden = true;
+        guidanceResultEl.hidden = true;
+        endingScreenEl.hidden = true;
+        hideGuidanceFarewellScreen();
+        if (dailyAnchorEl) dailyAnchorEl.hidden = true;
+
+        chapter01El.hidden = false;
+        chapter02El.hidden = false;
+        chapter03El.hidden = false;
+        clearActive();
+        chapter03El.classList.add("is-active");
+
+        reflectionKickerEl.dataset.i18n = "daily.kicker";
+        reflectionKickerEl.textContent = t("daily.kicker");
+        reflectionTitleEl.dataset.i18n = "daily.title";
+        reflectionTitleEl.textContent = t("daily.title");
+
+        proverbEl.classList.remove("is-small-note");
+        proverbEl.dataset.i18nKey = "proverb.daily";
+        proverbEl.textContent = t("proverb.daily");
+
+        syncBackArrow();
+      }
+
+      function showDailyPreStage() {
+        cardPickFlow = "daily";
+        showPreStageCommon({ withGuideStep: true });
+        if (preStageTitleEl) {
+          preStageTitleEl.dataset.i18nIntent = "daily";
+          preStageTitleEl.textContent = "";
+          preStageTitleEl.hidden = true;
+        }
+        proverbEl.classList.remove("is-small-note");
+        proverbEl.dataset.i18nKey = "proverb.daily";
+        proverbEl.textContent = t("proverb.daily");
+      }
+
+      async function showDailyAnchorResult(options) {
+        const opts = options || {};
+        currentState = "daily";
+        reflectionStep = "result";
+        resetPreStageVisuals();
+        heroQuoteEl.hidden = true;
+        heroPhilosophyEl.hidden = true;
+        reflectionKickerEl.hidden = true;
+        reflectionTitleEl.hidden = true;
+        enterBtnEl.hidden = true;
+        modeSelectEl.hidden = true;
+        intentSelectEl.hidden = true;
+        intentEntryEl.hidden = true;
+        preStageEl.hidden = true;
+        readingResultEl.hidden = true;
+        guidanceResultEl.hidden = true;
+        endingScreenEl.hidden = true;
+        hideGuidanceFarewellScreen();
+        if (dailyAnchorEl) dailyAnchorEl.hidden = false;
+
+        chapter01El.hidden = true;
+        chapter02El.hidden = true;
+        chapter03El.hidden = true;
+        clearActive();
+        document.body.classList.add("is-daily");
+
+        proverbEl.classList.add("is-small-note");
+        proverbEl.dataset.i18nKey = "proverb.midSession";
+        proverbEl.textContent = t("proverb.midSession");
+
+        syncBackArrow();
+
+        await ensureDeckLoaded();
+        if (!Array.isArray(tarotDeck) || tarotDeck.length === 0) return;
+
+        const stored = readDailyDraw();
+        if (!stored || !Number.isFinite(stored.cardId)) return;
+        const card = tarotDeck.find((c) => Number(c.id) === Number(stored.cardId));
+        if (!card) return;
+        const orientation = stored.orientation === "reversed" ? "reversed" : "upright";
+        const isRepeat = opts.isRepeat !== false;
+        renderDailyAnchor(card, orientation, isRepeat);
       }
 
       chapter01El.addEventListener("click", () => {
@@ -1479,9 +2078,29 @@
         transitionTo(showReflection);
       });
 
-      chapter03El.addEventListener("click", () => transitionTo(showHomeDefault));
+      chapter03El.addEventListener("click", () => {
+        if (currentState === "daily") {
+          transitionTo(showHomeDefault);
+          return;
+        }
+        const existing = readDailyDraw();
+        if (existing && Number.isFinite(existing.cardId)) {
+          transitionTo(() => { void showDailyAnchorResult({ isRepeat: true }); });
+          return;
+        }
+        transitionTo(showDailyAnchorEntry);
+      });
+      if (dailyGotItBtnEl) {
+        dailyGotItBtnEl.addEventListener("click", () => transitionTo(showHomeDefault));
+      }
       logoHitEl.addEventListener("click", () => transitionTo(showHomeDefault));
-      enterBtnEl.addEventListener("click", () => transitionTo(showReflectionModeSelect));
+      enterBtnEl.addEventListener("click", () => {
+        if (currentState === "daily" && reflectionStep === "entry") {
+          transitionTo(showDailyPreStage);
+          return;
+        }
+        transitionTo(showReflectionModeSelect);
+      });
       if (modeEnterBtnEl) {
         modeEnterBtnEl.addEventListener("click", () => transitionTo(showTarotIntentSelect));
       }
@@ -1560,6 +2179,8 @@
           const orientation = pickUprightOrReversed();
           if (cardPickFlow === "guidance") {
             currentGuidanceDraw = { card: drawn, orientation };
+          } else if (cardPickFlow === "daily") {
+            writeDailyDraw(Number(drawn.id), orientation);
           } else {
             currentDraw = { card: drawn, orientation };
             applyReadingCardChrome(currentDraw);
@@ -1592,6 +2213,8 @@
           preStageTimers.push(window.setTimeout(() => {
             if (cardPickFlow === "guidance") {
               transitionTo(showGuidanceResult);
+            } else if (cardPickFlow === "daily") {
+              transitionTo(() => { void showDailyAnchorResult({ isRepeat: false }); });
             } else {
               transitionTo(showReadingResult);
             }
@@ -1599,6 +2222,14 @@
         });
       });
       backArrowEl.addEventListener("click", () => {
+        if (currentState === "daily") {
+          if (reflectionStep === "pre-stage") {
+            transitionTo(showDailyAnchorEntry);
+            return;
+          }
+          transitionTo(showHomeDefault);
+          return;
+        }
         if (currentState !== "reflection") {
           transitionTo(showHomeDefault);
           return;
@@ -1643,6 +2274,12 @@
       });
 
       enterBtnEl.hidden = true;
+
+      const langZhBtn = document.getElementById("lang-zh");
+      const langEnBtn = document.getElementById("lang-en");
+      if (langZhBtn) langZhBtn.addEventListener("click", () => setLanguage("zh"));
+      if (langEnBtn) langEnBtn.addEventListener("click", () => setLanguage("en"));
+      setLanguage(currentLang);
 
       showHomeDefault();
       applyScale();

@@ -1,8 +1,12 @@
 :root {
   --bg: #0a0a0a;
-  --fg: #fafafa;
+  --fg: #faf4e6;
   --accent: #c9a96e;
   --transition-page: 450ms;
+  --fg-soft: #e2d4bc;
+  --fg-dim: #a49784;
+  --line: rgba(244, 235, 219, 0.22);
+  --line-soft: rgba(244, 235, 219, 0.09);
 }
 
 * { box-sizing: border-box; }
@@ -74,7 +78,7 @@ html, body {
   background: transparent;
   border: 0;
   padding: 0;
-  color: #fafafa;
+  color: #faf4e6;
   font-family: "Cormorant Garamond", serif;
   font-size: 24px;
   line-height: 30px;
@@ -82,6 +86,39 @@ html, body {
 }
 .top-link-left { left: 60px; }
 .top-link-right { right: 60px; }
+
+.lang-toggle {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 0;
+}
+
+.lang-opt {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: #faf4e6;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.lang-opt:hover { color: var(--accent); }
+
+.lang-opt.is-active {
+  color: var(--accent);
+}
+
+.lang-sep {
+  color: #faf4e6;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 24px;
+  line-height: 30px;
+}
 
 .back-arrow {
   position: absolute;
@@ -92,7 +129,7 @@ html, body {
   border: 0;
   background: transparent;
   padding: 0;
-  color: #fafafa;
+  color: #faf4e6;
   font-size: 36px;
   line-height: 1;
   cursor: pointer;
@@ -125,7 +162,7 @@ html, body {
   line-height: 57.6px;
   font-weight: 400;
   letter-spacing: -0.128px;
-  color: #fafafa;
+  color: #faf4e6;
 }
 
 .hero-philosophy {
@@ -154,7 +191,7 @@ html, body {
   line-height: 50px;
   font-weight: 400;
   letter-spacing: 0.2px;
-  color: #fafafa;
+  color: #faf4e6;
   white-space: nowrap;
   text-align: center;
 }
@@ -171,32 +208,32 @@ html, body {
   line-height: 57.6px;
   font-weight: 400;
   letter-spacing: -0.128px;
-  color: #fafafa;
+  color: #faf4e6;
 }
 
 .enter-btn {
   position: absolute;
-  top: 530px;
+  top: 588px;
   left: 50%;
   transform: translateX(-50%);
   box-sizing: border-box;
-  width: 100px;
-  height: 40px;
+  width: 120px;
+  height: 44px;
   border-radius: 50px;
-  border: 1px solid #fafafa;
+  border: 1px solid #faf4e6;
   background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-  color: #fafafa;
+  color: #faf4e6;
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
-  font-size: 14px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 500;
-  line-height: 14px;
-  letter-spacing: 0.55px;
+  line-height: 15px;
+  letter-spacing: 0.8px;
   text-align: center;
   cursor: pointer;
-  transition: opacity var(--transition-page) ease, transform var(--transition-page) ease;
+  transition: opacity var(--transition-page) ease, transform var(--transition-page) ease, border-color var(--transition-page) ease, box-shadow var(--transition-page) ease;
 }
 
 .enter-btn:hover {
@@ -310,22 +347,77 @@ html, body {
 }
 
 .intent-card {
+  position: relative;
   width: 240px;
   border: 0;
   background: transparent;
-  color: #fafafa;
+  color: #faf4e6;
   padding: 0;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  transition: transform var(--transition-page) ease, opacity var(--transition-page) ease;
+  transition: transform 0.45s ease, opacity 0.45s ease;
 }
 
+.intent-card::before {
+  content: "";
+  position: absolute;
+  top: 180px;
+  left: 50%;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side,
+    rgba(201, 169, 110, 0.42) 0%,
+    rgba(201, 169, 110, 0.22) 32%,
+    rgba(201, 169, 110, 0.08) 58%,
+    transparent 78%);
+  filter: blur(18px);
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease, background 0.5s ease;
+  animation: intent-spotlight 4.2s ease-in-out infinite;
+}
+
+.intent-card:nth-child(1)::before { animation-delay: 0s; }
+.intent-card:nth-child(2)::before { animation-delay: 0.7s; }
+.intent-card:nth-child(3)::before { animation-delay: 1.4s; }
+
+@keyframes intent-spotlight {
+  0%, 100% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+.intent-card > * { position: relative; z-index: 1; }
+
 .intent-card:hover {
+  transform: translateY(-10px);
+  opacity: 1;
+}
+
+.intent-card:hover::before {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.18);
+  background: radial-gradient(closest-side,
+    rgba(255, 225, 170, 0.6) 0%,
+    rgba(201, 169, 110, 0.32) 32%,
+    rgba(201, 169, 110, 0.12) 58%,
+    transparent 78%);
+  animation: none;
+}
+
+.intent-card:active {
   transform: translateY(-4px);
-  opacity: 0.9;
 }
 
 .intent-image {
@@ -334,12 +426,30 @@ html, body {
   height: 384px;
   object-fit: contain;
   margin: 0 auto;
+  animation: intent-float 4.2s ease-in-out infinite;
+  transition: filter 0.45s ease;
+  will-change: transform;
+}
+
+.intent-card:nth-child(1) .intent-image { animation-delay: 0s; }
+.intent-card:nth-child(2) .intent-image { animation-delay: 0.7s; }
+.intent-card:nth-child(3) .intent-image { animation-delay: 1.4s; }
+
+@keyframes intent-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.intent-card:hover .intent-image {
+  filter: drop-shadow(0 10px 28px rgba(255, 220, 180, 0.28));
 }
 
 .intent-caption {
+  position: relative;
   display: inline-block;
   margin-top: 20px;
-  color: #fafafa;
+  padding-bottom: 6px;
+  color: #faf4e6;
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
   font-size: 20px;
   line-height: 33px;
@@ -349,13 +459,46 @@ html, body {
   transition: opacity var(--transition-page) ease, transform var(--transition-page) ease, font-weight var(--transition-page) ease;
 }
 
+.intent-caption::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 28px;
+  height: 1px;
+  background: rgba(250, 244, 230, 0.35);
+  transform: translateX(-50%);
+  transition: width 0.45s ease, background 0.45s ease, opacity 0.45s ease;
+  animation: intent-underline-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes intent-underline-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.intent-card:hover .intent-caption::after {
+  width: 88%;
+  background: var(--accent);
+  opacity: 1;
+  animation: none;
+}
+
 .intent-num {
-  color: #fafafa;
+  color: #faf4e6;
   transition: color var(--transition-page) ease;
 }
 
 .intent-card:hover .intent-num {
   color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intent-image,
+  .intent-caption::after,
+  .intent-card::before {
+    animation: none;
+  }
 }
 
 .intent-entry {
@@ -374,7 +517,7 @@ html, body {
 .intent-entry-title {
   margin: 170px 0 0;
   width: 641px;
-  color: #fafafa;
+  color: #faf4e6;
   text-align: center;
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
   font-size: 36px;
@@ -387,7 +530,7 @@ html, body {
 .intent-entry-copy {
   margin: 81px 0 0;
   width: 641px;
-  color: #fafafa;
+  color: #faf4e6;
   text-align: center;
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
   font-size: 48px;
@@ -410,32 +553,32 @@ html, body {
 
 .intent-entry-input {
   margin-top: 47px;
-  width: 500px;
-  height: 50px;
-  border-radius: 50px;
-  border: 1px solid #fafafa;
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  color: #8a8a8a;
-  font-family: "Satoshi Variable", "Cormorant Garamond", serif;
-  font-size: 16px;
+  width: 560px;
+  height: auto;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--fg);
+  font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 25.6px;
-  letter-spacing: -0.312px;
-  padding: 0 24px;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+  padding: 10px 4px;
   outline: none;
+  text-align: center;
+  transition: border-color var(--transition-page) ease;
 }
 
 .intent-entry-input::placeholder {
-  color: #8a8a8a;
-  opacity: 1;
+  color: var(--fg-dim);
+  opacity: 0.7;
 }
 
 .intent-entry-input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px rgba(201, 169, 110, 0.35);
+  border-bottom-color: var(--accent);
 }
 
 .intent-entry-begin {
@@ -453,7 +596,7 @@ html, body {
   width: 560px;
   height: 120px;
   border-radius: 12px;
-  border: 1px dashed rgba(250, 250, 250, 0.2);
+  border: 1px dashed rgba(250, 244, 230, 0.2);
 }
 
 .pre-stage {
@@ -473,7 +616,7 @@ html, body {
 .pre-stage-title {
   margin: 170px 0 0;
   width: 641px;
-  color: #fafafa;
+  color: #faf4e6;
   text-align: center;
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
   font-size: 36px;
@@ -490,7 +633,7 @@ html, body {
   transform: translateX(-50%);
   margin: 0;
   width: 800px;
-  color: #fafafa;
+  color: #faf4e6;
   text-align: center;
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
   font-size: 48px;
@@ -656,7 +799,7 @@ html, body {
 
 .reading-result {
   position: absolute;
-  top: 208px;
+  top: 180px;
   left: 50%;
   transform: translateX(-50%);
   width: 1160px;
@@ -664,7 +807,7 @@ html, body {
 
 .guidance-result {
   position: absolute;
-  top: 208px;
+  top: 180px;
   left: 50%;
   transform: translateX(-50%);
   width: 1160px;
@@ -675,15 +818,15 @@ html, body {
   color: var(--rill-reading-primary);
   text-align: center;
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
-  font-size: 24px;
+  font-size: 26px;
   font-style: normal;
   font-weight: 400;
-  line-height: 36px;
+  line-height: 1.4;
   letter-spacing: 0.07px;
 }
 
 .reading-layout {
-  margin-top: 34px;
+  margin-top: 44px;
   display: flex;
   gap: 64px;
   align-items: flex-start;
@@ -691,6 +834,7 @@ html, body {
 
 .reading-left {
   width: 320px;
+  margin-top: -32px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -706,7 +850,7 @@ html, body {
   max-height: min(420px, 70vh);
   object-fit: contain;
   object-position: center;
-  border: 1px solid rgba(250, 250, 250, 0.35);
+  border: 1px solid rgba(250, 244, 230, 0.35);
   background: rgba(12, 12, 16, 0.5);
 }
 
@@ -727,14 +871,15 @@ html, body {
 }
 
 .reading-card-keywords {
-  margin: 24px 0 0;
-  color: var(--rill-reading-secondary);
-  font-family: "Satoshi Variable", "Cormorant Garamond", serif;
-  font-size: 16px;
+  margin: 20px 0 0;
+  color: var(--fg-dim);
+  font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
+  font-size: 13px;
   font-style: normal;
-  font-weight: 400;
-  line-height: 25.6px;
-  letter-spacing: -0.312px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
   text-align: center;
 }
 
@@ -759,13 +904,15 @@ html, body {
 }
 
 .reading-core {
-  margin: 0 0 20px;
-  color: var(--rill-reading-primary);
-  font-family: "Satoshi Variable", "Cormorant Garamond", serif;
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 1.45;
-  letter-spacing: 0.02em;
+  margin: 0 0 32px;
+  color: var(--fg-soft);
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
+  font-size: 30px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  max-width: 640px;
   transition: opacity 0.35s ease;
 }
 
@@ -816,45 +963,57 @@ html, body {
   text-align: center;
 }
 
+/* Advice Card — Layer 2 opening (italic serif, matches .reading-core so the
+ * first sentence of every reading is visually unified) */
+.advice-closing {
+  margin: 0 0 32px 0;
+  color: var(--fg-soft);
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
+  font-size: 30px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  max-width: 640px;
+}
+.advice-closing:empty {
+  display: none;
+}
+
+/* Advice Card — Layer 3 body paragraphs */
 .advice-body {
-  margin-bottom: 28px;
+  margin: 0 0 30px 0;
+  max-width: 640px;
 }
 
 .advice-body .advice-block p {
-  margin: 0 0 12px;
-  color: var(--rill-reading-secondary);
+  margin: 0 0 10px;
+  color: var(--fg-soft);
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
   font-size: 16px;
-  line-height: 1.6;
+  font-weight: 300;
+  line-height: 1.7;
 }
 
+.advice-body .advice-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* Advice Card — Layer 4 takeaway (action) with gold left bar */
 .advice-action {
-  margin-bottom: 24px;
-}
-
-.advice-action-label {
-  margin: 0 0 8px;
-  color: #c9a96e;
-  font-family: "Satoshi Variable", "Cormorant Garamond", serif;
-  font-size: 14px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.advice-action p:last-child {
   margin: 0;
-  color: var(--rill-reading-secondary);
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.advice-closing {
-  margin: 0;
-  color: var(--rill-reading-primary);
+  padding: 4px 0 4px 18px;
+  border-left: 1px solid var(--accent);
+  color: var(--fg);
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
-  font-size: 18px;
-  font-style: italic;
-  line-height: 1.55;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.1px;
+  max-width: 640px;
+}
+.advice-action:empty {
+  display: none;
 }
 
 .guidance-inline-action {
@@ -883,10 +1042,23 @@ html, body {
   overflow-y: auto;
   padding-right: 8px;
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
   scrollbar-width: thin;
   scrollbar-color: rgba(201, 169, 110, 0) rgba(255, 255, 255, 0);
   transition: scrollbar-color 220ms ease;
+}
+
+.reading-result .reading-scroll::after {
+  content: "";
+  position: sticky;
+  display: block;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  margin-top: -72px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.55) 100%);
+  z-index: 3;
 }
 
 .guidance-result .reading-scroll {
@@ -915,82 +1087,61 @@ html, body {
 
 .guidance-result .guidance-inline-action {
   width: 100%;
+  max-width: 640px;
   justify-content: center;
 }
 
-.scroll-down-hint {
-  position: absolute;
-  left: 50%;
-  bottom: 110px;
-  transform: translateX(-50%);
-  width: 28px;
-  height: 28px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(201, 169, 110, 0.38);
-  background: rgba(7, 7, 7, 0.42);
-  color: rgba(245, 236, 216, 0.9);
-  font-size: 16px;
-  line-height: 1;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 220ms ease, transform 220ms ease;
-  z-index: 4;
-  backdrop-filter: blur(1.6px);
-  -webkit-backdrop-filter: blur(1.6px);
-}
-
-.reading-scroll.has-scroll-hint .scroll-down-hint {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-  animation: hint-bounce 1.3s ease-in-out infinite;
-}
-
-@keyframes hint-bounce {
-  0%,
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
-  50% {
-    transform: translateX(-50%) translateY(3px);
-  }
-}
-
 .reading-screen {
-  min-height: 620px;
-  scroll-snap-align: start;
+  min-height: 0;
 }
 
 .reading-point + .reading-point {
-  margin-top: 24px;
+  margin-top: 32px;
 }
 
 .reading-point h4 {
   margin: 0;
   color: var(--rill-reading-primary);
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
-  font-size: 20px;
+  font-size: 19px;
   font-style: normal;
   font-weight: 500;
-  line-height: 28px;
-  letter-spacing: -0.249px;
+  line-height: 27px;
+  letter-spacing: -0.1px;
 }
 
 .reading-point p {
-  margin: 8px 0 0;
-  color: var(--rill-reading-secondary);
+  margin: 10px 0 0;
+  color: var(--fg);
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
-  font-size: 16px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 25.6px;
-  letter-spacing: -0.312px;
+  line-height: 1.7;
+  letter-spacing: -0.1px;
+}
+
+.reading-hook {
+  margin: 28px 0 0;
+  font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--accent);
+}
+.reading-hook:empty {
+  display: none;
 }
 
 .reading-point strong {
   color: var(--rill-reading-primary);
   font-weight: 600;
+}
+
+/* Angle titles arrive wrapped in **bold** markdown — keep the h4's own weight */
+.reading-point h4 strong {
+  font-weight: inherit;
+  color: inherit;
 }
 
 .reading-core strong {
@@ -1005,7 +1156,14 @@ html, body {
   margin-top: 14px;
 }
 
-.reading-screen-takeaway {
+.reading-result .reading-screen-takeaway {
+  display: block;
+  min-height: 0;
+  margin-top: 36px;
+  padding-bottom: 90px;
+}
+
+.guidance-result .reading-screen-takeaway {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1021,48 +1179,100 @@ html, body {
 
 .takeaway-title {
   margin: 0;
-  color: var(--rill-reading-primary);
-  text-align: center;
+  padding: 6px 0 6px 20px;
+  border-left: 2px solid var(--accent);
+  color: var(--fg);
+  text-align: left;
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
   font-size: 28px;
   font-style: normal;
   font-weight: 500;
-  line-height: 39.2px;
-  letter-spacing: 0.243px;
+  line-height: 1.4;
+  letter-spacing: 0.2px;
+  max-width: 640px;
 }
 
 .takeaway-actions {
-  margin-top: 62px;
+  margin-top: 68px;
   display: flex;
   justify-content: center;
-  gap: 18px;
+  gap: 36px;
 }
 
 .takeaway-btn {
-  width: 170px;
-  height: 40px;
+  width: 210px;
+  height: 48px;
   border-radius: 50px;
-  border: 1px solid #fafafa;
+  border: 1px solid #faf4e6;
   background: rgba(0, 0, 0, 0.25);
-  color: #fafafa;
+  color: #faf4e6;
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 14px;
-  letter-spacing: 0.55px;
+  line-height: 16px;
+  letter-spacing: 1px;
   cursor: pointer;
   transition: opacity var(--transition-page) ease, transform var(--transition-page) ease, border-color var(--transition-page) ease;
 }
 
 .takeaway-btn-wide {
-  width: 200px;
+  width: 240px;
 }
 
 .takeaway-btn:hover {
   border-color: var(--accent);
   opacity: 0.96;
   transform: translateY(-1px);
+}
+
+.takeaway-btn.is-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #1a120a;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+}
+
+.takeaway-btn.is-primary:hover {
+  filter: brightness(1.08);
+  opacity: 1;
+  border-color: var(--accent);
+}
+
+.takeaway-btn.is-ghost {
+  opacity: 0.5;
+  border-color: rgba(250, 244, 230, 0.2);
+}
+
+.takeaway-btn.is-ghost:hover {
+  opacity: 0.78;
+  border-color: rgba(250, 244, 230, 0.45);
+}
+
+.round-dots {
+  margin: 0 0 26px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+}
+
+.round-dots .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(250, 244, 230, 0.22);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.round-dots .dot.done {
+  background: rgba(250, 244, 230, 0.45);
+}
+
+.round-dots .dot.active {
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15);
 }
 
 .ending-screen {
@@ -1077,27 +1287,27 @@ html, body {
 
 .ending-title {
   margin: 0;
-  color: #fafafa;
+  color: #faf4e6;
   text-align: center;
-  font-family: "EB Garamond", serif;
-  font-size: 48px;
+  font-family: "Satoshi Variable", "Noto Sans SC", system-ui, sans-serif;
+  font-size: 40px;
   font-style: normal;
-  font-weight: 400;
-  line-height: 57.6px;
-  letter-spacing: -0.128px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
 }
 
 .guidance-farewell-screen .guidance-farewell-text {
   margin: 0;
-  max-width: 720px;
+  max-width: 820px;
   padding: 0 28px;
   color: #f5ecd8;
   text-align: center;
-  font-family: "EB Garamond", "Cormorant Garamond", serif;
-  font-size: 36px;
+  font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
+  font-size: 42px;
   font-weight: 400;
-  line-height: 1.42;
-  letter-spacing: -0.02em;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
 .ending-return-btn {
@@ -1158,28 +1368,76 @@ html, body {
 }
 
 .chapter-index {
+  position: relative;
   border: 0;
   background: transparent;
-  padding: 0;
-  color: #fafafa;
+  padding: 0 0 8px;
+  color: #faf4e6;
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
   font-size: 20px;
   line-height: 46.8px;
   letter-spacing: 1.089px;
   font-weight: 400;
-  transition: transform var(--transition-page) ease, opacity var(--transition-page) ease, font-weight var(--transition-page) ease;
+  cursor: pointer;
+  transition: transform 0.45s ease, opacity 0.45s ease, font-weight var(--transition-page) ease;
+}
+
+.chapter-index::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 24px;
+  height: 1px;
+  background: rgba(250, 244, 230, 0.35);
+  transform: translateX(-50%);
+  transition: width 0.45s ease, background 0.45s ease, opacity 0.45s ease;
+  animation: chapter-underline-pulse 2.6s ease-in-out infinite;
+}
+
+.chapter-row .chapter-index:nth-child(1)::after { animation-delay: 0s; }
+.chapter-row .chapter-index:nth-child(2)::after { animation-delay: 0.7s; }
+.chapter-row .chapter-index:nth-child(3)::after { animation-delay: 1.4s; }
+
+@keyframes chapter-underline-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }
 
 .chapter-index:hover {
-  transform: translateY(-3px);
-  opacity: 0.86;
+  transform: translateY(-6px);
+  opacity: 1;
 }
 
-.chapter-num { color: #fafafa; transition: color var(--transition-page) ease; }
-.chapter-label { color: #fafafa; }
+.chapter-index:active {
+  transform: translateY(-2px);
+}
 
-.chapter-index.is-active { font-weight: 700; }
+.chapter-index:hover::after {
+  width: 92%;
+  background: var(--accent);
+  opacity: 1;
+  animation: none;
+}
+
+.chapter-index:hover .chapter-num {
+  color: var(--accent);
+}
+
+.chapter-num { color: #faf4e6; transition: color var(--transition-page) ease; }
+.chapter-label { color: #faf4e6; }
+
 .chapter-index.is-active .chapter-num { color: var(--accent); }
+.chapter-index.is-active::after {
+  width: 100%;
+  background: var(--accent);
+  opacity: 1;
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chapter-index::after { animation: none; }
+}
 
 .hero-proverb {
   position: absolute;
@@ -1189,7 +1447,7 @@ html, body {
   width: 334px;
   margin: 0;
   text-align: center;
-  color: #fafafa;
+  color: #faf4e6;
   font-family: "Cormorant Garamond", serif;
   font-size: 24px;
   font-style: normal;
@@ -1201,12 +1459,12 @@ html, body {
 
 .hero-proverb.is-small-note {
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
-  font-size: 13px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: 19.5px;
-  letter-spacing: 0.314px;
-  color: #8a8a8a;
+  line-height: 22px;
+  letter-spacing: 0.3px;
+  color: #a49784;
 }
 
 .home-flash {
@@ -1225,4 +1483,241 @@ html, body {
   opacity: 0;
   visibility: hidden;
   transition: none;
+}
+
+/* ==========================================================================
+   Daily Anchor — postcard version (Design Library §8, §9 example B)
+   Accessed via homepage chapter-03 click.
+   ========================================================================== */
+
+.daily-anchor {
+  position: absolute;
+  top: 180px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 980px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.postcard {
+  position: relative;
+  width: 980px;
+  padding: 54px 60px 54px 54px;
+  border: 1px solid var(--line-soft);
+  background: #17110e;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 56px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+body.is-daily .hero-logo-ribbon {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.postcard::before,
+.postcard::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+}
+.postcard::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.postcard::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+}
+
+.postcard-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.postcard-card-frame {
+  position: relative;
+  width: 240px;
+  height: 400px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  overflow: hidden;
+  background: #000;
+}
+.postcard-card-frame::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid var(--line-soft);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.postcard-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.postcard-card-image.is-reversed {
+  transform: rotate(180deg);
+}
+
+.postcard-date-stamp {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.stamp-line-top {
+  font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+}
+.stamp-line-bot {
+  font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--fg-dim);
+  opacity: 0.85;
+}
+
+.postcard-right {
+  display: block;
+}
+
+/*
+ * ═══════════════════════════════════════════════════════════════════
+ * DAILY ANCHOR POSTCARD — DESIGN LIBRARY (canonical hierarchy)
+ * ═══════════════════════════════════════════════════════════════════
+ * Reading order (right column, top → bottom):
+ *   ① Card name + orientation  → .postcard-name
+ *   ② 3 keywords (UPPERCASE)    → .postcard-keywords
+ *   ③ Takeaway / core proverb   → .postcard-core      (italic serif, opens the card)
+ *   ④ Color / Object / Moment   → .postcard-anchors   (3-column anchor grid)
+ *   ⑤ Final takeaway (gold bar) → .postcard-takeaway  (closing CTA sentence)
+ *
+ * Also applied to the reading-result page in parallel:
+ *   .reading-core        ≈ ③ (Cormorant italic, serves same role)
+ *   .takeaway-title      ≈ ⑤ (gold left bar, closing sentence)
+ * Keep these two sets in visual parity whenever the spec moves.
+ */
+
+/* ① Card name — Satoshi 20/500, --fg */
+.postcard-name {
+  margin: 0 0 20px 0;
+  font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: var(--fg);
+}
+
+/* ② Keywords — Satoshi 14/400, UPPERCASE, letter-spacing 1.8, --fg-dim */
+.postcard-keywords {
+  margin: 0 0 32px 0;
+  font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+
+/* ③ Takeaway / core proverb — Cormorant Italic 29/400/1.4, --fg-soft, max-width 560 */
+.postcard-core {
+  margin: 0 0 44px 0;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
+  font-style: italic;
+  font-size: 29px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--fg-soft);
+  max-width: 560px;
+}
+.postcard-core:empty {
+  display: none;
+}
+
+/* ④ Color / Object / Moment — 3-column anchor grid.
+ *    Spec note: Color value may optionally be +1 size step (16 → 17/18)
+ *    for quick scanning. Not currently applied. */
+.postcard-anchors {
+  border-top: 1px solid var(--line-soft);
+  padding-top: 24px;
+  padding-bottom: 6px;
+  margin: 0 0 48px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.anchor-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.anchor-key {
+  font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+.anchor-val {
+  margin: 0;
+  font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--fg-soft);
+}
+
+/* ⑤ Final takeaway — Satoshi 22/500/1.45, 1px gold left bar, --fg, max-width 580.
+ *    Always one line, never split into paragraphs; closing sentence of the card. */
+.postcard-takeaway {
+  margin: 0;
+  padding: 4px 0 4px 18px;
+  border-left: 1px solid var(--accent);
+  font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.1px;
+  color: var(--fg);
+  max-width: 580px;
+}
+.postcard-takeaway:empty {
+  display: none;
+}
+
+/* Got it button — pill style via .takeaway-btn, only override margin for layout */
+.daily-got-it {
+  margin-top: 36px;
+}
+
+/* "Already opened today" reminder */
+.daily-come-back {
+  margin: 14px 0 0 0;
+  font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--fg-dim);
+  opacity: 0.6;
+  letter-spacing: 0.2px;
+  text-align: center;
 }

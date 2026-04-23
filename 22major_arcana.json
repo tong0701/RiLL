@@ -26,11 +26,28 @@
     ],
     "upright_meaning": "A call to begin before everything feels fully certain. Trust the pull toward something new, but stay aware of where your feet are landing.",
     "reversed_meaning": "A sign to notice where impulsiveness or fear is distorting your next step. You may be rushing blindly or hesitating under the excuse of needing more certainty.",
-    "core_imagery": ["cliff", "white rose", "small bag", "sun"],
+    "core_imagery": [
+      "cliff",
+      "white rose",
+      "small bag",
+      "sun"
+    ],
     "lucky_color": "white",
     "lucky_item": "silver ring",
     "reflection_prompt": "What would change if you trusted yourself enough to begin?",
-    "action_hint": "Take one small concrete step today."
+    "action_hint": "Take one small concrete step today.",
+    "daily_upright": {
+      "core_en": "A call to begin before everything feels fully certain.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "A sign to notice where impulsiveness or fear is distorting your next step.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 1,
@@ -58,11 +75,28 @@
     ],
     "upright_meaning": "You already have more tools than you think. The question is not whether you are ready, but whether you are willing to direct your energy clearly.",
     "reversed_meaning": "Your power may be leaking through distraction, insecurity, or performance. Gather yourself before trying to force an outcome.",
-    "core_imagery": ["wand", "table", "cup", "infinity symbol"],
+    "core_imagery": [
+      "wand",
+      "table",
+      "cup",
+      "infinity symbol"
+    ],
     "lucky_color": "gold",
     "lucky_item": "fountain pen",
     "reflection_prompt": "Where is your power already present, but underused?",
-    "action_hint": "Focus on one intention and act on it cleanly."
+    "action_hint": "Focus on one intention and act on it cleanly.",
+    "daily_upright": {
+      "core_en": "You already have more tools than you think.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "Your power may be leaking through distraction, insecurity, or performance.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 2,
@@ -90,11 +124,28 @@
     ],
     "upright_meaning": "Not everything needs to be spoken yet. There is truth already forming inside you, and silence may be more useful than noise right now.",
     "reversed_meaning": "You may be ignoring what you already know. Confusion grows when you ask for answers outside yourself before listening within.",
-    "core_imagery": ["moon", "veil", "pomegranate", "pillars"],
+    "core_imagery": [
+      "moon",
+      "veil",
+      "pomegranate",
+      "pillars"
+    ],
     "lucky_color": "indigo",
     "lucky_item": "moonstone necklace",
     "reflection_prompt": "What do you already know, even if you have not said it out loud yet?",
-    "action_hint": "Pause before reacting and listen inward first."
+    "action_hint": "Pause before reacting and listen inward first.",
+    "daily_upright": {
+      "core_en": "Not everything needs to be spoken yet.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "You may be ignoring what you already know.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 3,
@@ -122,11 +173,28 @@
     ],
     "upright_meaning": "Something in your life is ready to be tended with warmth and patience. Growth comes not from pressure, but from consistent nourishment.",
     "reversed_meaning": "You may be emptying yourself while trying to care for everything else. What needs tending most may actually be you.",
-    "core_imagery": ["wheat", "cushion", "venus symbol", "forest"],
+    "core_imagery": [
+      "wheat",
+      "cushion",
+      "venus symbol",
+      "forest"
+    ],
     "lucky_color": "rose",
     "lucky_item": "silk ribbon",
     "reflection_prompt": "What in your life needs gentle care instead of more force?",
-    "action_hint": "Create one small act of nourishment for yourself today."
+    "action_hint": "Create one small act of nourishment for yourself today.",
+    "daily_upright": {
+      "core_en": "Something in your life is ready to be tended with warmth and patience.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "You may be emptying yourself while trying to care for everything else.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 4,
@@ -155,11 +223,28 @@
     ],
     "upright_meaning": "This is a moment to stand in your own authority. Clear structure, boundaries, and responsibility will create the stability you want.",
     "reversed_meaning": "Control may be replacing wisdom. If things feel harsh, brittle, or exhausting, the structure you are using may no longer serve you.",
-    "core_imagery": ["throne", "mountains", "ram", "stone"],
+    "core_imagery": [
+      "throne",
+      "mountains",
+      "ram",
+      "stone"
+    ],
     "lucky_color": "deep red",
     "lucky_item": "watch",
     "reflection_prompt": "Where would more structure make your life easier, not harder?",
-    "action_hint": "Set one boundary or make one firm decision."
+    "action_hint": "Set one boundary or make one firm decision.",
+    "daily_upright": {
+      "core_en": "This is a moment to stand in your own authority.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "Control may be replacing wisdom.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 5,
@@ -187,11 +272,28 @@
     ],
     "upright_meaning": "There may be wisdom in tradition, ritual, or learned guidance right now. Not all structure is limitation; some of it helps you deepen.",
     "reversed_meaning": "You may be outgrowing a belief system, a role, or a rule that no longer fits. Question what is meaningful and what is merely inherited.",
-    "core_imagery": ["keys", "pillars", "robes", "blessing hand"],
+    "core_imagery": [
+      "keys",
+      "pillars",
+      "robes",
+      "blessing hand"
+    ],
     "lucky_color": "ivory",
     "lucky_item": "small key charm",
     "reflection_prompt": "Which values still feel alive to you, and which ones are only habit?",
-    "action_hint": "Keep one ritual that genuinely grounds you."
+    "action_hint": "Keep one ritual that genuinely grounds you.",
+    "daily_upright": {
+      "core_en": "There may be wisdom in tradition, ritual, or learned guidance right now.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "You may be outgrowing a belief system, a role, or a rule that no longer fits.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 6,
@@ -219,11 +321,28 @@
     ],
     "upright_meaning": "This card is about meaningful alignment, not just romance. A choice becomes clear when you ask what truly matches your values and heart.",
     "reversed_meaning": "You may be split between desire and truth, or between what feels good and what is actually aligned. Something may need honest naming.",
-    "core_imagery": ["angel", "tree", "mountain", "sunlight"],
+    "core_imagery": [
+      "angel",
+      "tree",
+      "mountain",
+      "sunlight"
+    ],
     "lucky_color": "soft green",
     "lucky_item": "pair of earrings",
     "reflection_prompt": "What choice would feel most honest, even if it is not the easiest?",
-    "action_hint": "Choose the option that reduces inner contradiction."
+    "action_hint": "Choose the option that reduces inner contradiction.",
+    "daily_upright": {
+      "core_en": "This card is about meaningful alignment, not just romance.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "You may be split between desire and truth, or between what feels good and what is actually aligned.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 7,
@@ -251,11 +370,28 @@
     ],
     "upright_meaning": "You can move forward, but not by scattering yourself. Progress comes through direction, self-command, and commitment to the road ahead.",
     "reversed_meaning": "You may be pulled by competing forces or trying to move without a clear center. Slow down enough to reclaim your direction.",
-    "core_imagery": ["chariot", "black and white sphinxes", "armor", "city"],
+    "core_imagery": [
+      "chariot",
+      "black and white sphinxes",
+      "armor",
+      "city"
+    ],
     "lucky_color": "navy",
     "lucky_item": "car keychain",
     "reflection_prompt": "What would help you move with more direction and less friction?",
-    "action_hint": "Commit to one path for now and follow through."
+    "action_hint": "Commit to one path for now and follow through.",
+    "daily_upright": {
+      "core_en": "You can move forward, but not by scattering yourself.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "You may be pulled by competing forces or trying to move without a clear center.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 8,
@@ -283,11 +419,28 @@
     ],
     "upright_meaning": "Real strength is calm, not loud. You are being asked to meet intensity with steadiness, not force.",
     "reversed_meaning": "You may be underestimating yourself or letting fear make the room feel smaller than it is. Gentleness is not weakness, but it still needs backbone.",
-    "core_imagery": ["lion", "infinity symbol", "white robe", "flowers"],
+    "core_imagery": [
+      "lion",
+      "infinity symbol",
+      "white robe",
+      "flowers"
+    ],
     "lucky_color": "amber",
     "lucky_item": "bracelet",
     "reflection_prompt": "Where can you respond with steadiness instead of force?",
-    "action_hint": "Stay soft, but do not back away from what matters."
+    "action_hint": "Stay soft, but do not back away from what matters.",
+    "daily_upright": {
+      "core_en": "Real strength is calm, not loud.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "You may be underestimating yourself or letting fear make the room feel smaller than it is.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 9,
@@ -315,11 +468,28 @@
     ],
     "upright_meaning": "Stepping back can help you see clearly. Not every answer comes in motion; some arrive when you create space to hear yourself.",
     "reversed_meaning": "You may be hiding in solitude instead of being restored by it. Withdrawal is useful only if it eventually returns you to life.",
-    "core_imagery": ["lantern", "cloak", "mountain path", "staff"],
+    "core_imagery": [
+      "lantern",
+      "cloak",
+      "mountain path",
+      "staff"
+    ],
     "lucky_color": "grey",
     "lucky_item": "small lantern charm",
     "reflection_prompt": "What truth becomes clearer when you stop seeking noise?",
-    "action_hint": "Take quiet time, then return with one insight."
+    "action_hint": "Take quiet time, then return with one insight.",
+    "daily_upright": {
+      "core_en": "Stepping back can help you see clearly.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "You may be hiding in solitude instead of being restored by it.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 10,
@@ -347,11 +517,28 @@
     ],
     "upright_meaning": "Life is moving, whether you force it or not. This may be a turning point where timing matters as much as effort.",
     "reversed_meaning": "You may be resisting a cycle that has already shifted. The more tightly you cling, the harder change can feel.",
-    "core_imagery": ["wheel", "clouds", "sphinx", "winged figures"],
+    "core_imagery": [
+      "wheel",
+      "clouds",
+      "sphinx",
+      "winged figures"
+    ],
     "lucky_color": "royal blue",
     "lucky_item": "coin purse",
     "reflection_prompt": "What cycle is ending, and what is trying to begin?",
-    "action_hint": "Work with the shift instead of against it."
+    "action_hint": "Work with the shift instead of against it.",
+    "daily_upright": {
+      "core_en": "Life is moving, whether you force it or not.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "You may be resisting a cycle that has already shifted.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 11,
@@ -379,11 +566,28 @@
     ],
     "upright_meaning": "This card asks for honesty, especially with yourself. What is fair, true, and proportionate matters more than what is convenient.",
     "reversed_meaning": "You may be rationalizing what you already know is out of balance. Avoiding truth delays relief, not consequence.",
-    "core_imagery": ["scales", "sword", "red robe", "stone throne"],
+    "core_imagery": [
+      "scales",
+      "sword",
+      "red robe",
+      "stone throne"
+    ],
     "lucky_color": "crimson",
     "lucky_item": "metal hairpin",
     "reflection_prompt": "What truth becomes clear when emotion settles down?",
-    "action_hint": "Name the facts cleanly before making a decision."
+    "action_hint": "Name the facts cleanly before making a decision.",
+    "daily_upright": {
+      "core_en": "This card asks for honesty, especially with yourself.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "You may be rationalizing what you already know is out of balance.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 12,
@@ -411,11 +615,28 @@
     ],
     "upright_meaning": "This is not wasted time. A pause can change what the whole situation means, if you stop insisting on the old angle.",
     "reversed_meaning": "You may be stuck in suspension without gaining anything from it. Let go of the posture that keeps you in place.",
-    "core_imagery": ["tree", "halo", "crossed leg", "rope"],
+    "core_imagery": [
+      "tree",
+      "halo",
+      "crossed leg",
+      "rope"
+    ],
     "lucky_color": "teal",
     "lucky_item": "silk scarf",
     "reflection_prompt": "What changes when you stop demanding immediate movement?",
-    "action_hint": "Allow one perspective shift before taking action."
+    "action_hint": "Allow one perspective shift before taking action.",
+    "daily_upright": {
+      "core_en": "This is not wasted time.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "You may be stuck in suspension without gaining anything from it.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 13,
@@ -443,11 +664,28 @@
     ],
     "upright_meaning": "Something has reached its natural ending. This card does not ask for fear; it asks for honesty about what is already over.",
     "reversed_meaning": "You may be dragging something forward long after its life has passed. Refusing endings can make change feel harsher than it needs to be.",
-    "core_imagery": ["skeleton", "black flag", "sunrise", "river"],
+    "core_imagery": [
+      "skeleton",
+      "black flag",
+      "sunrise",
+      "river"
+    ],
     "lucky_color": "black",
     "lucky_item": "obsidian stone",
     "reflection_prompt": "What are you trying to keep alive that is already asking to end?",
-    "action_hint": "Release one thing that no longer belongs in your life."
+    "action_hint": "Release one thing that no longer belongs in your life.",
+    "daily_upright": {
+      "core_en": "Something has reached its natural ending.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "You may be dragging something forward long after its life has passed.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 14,
@@ -475,11 +713,28 @@
     ],
     "upright_meaning": "Healing often looks like subtle adjustment, not dramatic change. You are being guided toward balance, not perfection.",
     "reversed_meaning": "Something may be off in your inner rhythm. Too much, too little, or badly matched energies are making life harder than it needs to be.",
-    "core_imagery": ["angel", "cups", "water", "path to sun"],
+    "core_imagery": [
+      "angel",
+      "cups",
+      "water",
+      "path to sun"
+    ],
     "lucky_color": "light blue",
     "lucky_item": "glass cup",
     "reflection_prompt": "What would balance look like in practice, not just in theory?",
-    "action_hint": "Make one adjustment that restores your rhythm."
+    "action_hint": "Make one adjustment that restores your rhythm.",
+    "daily_upright": {
+      "core_en": "Healing often looks like subtle adjustment, not dramatic change.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "Something may be off in your inner rhythm.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 15,
@@ -507,11 +762,28 @@
     ],
     "upright_meaning": "This card reveals where desire, fear, or habit has more control than you want to admit. Naming the pattern weakens its hold.",
     "reversed_meaning": "You may be closer to release than you think. A bond loses power the moment you see clearly that it can be undone.",
-    "core_imagery": ["chains", "horns", "torch", "dark pedestal"],
+    "core_imagery": [
+      "chains",
+      "horns",
+      "torch",
+      "dark pedestal"
+    ],
     "lucky_color": "dark purple",
     "lucky_item": "black leather cord",
     "reflection_prompt": "What pattern keeps promising relief but leaves you less free?",
-    "action_hint": "Interrupt one compulsive loop today."
+    "action_hint": "Interrupt one compulsive loop today.",
+    "daily_upright": {
+      "core_en": "See what pulls you, then you can choose.",
+      "core_zh": "看清是什么在拉扯你，然后你可以选择。",
+      "moment_en": "Touch it. Remind yourself, \"I am in control.\"",
+      "moment_zh": "触碰它。提醒自己：\"我在掌控中。\""
+    },
+    "daily_reversed": {
+      "core_en": "The grip is loosening — let it, one breath at a time.",
+      "core_zh": "束缚正在松开——让它慢慢松，一次一次呼吸。",
+      "moment_en": "Name one thing you are ready to release today.",
+      "moment_zh": "说出一件你今天准备放下的事。"
+    }
   },
   {
     "id": 16,
@@ -539,11 +811,28 @@
     ],
     "upright_meaning": "Something false or unstable can no longer hold. The disruption may feel harsh, but it also clears what illusion could not.",
     "reversed_meaning": "The shake-up may already be happening inside you, even if the outside still looks intact. Avoiding the truth will not preserve the structure.",
-    "core_imagery": ["tower", "lightning", "fire", "falling crown"],
+    "core_imagery": [
+      "tower",
+      "lightning",
+      "fire",
+      "falling crown"
+    ],
     "lucky_color": "electric blue",
     "lucky_item": "metal ring",
     "reflection_prompt": "What truth breaks through when the old structure fails?",
-    "action_hint": "Let the false part fall instead of rebuilding it too fast."
+    "action_hint": "Let the false part fall instead of rebuilding it too fast.",
+    "daily_upright": {
+      "core_en": "Something false or unstable can no longer hold.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "The shake-up may already be happening inside you, even if the outside still looks intact.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 17,
@@ -571,11 +860,28 @@
     ],
     "upright_meaning": "There is something gentle and true returning to you. This card speaks of healing, trust, and the quiet kind of hope that does not need to perform.",
     "reversed_meaning": "You may feel disconnected from hope, but that does not mean it is gone. What is needed may be reconnection, not dramatic rescue.",
-    "core_imagery": ["star", "water", "naked figure", "night sky"],
+    "core_imagery": [
+      "star",
+      "water",
+      "naked figure",
+      "night sky"
+    ],
     "lucky_color": "silver-blue",
     "lucky_item": "star charm",
     "reflection_prompt": "What still feels quietly alive inside you, even after disappointment?",
-    "action_hint": "Follow the smallest light instead of waiting for certainty."
+    "action_hint": "Follow the smallest light instead of waiting for certainty.",
+    "daily_upright": {
+      "core_en": "There is something gentle and true returning to you.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "You may feel disconnected from hope, but that does not mean it is gone.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 18,
@@ -602,11 +908,28 @@
     ],
     "upright_meaning": "Not everything is clear right now, and that is part of the card's message. Move gently through uncertainty instead of demanding daylight from midnight.",
     "reversed_meaning": "What was confusing may begin to show its shape. Fear loosens when what was hidden starts becoming nameable.",
-    "core_imagery": ["moon", "dogs", "path", "water"],
+    "core_imagery": [
+      "moon",
+      "dogs",
+      "path",
+      "water"
+    ],
     "lucky_color": "pearl",
     "lucky_item": "mirror compact",
     "reflection_prompt": "What are you feeling that logic alone cannot yet organize?",
-    "action_hint": "Move slowly and trust what becomes clearer over time."
+    "action_hint": "Move slowly and trust what becomes clearer over time.",
+    "daily_upright": {
+      "core_en": "Not everything is clear right now, and that is part of the card's message.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "What was confusing may begin to show its shape.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 19,
@@ -634,11 +957,28 @@
     ],
     "upright_meaning": "This card brings visibility, warmth, and honest life-force. What is true becomes easier to see when you stop shrinking from your own brightness.",
     "reversed_meaning": "Light is still present, but something may be muting it. A small blockage, doubt, or overcomplication may be standing between you and simple joy.",
-    "core_imagery": ["sunflowers", "child", "horse", "sun"],
+    "core_imagery": [
+      "sunflowers",
+      "child",
+      "horse",
+      "sun"
+    ],
     "lucky_color": "yellow",
     "lucky_item": "gold chain",
     "reflection_prompt": "Where would life feel simpler if you let yourself be fully seen?",
-    "action_hint": "Say yes to something that brings clean energy."
+    "action_hint": "Say yes to something that brings clean energy.",
+    "daily_upright": {
+      "core_en": "This card brings visibility, warmth, and honest life-force.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "Light is still present, but something may be muting it.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 20,
@@ -666,11 +1006,28 @@
     ],
     "upright_meaning": "Something in you is being called awake. This is not punishment; it is a moment of seeing clearly what must now be answered.",
     "reversed_meaning": "You may be holding yourself back through fear, shame, or refusal to hear the call. Avoiding the truth does not silence it.",
-    "core_imagery": ["angel", "trumpet", "rising figures", "mountains"],
+    "core_imagery": [
+      "angel",
+      "trumpet",
+      "rising figures",
+      "mountains"
+    ],
     "lucky_color": "white-gold",
     "lucky_item": "small bell",
     "reflection_prompt": "What part of your life is asking to be lived more honestly now?",
-    "action_hint": "Respond to the call in one visible way."
+    "action_hint": "Respond to the call in one visible way.",
+    "daily_upright": {
+      "core_en": "Something in you is being called awake.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "You may be holding yourself back through fear, shame, or refusal to hear the call.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   },
   {
     "id": 21,
@@ -698,10 +1055,27 @@
     ],
     "upright_meaning": "A cycle has reached coherence. This card speaks of completion, earned wholeness, and the ability to stand inside what you have become.",
     "reversed_meaning": "Something remains incomplete, not because you failed, but because one last piece still asks for attention. Closure needs participation.",
-    "core_imagery": ["wreath", "dancer", "four figures", "sky"],
+    "core_imagery": [
+      "wreath",
+      "dancer",
+      "four figures",
+      "sky"
+    ],
     "lucky_color": "emerald",
     "lucky_item": "round pendant",
     "reflection_prompt": "What have you actually completed that deserves to be acknowledged?",
-    "action_hint": "Close one cycle well before starting the next."
+    "action_hint": "Close one cycle well before starting the next.",
+    "daily_upright": {
+      "core_en": "A cycle has reached coherence.",
+      "core_zh": "",
+      "moment_en": "Notice one small moment today that echoes this card.",
+      "moment_zh": "留意今天有哪个小瞬间和这张牌呼应。"
+    },
+    "daily_reversed": {
+      "core_en": "Something remains incomplete, not because you failed, but because one last piece still asks for attention.",
+      "core_zh": "",
+      "moment_en": "Pause once today and ask where this pattern is showing up.",
+      "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
+    }
   }
 ]
