@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20" />
+    <link rel="stylesheet" href="./styles.css?v=52" />
   </head>
   <body>
     <div id="home-flash" class="home-flash" aria-hidden="true"></div>
@@ -29,7 +29,7 @@
             <span class="lang-sep" aria-hidden="true">/</span>
             <button class="lang-opt" type="button" data-lang="en" id="lang-en">En</button>
           </div>
-          <button class="top-link top-link-right" type="button" data-i18n="menu">Menu</button>
+          <button class="top-link top-link-right" type="button" id="menu-toggle" data-i18n="menu">Menu</button>
 
           <h1 class="hero-quote" id="hero-quote" data-i18n="hero.quote">See yourself. Then go live.</h1>
           <p class="hero-philosophy" id="hero-philosophy" hidden data-i18n="hero.philosophy">
@@ -39,6 +39,7 @@
             few different angles on where you are right now, but the final read is always yours. Every session
             ends with a concrete action step, because life is yours to live.
           </p>
+          <button class="hero-philosophy-more" id="hero-philosophy-more" type="button" data-i18n="hero.philosophyMore">The backstory →</button>
           <h2 class="reflection-kicker" id="reflection-kicker" hidden data-i18n="reflection.kicker">See what is already there.</h2>
           <h2 class="reflection-title" id="reflection-title" hidden data-i18n="reflection.title">What do you seek clarity on today?</h2>
           <button class="enter-btn" id="enter-btn" type="button" hidden data-i18n="common.enter">Enter</button>
@@ -363,6 +364,152 @@
       </section>
     </main>
 
+    <!-- Menu overlay + panel. Detail views (Traces / Archive / Taya) live INSIDE
+         the panel — clicking a menu item swaps the panel content, Back returns
+         to nav, Close closes the whole menu. No URL routing. -->
+    <div class="menu-overlay" id="menu-overlay" hidden>
+      <aside class="menu-panel" id="menu-panel" aria-label="Menu">
+        <button class="menu-back" id="menu-back" type="button" hidden aria-label="Back">
+          <span class="menu-back-label">Back</span>
+        </button>
+
+        <nav class="menu-items" id="menu-items" aria-label="Menu items">
+          <button class="menu-item" type="button" data-target="traces">Traces</button>
+          <button class="menu-item" type="button" data-target="archive">Archive</button>
+          <button class="menu-item" type="button" data-target="taya">Taya</button>
+        </nav>
+
+        <section class="menu-detail" id="menu-detail-traces" hidden>
+          <article class="trace-content">
+            <p class="trace-date">April 2026</p>
+            <h1 class="trace-title">Why I made this</h1>
+            <div class="trace-body trace-body-en">
+              <p>For the past year, I've been turning inward. I used every AI tool I could find to talk to myself: personality patterns, behavioral tendencies, tarot pulls, astrology dice, even career direction based on past experiences. All of it was trying to answer one question: who am I, really?</p>
+              <p>But here's what I learned: AI can point you in a direction. It can't walk for you. The real work happens when you close the screen and go back to your life. Your life isn't inside these little LED panels. It faces outward, toward the world.</p>
+              <p>From my time in wealth management, I met people at every life stage, every income level, every personality type. Their worries were surprisingly similar. We can't solve those worries directly, but we can address where they come from. Some people need a deep conversation. Some just need an external anchor. Some just need a little more confidence.</p>
+              <p>I've restarted my own life two or three times: switching careers, quitting jobs, starting over in a new country. That courage didn't come from nowhere. It came from anchors: a push from someone, a word of comfort, a sign from the universe that said "keep going." No one survives completely alone.</p>
+              <p>So I build products around this belief. Every project follows the same thread: don't make the decision for the user. Help them see themselves clearly. Then send them back to real life. No toxic loops, no addiction mechanics. Just honest tools that help people grow.</p>
+              <p>That's also why I switched to tech. I want to build products with technology, in a more human way.</p>
+            </div>
+            <div class="trace-body trace-body-zh">
+              <p>这些产品，是我抛开所有求职焦虑之后，最想做的一件事。</p>
+              <p>RiLL是我第一个 vibe coding 的产物，简陋，不完美，但投入了很多心力。我希望它能给我身边的人，也给我自己，带来一点帮助。</p>
+              <p>过去大半年，我一直在向内探索。我发现很多事情，只有当你足够了解自己、跟自己和解之后，才能真正解决。我经常和各种不同的大模型聊天，聊人格底色、行为模式、说话风格，抽牌、起卦，问星骰、算八字，甚至让它根据我的经历帮我看职业方向。所有这一切，都是为了更了解我自己。</p>
+              <p>但慢慢我发现，AI 只能给你一个方向。真正重要的，是把所有的焦点和行动落回到生活里。你的生活不限于这块小小的屏幕，它是朝外的，是朝向世界的。</p>
+              <p>之前做财富管理时，我接触过很多不同阶段、不同身份、不同背景的人。我发现，不管财富层级如何，有些烦恼是共通的。我们也许无法直接解决这些烦恼，但可以试着处理它们的来源。而在这背后，大家最终指向的都是同一件事：如何更好地走向幸福。</p>
+              <p>有些人需要一次深度的对话，有些人只需要一个外部的锚点，有些人只是信心不足。我不是在宣扬"抽到好牌就有好运"，"人定胜天"的道理谁都懂，但有多少人真的信呢？</p>
+              <p>我自己经历过转行、辞职、重新开始。那些"重启"的勇气，除了自身的心力，也离不开外部的锚点：一句精神刺激、一次他人的安慰、一个来自宇宙的心理暗示。人活在世界上，需要和外部建立连接。</p>
+              <p>所以我做了这个产品。哪怕没有人用，我自己也会用。道理我们都懂，我只是想要一些正向的祝福。</p>
+              <p>做产品，是为了让每个用户拥有更好、更正向的体验。拒绝 toxic 的成瘾机制，拒绝"爹味"说教，用光明、温暖的方式把人留住，然后一起成长，变成更好的自己。这也是我想转行的原因，用更人性化的方式去 building products with technology。</p>
+              <p>在那些充满迷惑、高风险决策的环境中，如何理清自己的思路并勇往直前，打破重建，是我不得不、也不断在经历的事情。这些心得驱使我 move forward，我想把它们融入产品的思想和价值观中，体现在我的工作里。</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="menu-detail" id="menu-detail-archive" hidden>
+          <div class="coming-soon">
+            <h1 class="cs-title">Archive</h1>
+            <div class="cs-en">
+              <p class="cs-body">Your readings, kept quietly.</p>
+              <p class="cs-body">Coming Soon</p>
+            </div>
+            <div class="cs-zh">
+              <p class="cs-body">记下的，都安静地留着。</p>
+              <p class="cs-body">Coming Soon</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right-side scroll progress — a small moon that waxes (new → full) and
+             drifts downward as you scroll. Visible only when content is scrollable. -->
+        <div class="menu-moon" id="menu-moon" hidden aria-hidden="true">
+          <svg class="menu-moon-svg" viewBox="-50 -50 100 100">
+            <circle class="menu-moon-dark" cx="0" cy="0" r="40" />
+            <path class="menu-moon-lit" id="menu-moon-lit" d="" />
+          </svg>
+        </div>
+
+        <section class="menu-detail" id="menu-detail-taya" hidden>
+          <div class="taya-page">
+            <div class="taya-body">
+              <div class="taya-prose taya-prose-en">
+                <h2 class="taya-section">About / Taya</h2>
+                <p>Hey, I'm Taya.</p>
+                <p>Used to work in banking. Now I'm a grad student in Seattle. I love rock music, journaling, and singing. I like looking inward and figuring myself out. I've taken paths that scared me, became more rational along the way, but kept the soft parts.</p>
+                <p>Strong empathy, a little intense, goal-driven, afraid of being stuck. Wanting more control, but often feeling lost. Just another human swimming against the current.</p>
+
+                <h2 class="taya-section">About RiLL</h2>
+                <p>This little thing came from that messy, honest version of me.</p>
+                <p>It won't feed you nice words. It won't judge you. It won't drag in irrelevant history and make things up. It's just here to tell you what the cards say and what you could do next.</p>
+
+                <h2 class="taya-section">Why RiLL exists</h2>
+                <p>After asking GPT tarot questions and asking DeepSeek plum blossom stuff like "When will I finally get an offer?" and "What's actually going on with me and this person?" I got into an argument with AI.</p>
+                <p>Too much "well, actually" energy. Too much irrelevant history dragged in.</p>
+                <p>So I thought maybe I should just make my own thing. Something that doesn't just pat me on the back, but also doesn't let me burn an afternoon on meaningless digital fortune-telling.</p>
+                <p>I know why I do this. I want a solid answer when everything feels uncertain. And yeah, it's self-soothing. But it's a cheap one. And I needed it.</p>
+                <p>So I chose it. Then I built it.</p>
+
+                <h2 class="taya-section">One last thing</h2>
+                <p>I hope you find a small sign here. From the universe, or from yourself. A little push. Then go do the thing.</p>
+                <p>Wishing you the courage to take control of your own life.</p>
+                <p class="taya-sign">Taya</p>
+              </div>
+              <div class="taya-prose taya-prose-zh">
+                <h2 class="taya-section">关于我 / About Taya</h2>
+                <p>你好呀，我是 Taya。</p>
+                <p>前银行从业者，现在在西雅图读研。</p>
+                <p>喜欢摇滚、手帐和唱歌。</p>
+                <p>喜欢向内求，喜欢了解自己，勇敢的跨界者，变成了 T 人，却还是有柔软的内心。</p>
+                <p>超强同理心，有点紧绷，目标导向，害怕困于原地。</p>
+                <p>想要更多掌控感，也时常感觉 <em>lost in life</em>，在世界洪流里挣扎ing。</p>
+
+                <h2 class="taya-section">关于 RiLL</h2>
+                <p>这个小小的工具，就诞生于这样的我。</p>
+                <p>它不说空话，不过度 judge 你，也不会参考过多历史信息胡说八道。</p>
+                <p>它只是在这里告诉你：牌面在说什么，以及，你可以做些什么。</p>
+
+                <h2 class="taya-section">为什么会有它？</h2>
+                <p>在我无休止的用塔罗牌问 GPT、用梅花易数问 DeepSeek：</p>
+                <blockquote class="taya-quote">
+                  <p>“我究竟还有多久能拿到 offer？”</p>
+                  <p>“我到底和这个人是什么关系？”</p>
+                </blockquote>
+                <p>之后……</p>
+                <p>我和 AI 吵起来了。</p>
+                <p>因为它的“爹味”教训，以及发散了太多历史信息。</p>
+                <p>后来我想：也许我可以自己做一样东西，它不会只给我做心理按摩，也不会让我在无意义的赛博占卜上浪费一下午。</p>
+                <p>我非常清楚在赛博占卜上花时间，是因为想在不确定的境况里得到一个确定的答案。我知道这是一种自我心理按摩，但这是我能够安慰自己的、成本很低的方式。</p>
+                <p>所以我选择了它，</p>
+                <p>也做出了它。</p>
+
+                <h2 class="taya-section">最后想说的话</h2>
+                <p><strong>希望大家可以来这里觉得自己有得到一些来自宇宙或是自己的小小指引，给自己一些正向暗示，然后行动起来勇往直前吧～</strong></p>
+                <p>祝福大家都能拥有<strong>控制自己人生的勇气和能力。</strong></p>
+                <p class="taya-sign">—— Taya</p>
+              </div>
+              <ul class="taya-contact">
+                <li>
+                  <span class="taya-contact-label taya-contact-label-en">Xiaohongshu</span>
+                  <span class="taya-contact-label taya-contact-label-zh">小红书</span>
+                  <a href="https://xhslink.com/m/8HniGwSLJ12" target="_blank" rel="noopener" class="taya-contact-value">@tayaxt</a>
+                </li>
+                <li>
+                  <span class="taya-contact-label taya-contact-label-en">Website</span>
+                  <span class="taya-contact-label taya-contact-label-zh">网站</span>
+                  <a href="https://tayaxt.super.site" target="_blank" rel="noopener" class="taya-contact-value">tayaxt.super.site</a>
+                </li>
+                <li>
+                  <span class="taya-contact-label taya-contact-label-en">Email</span>
+                  <span class="taya-contact-label taya-contact-label-zh">邮箱</span>
+                  <a href="mailto:tong0701@uw.edu" class="taya-contact-value">tong0701@uw.edu</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+
     <script src="./rill_api_config.js?v=8"></script>
     <script>
       const TAROT_DECK_EMBEDDED = null;
@@ -476,6 +623,7 @@
 
       const TRANSLATIONS = {
         "menu": { en: "Menu", zh: "Menu" },
+        "menuClose": { en: "Close", zh: "Close" },
         "hero.quote": {
           en: "See yourself. Then go live.",
           zh: "照见自己，好好生活。",
@@ -483,6 +631,10 @@
         "hero.philosophy": {
           en: "Rill is a self-reflection tool. It uses symbolic systems like tarot and Eastern divination, combined with AI, to help you think more clearly in moments of anxiety and uncertainty. It doesn't predict the future, give definitive answers, or make decisions for you. The cards offer a few different angles on where you are right now, but the final read is always yours. Every session ends with a concrete action step, because life is yours to live.",
           zh: "此镜是一个自我反思工具。它借用塔罗与东方象征系统，结合 AI，帮你在焦虑与不确定的时刻把事情想得清楚一些。它不预测未来，不给确定的答案，也不替你做决定。牌面只提供几个角度，最终的解读仍然是你的。每一次结束都会落到一个具体的行动——因为生活还是要你自己去过。",
+        },
+        "hero.philosophyMore": {
+          en: "The backstory →",
+          zh: "背后的故事 →",
         },
         "reflection.kicker": {
           en: "See what is already there.",
@@ -2355,6 +2507,187 @@
       initRippleEffect();
       void ensureDeckLoaded();
       window.addEventListener("resize", applyScale);
+
+      // ============================================================
+      // Menu (in-panel nav ↔ detail switching, no URL routing)
+      // ============================================================
+      const menuToggleEl = document.getElementById("menu-toggle");
+      const menuOverlayEl = document.getElementById("menu-overlay");
+      const menuPanelEl = document.getElementById("menu-panel");
+      const menuItemsEl = document.getElementById("menu-items");
+      const menuBackEl = document.getElementById("menu-back");
+      const MENU_DETAILS = {
+        traces: document.getElementById("menu-detail-traces"),
+        archive: document.getElementById("menu-detail-archive"),
+        taya: document.getElementById("menu-detail-taya"),
+      };
+      const menuMoonEl = document.getElementById("menu-moon");
+      const menuMoonLitEl = document.getElementById("menu-moon-lit");
+      const MOON_R = 40; // matches SVG viewBox radius
+      // Path for the lit portion of the moon at phase t ∈ [0..1] where
+      //   t=0   → new moon (no lit area)
+      //   t=0.5 → first-quarter (right half lit)
+      //   t=1   → full moon
+      // Constructed from a fixed right semicircle + an elliptical terminator
+      // whose rx = R·|cos(πt)| and sweep flag flips at t=0.5.
+      function moonLitPath(t) {
+        const r = MOON_R;
+        if (t <= 0) return "";
+        if (t >= 1) {
+          return `M 0 -${r} A ${r} ${r} 0 1 1 0 ${r} A ${r} ${r} 0 1 1 0 -${r} Z`;
+        }
+        const rx = Math.max(0.001, r * Math.abs(Math.cos(Math.PI * t)));
+        const sweep = t < 0.5 ? 0 : 1;
+        return `M 0 -${r} A ${r} ${r} 0 0 1 0 ${r} A ${rx.toFixed(3)} ${r} 0 0 ${sweep} 0 -${r} Z`;
+      }
+      let activeDetailKey = "";
+      let activeScrollEl = null;
+      let activeScrollListener = null;
+
+      function isMenuOpen() {
+        return document.body.classList.contains("menu-open");
+      }
+      function setMenuToggleLabel(opening) {
+        if (!menuToggleEl) return;
+        const key = opening ? "menuClose" : "menu";
+        menuToggleEl.dataset.i18n = key;
+        menuToggleEl.textContent = t(key);
+      }
+      function hideMenuScrollIndicator() {
+        if (!menuMoonEl) return;
+        menuMoonEl.classList.remove("is-visible");
+        menuMoonEl.hidden = true;
+      }
+      function updateMenuScrollThumb() {
+        if (!menuMoonEl || !menuMoonLitEl || !activeScrollEl || !menuPanelEl) return;
+        const { scrollTop, scrollHeight, clientHeight } = activeScrollEl;
+        const overflow = scrollHeight - clientHeight;
+        if (overflow <= 8) {
+          hideMenuScrollIndicator();
+          return;
+        }
+        const ratio = Math.min(1, Math.max(0, scrollTop / overflow));
+        // Drift the moon down the right edge: from just below the Back button
+        // to just above the panel bottom. Track = panel height − margins − moon.
+        const moonH = menuMoonEl.offsetHeight || 34;
+        const topInset = 80;
+        const bottomInset = 28;
+        const trackH = Math.max(
+          0,
+          menuPanelEl.clientHeight - topInset - bottomInset - moonH
+        );
+        menuMoonEl.style.transform = `translateY(${Math.round(ratio * trackH)}px)`;
+        menuMoonLitEl.setAttribute("d", moonLitPath(ratio));
+        menuMoonEl.hidden = false;
+        menuMoonEl.classList.add("is-visible");
+      }
+      function attachMenuScrollIndicator(el) {
+        if (activeScrollEl && activeScrollListener) {
+          activeScrollEl.removeEventListener("scroll", activeScrollListener);
+        }
+        activeScrollEl = el;
+        activeScrollListener = () => updateMenuScrollThumb();
+        if (el) {
+          el.addEventListener("scroll", activeScrollListener, { passive: true });
+          window.requestAnimationFrame(updateMenuScrollThumb);
+        } else {
+          hideMenuScrollIndicator();
+        }
+      }
+      function showMenuNav() {
+        activeDetailKey = "";
+        if (menuItemsEl) menuItemsEl.hidden = false;
+        if (menuBackEl) menuBackEl.hidden = true;
+        Object.values(MENU_DETAILS).forEach((el) => { if (el) el.hidden = true; });
+        attachMenuScrollIndicator(null);
+      }
+      function showMenuDetail(key) {
+        const target = MENU_DETAILS[key];
+        if (!target) return;
+        activeDetailKey = key;
+        if (menuItemsEl) menuItemsEl.hidden = true;
+        Object.entries(MENU_DETAILS).forEach(([k, el]) => {
+          if (!el) return;
+          el.hidden = k !== key;
+          if (k === key) el.scrollTop = 0;
+        });
+        if (menuBackEl) menuBackEl.hidden = false;
+        attachMenuScrollIndicator(target);
+      }
+      window.addEventListener("resize", () => {
+        if (activeScrollEl) updateMenuScrollThumb();
+      });
+      function openMenu() {
+        if (isMenuOpen()) return;
+        showMenuNav();
+        document.body.classList.add("menu-open");
+        if (menuOverlayEl) {
+          menuOverlayEl.hidden = false;
+          window.requestAnimationFrame(() => menuOverlayEl.classList.add("is-open"));
+        }
+        if (menuPanelEl) {
+          window.requestAnimationFrame(() => menuPanelEl.classList.add("is-open"));
+        }
+        setMenuToggleLabel(true);
+      }
+      function closeMenu() {
+        if (!isMenuOpen()) return;
+        document.body.classList.remove("menu-open");
+        if (menuOverlayEl) menuOverlayEl.classList.remove("is-open");
+        if (menuPanelEl) menuPanelEl.classList.remove("is-open");
+        setMenuToggleLabel(false);
+        window.setTimeout(() => {
+          if (!isMenuOpen()) {
+            if (menuOverlayEl) menuOverlayEl.hidden = true;
+            showMenuNav();
+          }
+        }, 460);
+      }
+
+      if (menuToggleEl) {
+        menuToggleEl.addEventListener("click", () => {
+          isMenuOpen() ? closeMenu() : openMenu();
+        });
+      }
+      if (menuOverlayEl) {
+        menuOverlayEl.addEventListener("click", (e) => {
+          if (e.target === menuOverlayEl) closeMenu();
+        });
+      }
+      if (menuItemsEl) {
+        menuItemsEl.querySelectorAll(".menu-item[data-target]").forEach((btn) => {
+          btn.addEventListener("click", () => showMenuDetail(btn.dataset.target));
+        });
+      }
+      if (menuBackEl) {
+        menuBackEl.addEventListener("click", showMenuNav);
+      }
+
+      const heroPhilosophyMoreEl = document.getElementById("hero-philosophy-more");
+      if (heroPhilosophyMoreEl) {
+        heroPhilosophyMoreEl.addEventListener("click", () => {
+          openMenu();
+          showMenuDetail("traces");
+        });
+      }
+
+      // Esc: in detail → back to nav; in nav → close menu
+      document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape") return;
+        if (!isMenuOpen()) return;
+        if (activeDetailKey) {
+          showMenuNav();
+        } else {
+          closeMenu();
+        }
+      });
+
+      // Logo click on home: also close menu if open
+      if (logoHitEl) {
+        logoHitEl.addEventListener("click", () => {
+          if (isMenuOpen()) closeMenu();
+        });
+      }
     </script>
   </body>
 </html>

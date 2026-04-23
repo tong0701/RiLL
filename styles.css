@@ -59,18 +59,25 @@ html, body {
   pointer-events: none;
 }
 
-/* "此镜" — Chinese brand name shown only on home default state,
-   just below the RiLL logo wordmark. Always renders (regardless of UI lang). */
+/* "此镜" — Chinese signature below the RiLL logo. CN-only.
+   Hidden via [hidden] attr when not on home default; further hidden via
+   CSS when UI lang isn't Chinese. */
 .hero-logo-subtitle {
+  display: none;
+}
+:lang(zh) .hero-logo-subtitle:not([hidden]) {
+  display: block;
   position: absolute;
-  top: 140px;
+  top: 143px;
   left: 50%;
-  transform: translateX(calc(-50% - 10px));
+  transform: translateX(calc(-50% - 28px));
   margin: 0;
   font-family: "Songti SC", "STSong", "Source Han Serif SC", "Noto Serif SC", serif;
-  font-size: 23px;
+  font-size: 25px;
   font-weight: 400;
   color: #faf4e6;
+  letter-spacing: 0.17em;
+  opacity: 0.3;
   text-align: center;
   pointer-events: none;
 }
@@ -193,6 +200,35 @@ html, body {
   line-height: 36px;
   letter-spacing: 0.07px;
   text-align: left;
+}
+
+.hero-philosophy-more {
+  position: absolute;
+  top: 610px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  background: none;
+  border: 0;
+  padding: 6px 10px;
+  font-family: "Satoshi Variable", -apple-system, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: #c9a96e;
+  cursor: pointer;
+  transition: opacity 250ms ease;
+}
+.hero-philosophy-more:hover { opacity: 0.7; }
+body.is-philosophy .hero-philosophy-more { display: inline-block; }
+:lang(zh) .hero-philosophy-more {
+  top: 580px;
+  font-family: "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: none;
 }
 
 .reflection-kicker {
@@ -1807,3 +1843,351 @@ body.is-daily .hero-logo-ribbon {
 :lang(zh) .chapter-index {
   font-size: 24px;
 }
+
+/* ============================================================
+   Menu (overlay + panel with internal nav ↔ detail switching)
+   Lives OUTSIDE design-canvas → uses raw viewport units.
+   Detail views (Traces / Archive / Taya) render INSIDE the panel
+   on the same pearl background; Back returns to nav, Close closes
+   the whole menu.
+   ============================================================ */
+
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Overlay covers the full viewport but fades in from transparent (top)
+   to 0.20 dark, so the top-bar stays untouched and the boundary is a
+   soft gradient instead of a hard horizontal line. */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) 80px,
+    rgba(0, 0, 0, 0.20) 220px,
+    rgba(0, 0, 0, 0.20) 100%
+  );
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+}
+.menu-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-panel {
+  position: fixed;
+  top: 130px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 520px;
+  /* Pearl image, with a heavier dark layer on top so the panel fully
+     obscures any homepage text behind it and reads moodier. */
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url('./assets/menu-bg-pearl.png') center center / cover no-repeat,
+    #2a2a2a;
+  /* Soft diffuse shadow outward — softens the hard rectangle edge into
+     the surrounding overlay so the panel doesn't read as a cut-out box. */
+  box-shadow: 0 0 120px 40px rgba(0, 0, 0, 0.55);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 450ms ease;
+  overflow: hidden;
+}
+.menu-panel.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Back button (only visible when a detail view is active).
+   Minimal text + underline accent — no pill background. */
+.menu-back {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  color: #faf4e6;
+  font-family: "Satoshi Variable", -apple-system, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  padding: 4px 6px 6px;
+  cursor: pointer;
+  transition: opacity var(--transition-page) ease, transform var(--transition-page) ease;
+  z-index: 4;
+  opacity: 0.7;
+}
+.menu-back::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: 0;
+  height: 1px;
+  background: #faf4e6;
+  opacity: 0.18;
+}
+.menu-back:hover {
+  opacity: 1;
+}
+.menu-back-label { line-height: 1; }
+
+/* ----------------------------------------
+   Nav state (3 items, vertically distributed below header)
+---------------------------------------- */
+.menu-items {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 80px 0 60px;
+  box-sizing: border-box;
+}
+.menu-item {
+  display: block;
+  border: 0;
+  background: transparent;
+  color: #faf4e6;
+  font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  padding: 12px 24px;
+  transition: opacity 250ms ease;
+}
+.menu-item:hover {
+  opacity: 1;
+}
+/* Only dim siblings when an item is actually hovered (not when hovering
+   the panel's empty space). Uses :has() — modern browsers only. */
+.menu-items:has(.menu-item:hover) .menu-item:not(:hover) {
+  opacity: 0.35;
+}
+
+/* ----------------------------------------
+   Detail views (rendered inside the panel, scrollable)
+---------------------------------------- */
+.menu-detail {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  padding: 80px 60px 60px;
+  box-sizing: border-box;
+  color: #faf4e6;
+}
+/* Native scrollbar hidden — we render our own moon indicator instead. */
+.menu-detail { scrollbar-width: none; }
+.menu-detail::-webkit-scrollbar { width: 0; display: none; }
+
+/* Moon phase scroll indicator — drifts down the right edge and waxes
+   from new moon to full as you scroll. Only shown when content overflows. */
+.menu-moon {
+  position: absolute;
+  top: 80px;
+  right: 22px;
+  width: 34px;
+  height: 34px;
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0;
+  transform: translateY(0);
+  transition: opacity 280ms ease;
+  will-change: transform;
+}
+.menu-moon.is-visible { opacity: 1; }
+.menu-moon-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 0 6px rgba(201, 169, 110, 0.25));
+}
+.menu-moon-dark {
+  fill: rgba(250, 244, 230, 0.1);
+  stroke: rgba(250, 244, 230, 0.25);
+  stroke-width: 1.2;
+}
+.menu-moon-lit {
+  fill: #f4e6c4;
+}
+
+/* Traces article */
+.trace-content {
+  max-width: 560px;
+  margin: 0 auto;
+}
+.trace-date {
+  font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 14px;
+}
+.trace-title {
+  font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: #faf4e6;
+  margin: 0 0 56px;
+  letter-spacing: -0.2px;
+  line-height: 1.25;
+}
+.trace-body p {
+  font-family: "Satoshi Variable", -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  color: #faf4e6;
+  margin: 0 0 22px;
+}
+:lang(zh) .trace-body p {
+  font-family: "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+}
+.trace-body-zh { display: none; }
+:lang(zh) .trace-body-zh { display: block; }
+:lang(zh) .trace-body-en { display: none; }
+
+/* Archive (Coming Soon) */
+.coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 0 20px;
+  gap: 32px;
+}
+.cs-title {
+  font-family: "Cormorant Garamond", "Satoshi Variable", serif;
+  font-size: 56px;
+  font-weight: 500;
+  color: #faf4e6;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+.cs-body {
+  font-family: "Satoshi Variable", -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.9;
+  color: #a89a82;
+  margin: 0;
+  max-width: 380px;
+}
+:lang(zh) .cs-body {
+  font-family: "Songti SC", "STSong", "Source Han Serif SC", serif;
+}
+.cs-zh { display: none; }
+:lang(zh) .cs-zh { display: block; }
+:lang(zh) .cs-en { display: none; }
+
+/* Taya */
+.taya-page {
+  display: flex;
+  justify-content: center;
+}
+.taya-body {
+  max-width: 560px;
+  width: 100%;
+}
+.taya-prose-zh { display: none; }
+:lang(zh) .taya-prose-en { display: none; }
+:lang(zh) .taya-prose-zh { display: block; }
+.taya-section {
+  font-family: "Satoshi Variable", -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin: 56px 0 22px;
+}
+.taya-prose > .taya-section:first-child { margin-top: 0; }
+:lang(zh) .taya-section {
+  font-family: "Songti SC", "STSong", "Noto Serif SC", serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: none;
+}
+.taya-prose p {
+  font-family: "Satoshi Variable", -apple-system, sans-serif;
+  font-size: 17px;
+  line-height: 1.9;
+  color: #faf4e6;
+  margin: 0 0 20px;
+}
+:lang(zh) .taya-prose p {
+  font-family: "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+  line-height: 1.75;
+  margin-bottom: 6px;
+}
+.taya-quote {
+  margin: 0 0 20px;
+  padding-left: 18px;
+  border-left: 1px solid rgba(201, 169, 110, 0.5);
+  color: rgba(250, 244, 230, 0.78);
+}
+.taya-quote p { margin: 0 0 8px; font-size: 16px; }
+.taya-quote p:last-child { margin-bottom: 0; }
+.taya-sign {
+  margin-top: 32px !important;
+  color: rgba(250, 244, 230, 0.7);
+  font-size: 15px !important;
+}
+.taya-contact {
+  list-style: none;
+  padding: 32px 0 0;
+  margin: 64px 0 0;
+  border-top: 1px solid rgba(250, 244, 230, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.taya-contact li {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 24px;
+  align-items: baseline;
+}
+.taya-contact-label {
+  font-family: "Satoshi Variable", -apple-system, sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(250, 244, 230, 0.45);
+}
+.taya-contact-label-zh { display: none; }
+:lang(zh) .taya-contact-label-en { display: none; }
+:lang(zh) .taya-contact-label-zh { display: inline; }
+:lang(zh) .taya-contact-label {
+  font-family: "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+  letter-spacing: 1px;
+  text-transform: none;
+  font-size: 12px;
+}
+.taya-contact-value {
+  font-family: "Satoshi Variable", -apple-system, sans-serif;
+  font-size: 14px;
+  color: #faf4e6;
+  text-decoration: none;
+  transition: color 250ms ease;
+}
+.taya-contact-value:hover { color: #c9a96e; }
