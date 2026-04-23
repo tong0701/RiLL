@@ -59,6 +59,22 @@ html, body {
   pointer-events: none;
 }
 
+/* "此镜" — Chinese brand name shown only on home default state,
+   just below the RiLL logo wordmark. Always renders (regardless of UI lang). */
+.hero-logo-subtitle {
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translateX(calc(-50% - 10px));
+  margin: 0;
+  font-family: "Songti SC", "STSong", "Source Han Serif SC", "Noto Serif SC", serif;
+  font-size: 23px;
+  font-weight: 400;
+  color: #faf4e6;
+  text-align: center;
+  pointer-events: none;
+}
+
 .home-hit {
   position: absolute;
   top: 24px;
@@ -157,9 +173,9 @@ html, body {
   transform: translateX(-50%);
   width: 903px;
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
-  font-size: 80px;
+  font-size: 56px;
   font-style: normal;
-  line-height: 57.6px;
+  line-height: 1.2;
   font-weight: 400;
   letter-spacing: -0.128px;
   color: #faf4e6;
@@ -186,9 +202,9 @@ html, body {
   transform: translateX(-50%);
   width: auto;
   font-family: "Cormorant Garamond", serif;
-  font-size: 42px;
+  font-size: 28px;
   font-style: normal;
-  line-height: 50px;
+  line-height: 1.3;
   font-weight: 400;
   letter-spacing: 0.2px;
   color: #faf4e6;
@@ -203,9 +219,9 @@ html, body {
   transform: translateX(-50%);
   width: 734px;
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
-  font-size: 48px;
+  font-size: 34px;
   font-style: normal;
-  line-height: 57.6px;
+  line-height: 1.2;
   font-weight: 400;
   letter-spacing: -0.128px;
   color: #faf4e6;
@@ -533,10 +549,10 @@ html, body {
   color: #faf4e6;
   text-align: center;
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
-  font-size: 48px;
+  font-size: 36px;
   font-style: normal;
   font-weight: 400;
-  line-height: 57.6px;
+  line-height: 1.3;
   letter-spacing: -0.128px;
 }
 
@@ -619,10 +635,10 @@ html, body {
   color: #faf4e6;
   text-align: center;
   font-family: "Satoshi Variable", "Cormorant Garamond", serif;
-  font-size: 36px;
+  font-size: 28px;
   font-style: normal;
   font-weight: 400;
-  line-height: 46.8px;
+  line-height: 1.3;
   letter-spacing: 1.089px;
 }
 
@@ -874,7 +890,7 @@ html, body {
   margin: 20px 0 0;
   color: var(--fg-dim);
   font-family: "Satoshi Variable", -apple-system, system-ui, sans-serif;
-  font-size: 13px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 1.6;
@@ -1097,6 +1113,16 @@ html, body {
 
 .reading-point + .reading-point {
   margin-top: 32px;
+}
+
+.reading-point::before {
+  content: "◇";
+  display: block;
+  color: var(--accent);
+  font-size: 11px;
+  line-height: 1;
+  margin-bottom: 10px;
+  letter-spacing: 0;
 }
 
 .reading-point h4 {
@@ -1720,4 +1746,64 @@ body.is-daily .hero-logo-ribbon {
   opacity: 0.6;
   letter-spacing: 0.2px;
   text-align: center;
+}
+
+/* Chinese-only font rules. EN UI is intentionally untouched.
+   Excludes top-left lang toggle and top-right Menu (always EN). */
+:lang(zh) .hero-quote,
+:lang(zh) .reflection-kicker,
+:lang(zh) .reflection-title,
+:lang(zh) .hero-proverb,
+:lang(zh) .pre-stage-title,
+:lang(zh) .pre-stage-copy,
+:lang(zh) .intent-entry-title,
+:lang(zh) .intent-entry-copy {
+  font-family: "Songti SC", "STSong", "Source Han Serif SC", "Noto Serif SC", serif;
+}
+
+:lang(zh) .hero-philosophy,
+:lang(zh) .intent-entry-hints,
+:lang(zh) .intent-entry-input,
+:lang(zh) .pre-stage-pick-hint {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+}
+
+/* Buttons: CN sans (黑体 / 苹方), never serif. Weight inherits from each
+   button's own rule (typically 500). */
+:lang(zh) .enter-btn,
+:lang(zh) .mode-enter-btn,
+:lang(zh) .intent-entry-begin,
+:lang(zh) .takeaway-btn,
+:lang(zh) .daily-got-it,
+:lang(zh) .ending-return-btn,
+:lang(zh) #guidance-back-btn,
+:lang(zh) #guidance-farewell-home-btn,
+:lang(zh) .mode-title,
+:lang(zh) .mode-subtext,
+:lang(zh) .mode-soon {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+}
+
+/* No italic in CN — applies to <em> from inline markdown AND elements that
+   default to italic (reading-core, advice-closing, postcard-core). */
+:lang(zh) em,
+:lang(zh) .reading-core,
+:lang(zh) .advice-closing,
+:lang(zh) .postcard-core {
+  font-style: normal;
+}
+
+/* Session-end / closing lines use 宋体 in CN.
+   .advice-closing  — last line in advice card body
+   .ending-title    — final takeaway after a normal session ends
+   .guidance-farewell-text — final closing line after advice card flow */
+:lang(zh) .advice-closing,
+:lang(zh) .ending-title,
+:lang(zh) .guidance-farewell-text {
+  font-family: "Songti SC", "STSong", "Source Han Serif SC", "Noto Serif SC", serif;
+}
+
+/* Chapter labels (01/02/03 序·照见·当下) feel small in CN; bump up. */
+:lang(zh) .chapter-index {
+  font-size: 24px;
 }

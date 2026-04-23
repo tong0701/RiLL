@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=6" />
+    <link rel="stylesheet" href="./styles.css?v=20" />
   </head>
   <body>
     <div id="home-flash" class="home-flash" aria-hidden="true"></div>
@@ -21,6 +21,7 @@
         <div class="hero-bg" aria-hidden="true"></div>
         <div class="hero-content" id="design-canvas">
           <img class="hero-logo-ribbon" src="./assets/rill-logo-ribbon.svg" alt="" aria-hidden="true" />
+          <p class="hero-logo-subtitle" id="hero-logo-subtitle" hidden>此镜</p>
           <button class="home-hit" id="home-hit-main" type="button" aria-label="Go home"></button>
           <button class="back-arrow" id="back-arrow" type="button" aria-label="Back">←</button>
           <div class="top-link top-link-left lang-toggle" role="group" aria-label="Language">
@@ -362,7 +363,7 @@
       </section>
     </main>
 
-    <script src="./rill_api_config.js"></script>
+    <script src="./rill_api_config.js?v=8"></script>
     <script>
       const TAROT_DECK_EMBEDDED = null;
       let tarotDeck =
@@ -377,6 +378,7 @@
       const designCanvas = document.getElementById("design-canvas");
       const heroQuoteEl = document.getElementById("hero-quote");
       const heroPhilosophyEl = document.getElementById("hero-philosophy");
+      const heroLogoSubtitleEl = document.getElementById("hero-logo-subtitle");
       const reflectionKickerEl = document.getElementById("reflection-kicker");
       const reflectionTitleEl = document.getElementById("reflection-title");
       const enterBtnEl = document.getElementById("enter-btn");
@@ -473,10 +475,10 @@
       const PRE_STAGE_GUIDE_MS = 1300;
 
       const TRANSLATIONS = {
-        "menu": { en: "Menu", zh: "菜单" },
+        "menu": { en: "Menu", zh: "Menu" },
         "hero.quote": {
           en: "See yourself. Then go live.",
-          zh: "照见自己，然后去生活。",
+          zh: "照见自己，好好生活。",
         },
         "hero.philosophy": {
           en: "Rill is a self-reflection tool. It uses symbolic systems like tarot and Eastern divination, combined with AI, to help you think more clearly in moments of anxiety and uncertainty. It doesn't predict the future, give definitive answers, or make decisions for you. The cards offer a few different angles on where you are right now, but the final read is always yours. Every session ends with a concrete action step, because life is yours to live.",
@@ -484,11 +486,11 @@
         },
         "reflection.kicker": {
           en: "See what is already there.",
-          zh: "看见此刻就在的。",
+          zh: "看见本来就在那里的。",
         },
         "reflection.title": {
           en: "What do you seek clarity on today?",
-          zh: "今天想照见什么？",
+          zh: "「今天想照见什么？」",
         },
         "common.enter": { en: "Enter", zh: "进入" },
         "common.begin": { en: "Begin", zh: "开始" },
@@ -536,11 +538,11 @@
         "chapter.03": { en: " Presence", zh: " 当下" },
         "proverb.home": {
           en: "The light settles. I return to myself.",
-          zh: "光落下来，我回到自己。",
+          zh: "明月照定，心镜我归。",
         },
         "proverb.chapter": {
           en: "See clearly, then choose your path.",
-          zh: "照见，再走你自己的路。",
+          zh: "看见即是开始",
         },
         "proverb.midSession": {
           en: "Rill doesn't predict the future. It reflects the present",
@@ -553,14 +555,14 @@
         "reading.orientation.upright": { en: "Upright", zh: "正位" },
         "reading.orientation.reversed": { en: "Reversed", zh: "逆位" },
         "advice.actionLabel": { en: "One thing you can do now", zh: "你现在可以做的一件事" },
-        "daily.kicker": { en: "Stay here, with yourself.", zh: "此刻，和你自己在一起。" },
+        "daily.kicker": { en: "Stay here, with yourself.", zh: "在这里，和你自己在一起。" },
         "daily.title": {
           en: "What do you need to stay grounded now?",
-          zh: "现在你需要什么才能稳住？",
+          zh: "「现在的你，需要什么？」",
         },
         "proverb.daily": {
           en: "Nothing to change. Just be here.",
-          zh: "什么都不用改，就在这里。",
+          zh: "不必改变什么，只需在场。",
         },
         "daily.gotIt": { en: "Got it", zh: "知道了" },
         "daily.alreadyToday": {
@@ -882,73 +884,75 @@
         return html;
       }
 
-      function parseMainReadingResponse(text) {
-        let raw = String(text || "").replace(/\r\n/g, "\n").trim();
-        // Normalize: the LLM sometimes wraps canonical labels in **markdown bold**.
-        // Strip the wrappers so existing regex matches both `**Keywords:**` and `Keywords:`.
-        raw = raw.replace(/\*\*\s*(Keywords|Core|One-line takeaway|Possible interpretations)\s*:\s*\*\*/gi, "$1:");
-        raw = raw.replace(/\*\*\s*(Keywords|Core|One-line takeaway|Possible interpretations)\s*\*\*\s*:/gi, "$1:");
-        const out = { keywords: "", core: "", bodyHtml: "", hook: "", takeaway: "" };
-        if (!raw) return out;
-
-        let work = raw;
-        const takeMatch = work.match(/(?:^|\n)\s*One-line takeaway:\s*([\s\S]+)$/i);
-        if (takeMatch) {
-          out.takeaway = takeMatch[1].trim().split("\n")[0].trim();
-          work = work.slice(0, takeMatch.index).trim();
-        }
-
-        const lines = work.split("\n");
-        let i = 0;
-        while (i < lines.length && !lines[i].trim()) i += 1;
-        if (lines[i] && /^Keywords:\s*/i.test(lines[i])) {
-          out.keywords = lines[i].replace(/^Keywords:\s*/i, "").trim();
-          i += 1;
-        }
-        while (i < lines.length && !lines[i].trim()) i += 1;
-        if (lines[i] && /^Core:\s*/i.test(lines[i])) {
-          out.core = lines[i].replace(/^Core:\s*/i, "").trim();
-          i += 1;
-        }
-        while (i < lines.length && !lines[i].trim()) i += 1;
-        // Skip the "Possible interpretations:" boilerplate header that some rounds include.
-        if (lines[i] && /^Possible interpretations:\s*$/i.test(lines[i].trim())) {
-          i += 1;
-          while (i < lines.length && !lines[i].trim()) i += 1;
-        }
-        let bodyText = lines.slice(i).join("\n").trim();
-
-        // Detect a standalone bold question (Round 1 hook) as the last non-empty line of the body.
-        const bodyLines = bodyText.split("\n");
-        let lastIdx = bodyLines.length - 1;
-        while (lastIdx >= 0 && !bodyLines[lastIdx].trim()) lastIdx -= 1;
-        if (lastIdx >= 0) {
-          const candidate = bodyLines[lastIdx].trim();
-          const hookMatch = candidate.match(/^\*\*([\s\S]+\?)\*\*\s*$/);
-          if (hookMatch) {
-            out.hook = hookMatch[1].trim();
-            bodyLines.splice(lastIdx, 1);
-            bodyText = bodyLines.join("\n").trim();
-          } else if (/^[^*\n]+\?$/.test(candidate) && !/^\s*[-*•]/.test(candidate)) {
-            // Plain-text question also qualifies (fallback if LLM drops the bold)
-            out.hook = candidate;
-            bodyLines.splice(lastIdx, 1);
-            bodyText = bodyLines.join("\n").trim();
+      // V7 token parser: splits LLM output into named sections by [TOKEN] markers.
+      // The brackets are stripped — only the content after each marker is rendered.
+      function tokenizeV7(text) {
+        const tokens = {};
+        const lines = String(text || "").replace(/\r\n/g, "\n").split("\n");
+        let current = null;
+        let buf = [];
+        const flush = () => {
+          if (current === null) return;
+          const joined = buf.join("\n").replace(/^\s+|\s+$/g, "");
+          tokens[current] = joined;
+        };
+        for (const line of lines) {
+          const m = line.match(/^\s*\[([A-Z][A-Z0-9_]*)\]\s*(.*)$/);
+          if (m) {
+            flush();
+            current = m[1];
+            const rest = m[2].trim();
+            buf = rest ? [rest] : [];
+          } else {
+            if (current !== null) buf.push(line);
           }
         }
-        out.bodyHtml = formatBodyAsHtml(bodyText);
+        flush();
+        return tokens;
+      }
+
+      function parseMainReadingResponse(text) {
+        const tokens = tokenizeV7(text);
+        const out = { keywords: "", core: "", bodyHtml: "", hook: "", takeaway: "" };
+        const rawKw = (tokens.KEYWORDS || "").trim();
+        out.keywords = rawKw
+          ? rawKw.split(/\s*[·•・,，、\/|]\s*/).filter(Boolean).join(" · ")
+          : "";
+        out.core = tokens.CORE || "";
+        out.hook = tokens.HOOK || "";
+        out.takeaway = tokens.TAKEAWAY || "";
+        const angleBlocks = [];
+        for (let i = 1; i <= 3; i += 1) {
+          const title = (tokens[`ANGLE${i}_TITLE`] || "").trim();
+          const body = (tokens[`ANGLE${i}_BODY`] || "").trim();
+          if (!title && !body) continue;
+          if (title && body) angleBlocks.push(`${title}\n${body}`);
+          else angleBlocks.push(title || body);
+        }
+        out.bodyHtml = formatBodyAsHtml(angleBlocks.join("\n\n"));
         return out;
       }
 
       function parseAdviceResponse(text) {
-        const s = String(text || "").replace(/\r\n/g, "\n");
-        const adviceM = s.match(/Advice:\s*([\s\S]*?)(?=^\s*Action:\s*)/im);
-        const actionM = s.match(/Action:\s*([\s\S]*?)(?=^\s*Closing:\s*)/im);
-        const closingM = s.match(/Closing:\s*([\s\S]*)$/im);
+        const tokens = tokenizeV7(text);
+        const adviceCore = (tokens.ADVICE_CORE || "").trim();
+        const adviceBody = (tokens.ADVICE_BODY || "").trim();
+        const advice = [adviceCore, adviceBody].filter(Boolean).join("\n\n");
         return {
-          advice: adviceM ? adviceM[1].trim() : "",
-          action: actionM ? actionM[1].trim() : "",
-          closing: closingM ? closingM[1].trim() : "",
+          advice,
+          action: (tokens.ADVICE_ACTION || "").trim(),
+          closing: (tokens.SESSION_END || "").trim(),
+        };
+      }
+
+      function parseDailyAnchorResponse(text) {
+        const tokens = tokenizeV7(text);
+        return {
+          core: (tokens.ANCHOR_CORE || "").trim(),
+          color: (tokens.ANCHOR_COLOR || "").trim(),
+          object: (tokens.ANCHOR_OBJECT || "").trim(),
+          moment: (tokens.ANCHOR_MOMENT || "").trim(),
+          takeaway: (tokens.ANCHOR_TAKEAWAY || "").trim(),
         };
       }
 
@@ -976,6 +980,19 @@
         return String(content).trim();
       }
 
+      function pickSystemPrompt(text, mode) {
+        const trimmed = String(text || "").trim();
+        const isZh = currentLang === "zh";
+        const hint = trimmed || (isZh ? "中文" : "English");
+        let prompt = typeof getSystemPrompt === "function"
+          ? getSystemPrompt(hint, mode)
+          : (typeof SYSTEM_PROMPT !== "undefined" ? SYSTEM_PROMPT : "");
+        prompt += isZh
+          ? "\n\n本次输出语言强制为中文。即使用户消息里出现英文标签（Intent / Card / Round 等）或英文牌名，也必须全部用中文回应。"
+          : "\n\nOutput language is locked to English regardless of any other-language text in the user message.";
+        return prompt;
+      }
+
       async function generateReading(cardName, orientation, intent, question, round, sessionHistory) {
         const historyBlock =
           sessionHistory && String(sessionHistory).trim()
@@ -983,19 +1000,25 @@
             : "";
         const userContent = `Intent: ${intent}\nQuestion: ${question}\nCard: ${cardName} (${orientation})\nRound: ${round}${historyBlock}`;
         return callDeepSeekProxy([
-          { role: "system", content: typeof SYSTEM_PROMPT !== "undefined" ? SYSTEM_PROMPT : "" },
+          { role: "system", content: pickSystemPrompt(question, "reading") },
           { role: "user", content: userContent },
         ]);
       }
 
       async function generateAdviceReading(cardName, orientation, intent, question, sessionSummary) {
         const ctx = sessionSummary && sessionSummary.trim() ? `\nContext from earlier reading:\n${sessionSummary.trim()}` : "";
-        const userContent = `Mode: guidance card (final step only).\nIntent: ${intent}\nQuestion: ${question}\nCard: ${cardName} (${orientation})${ctx}\n\nOutput exactly in this format:\nAdvice: [direct clear paragraph]\nAction: [one concrete thing to do now]\nClosing: [one final sentence]`;
-        const adviceSystem =
-          (typeof SYSTEM_PROMPT !== "undefined" ? SYSTEM_PROMPT : "") +
-          "\n\nFor this request only: follow the Advice / Action / Closing format exactly. No extra sections.";
+        const userContent = `Mode: advice card (final step).\nIntent: ${intent}\nQuestion: ${question}\nCard: ${cardName} (${orientation})${ctx}`;
         return callDeepSeekProxy([
-          { role: "system", content: adviceSystem },
+          { role: "system", content: pickSystemPrompt(question, "advice") },
+          { role: "user", content: userContent },
+        ]);
+      }
+
+      async function generateDailyAnchor(cardName, orientation, lang) {
+        const langHint = lang === "zh" ? "中文" : "English";
+        const userContent = `Mode: Daily Anchor.\nCard: ${cardName} (${orientation})\nLanguage: ${langHint}`;
+        return callDeepSeekProxy([
+          { role: "system", content: pickSystemPrompt(lang === "zh" ? "中文" : "English", "anchor") },
           { role: "user", content: userContent },
         ]);
       }
@@ -1092,10 +1115,15 @@
         if (readingHookEl) readingHookEl.textContent = "";
         if (readingTakeawayEl) readingTakeawayEl.textContent = "";
 
+        const kwList = orientation === "reversed" ? card.reversed_keywords : card.upright_keywords;
+        const fallbackKeywords = Array.isArray(kwList)
+          ? kwList.slice(0, 3).map((s) => String(s || "").toUpperCase()).join(" · ")
+          : "";
+
         try {
           const raw = await generateReading(cardName, orientation, intent, question, round, sessionHistory);
           const parsed = parseMainReadingResponse(raw);
-          applyParsedReadingToDom(parsed, "");
+          applyParsedReadingToDom(parsed, fallbackKeywords);
           if (parsed.takeaway) {
             sessionReadingSummaries.push(`Round ${round} (${cardName}): ${parsed.takeaway}`);
           }
@@ -1124,10 +1152,17 @@
         if (readingBodyEl) readingBodyEl.innerHTML = "";
         if (readingHookEl) readingHookEl.textContent = "";
         if (readingTakeawayEl) readingTakeawayEl.textContent = "";
+        const retryCard = currentDraw && currentDraw.card ? currentDraw.card : null;
+        const retryKwList = retryCard
+          ? (orientation === "reversed" ? retryCard.reversed_keywords : retryCard.upright_keywords)
+          : [];
+        const retryFallbackKeywords = Array.isArray(retryKwList)
+          ? retryKwList.slice(0, 3).map((s) => String(s || "").toUpperCase()).join(" · ")
+          : "";
         try {
           const raw = await generateReading(cardName, orientation, intent, question, round, sessionHistory);
           const parsed = parseMainReadingResponse(raw);
-          applyParsedReadingToDom(parsed, "");
+          applyParsedReadingToDom(parsed, retryFallbackKeywords);
           if (parsed.takeaway) {
             sessionReadingSummaries.push(`Round ${round} (${cardName}): ${parsed.takeaway}`);
           }
@@ -1486,6 +1521,7 @@
         chapter03El.hidden = false;
         clearActive();
         heroQuoteEl.hidden = false;
+        if (heroLogoSubtitleEl) heroLogoSubtitleEl.hidden = false;
         heroPhilosophyEl.hidden = true;
         reflectionKickerEl.hidden = true;
         reflectionTitleEl.hidden = true;
@@ -1521,6 +1557,7 @@
         document.body.classList.add("is-philosophy");
         chapter01El.classList.add("is-active");
         heroQuoteEl.hidden = true;
+        if (heroLogoSubtitleEl) heroLogoSubtitleEl.hidden = true;
         heroPhilosophyEl.hidden = false;
         reflectionKickerEl.hidden = true;
         reflectionTitleEl.hidden = true;
@@ -1549,6 +1586,7 @@
         document.body.classList.add("is-reflection");
         chapter02El.classList.add("is-active");
         heroQuoteEl.hidden = true;
+        if (heroLogoSubtitleEl) heroLogoSubtitleEl.hidden = true;
         heroPhilosophyEl.hidden = true;
         reflectionKickerEl.hidden = false;
         reflectionTitleEl.hidden = false;
@@ -1816,6 +1854,7 @@
       function showEndingScreen() {
         reflectionStep = "ending";
         resetPreStageVisuals();
+        setSessionEndQuote();
         reflectionKickerEl.hidden = true;
         reflectionTitleEl.hidden = true;
         enterBtnEl.hidden = true;
@@ -1858,12 +1897,22 @@
         }
       }
 
-      function writeDailyDraw(cardId, orientation) {
+      function writeDailyDraw(cardId, orientation, anchor) {
         try {
-          localStorage.setItem(
-            DAILY_STORAGE_KEY,
-            JSON.stringify({ date: todayKey(), cardId, orientation })
-          );
+          const payload = { date: todayKey(), cardId, orientation };
+          if (anchor && typeof anchor === "object") payload.anchor = anchor;
+          localStorage.setItem(DAILY_STORAGE_KEY, JSON.stringify(payload));
+        } catch (_) {}
+      }
+
+      function updateStoredDailyAnchor(anchor) {
+        try {
+          const raw = localStorage.getItem(DAILY_STORAGE_KEY);
+          if (!raw) return;
+          const parsed = JSON.parse(raw);
+          if (!parsed || parsed.date !== todayKey()) return;
+          parsed.anchor = anchor;
+          localStorage.setItem(DAILY_STORAGE_KEY, JSON.stringify(parsed));
         } catch (_) {}
       }
 
@@ -1881,7 +1930,7 @@
         return { top: `${wd} · ${mo} ${day}`, bot: String(year) };
       }
 
-      function renderDailyAnchor(card, orientation, isRepeat) {
+      function renderDailyAnchor(card, orientation, isRepeat, anchorData) {
         if (!card) return;
         const isReversed = orientation === "reversed";
         const orientKey = isReversed ? "reversed" : "upright";
@@ -1906,25 +1955,24 @@
         }
 
         const daily = isReversed ? card.daily_reversed : card.daily_upright;
+        const fallbackCore = currentLang === "zh"
+          ? ((daily && daily.core_zh) || (daily && daily.core_en) || "")
+          : ((daily && daily.core_en) || "");
+        const fallbackMoment = currentLang === "zh"
+          ? ((daily && daily.moment_zh) || (daily && daily.moment_en) || "")
+          : ((daily && daily.moment_en) || "");
+
+        const a = anchorData || {};
         if (dailyCoreEl) {
-          const coreEn = (daily && daily.core_en) || "";
-          const coreZh = (daily && daily.core_zh) || "";
-          const core = currentLang === "zh" ? (coreZh || coreEn) : coreEn;
+          const core = a.core || fallbackCore;
           dailyCoreEl.textContent = core ? `"${core}"` : "";
         }
-
         if (dailyTakeawayEl) {
-          const hint = card.action_hint || "";
-          dailyTakeawayEl.textContent = hint;
+          dailyTakeawayEl.textContent = a.takeaway || card.action_hint || "";
         }
-
-        if (dailyColorEl) dailyColorEl.textContent = card.lucky_color || "";
-        if (dailyObjectEl) dailyObjectEl.textContent = card.lucky_item || "";
-        if (dailyMomentEl) {
-          const momentEn = (daily && daily.moment_en) || "";
-          const momentZh = (daily && daily.moment_zh) || "";
-          dailyMomentEl.textContent = currentLang === "zh" ? (momentZh || momentEn) : momentEn;
-        }
+        if (dailyColorEl) dailyColorEl.textContent = a.color || card.lucky_color || "";
+        if (dailyObjectEl) dailyObjectEl.textContent = a.object || card.lucky_item || "";
+        if (dailyMomentEl) dailyMomentEl.textContent = a.moment || fallbackMoment;
 
         const stamp = formatDailyDateStamp();
         if (dailyStampTopEl) dailyStampTopEl.textContent = stamp.top;
@@ -1938,6 +1986,7 @@
         reflectionStep = "entry";
         resetPreStageVisuals();
         heroQuoteEl.hidden = true;
+        if (heroLogoSubtitleEl) heroLogoSubtitleEl.hidden = true;
         heroPhilosophyEl.hidden = true;
         reflectionKickerEl.hidden = false;
         reflectionTitleEl.hidden = false;
@@ -1989,6 +2038,7 @@
         reflectionStep = "result";
         resetPreStageVisuals();
         heroQuoteEl.hidden = true;
+        if (heroLogoSubtitleEl) heroLogoSubtitleEl.hidden = true;
         heroPhilosophyEl.hidden = true;
         reflectionKickerEl.hidden = true;
         reflectionTitleEl.hidden = true;
@@ -2024,7 +2074,26 @@
         if (!card) return;
         const orientation = stored.orientation === "reversed" ? "reversed" : "upright";
         const isRepeat = opts.isRepeat !== false;
-        renderDailyAnchor(card, orientation, isRepeat);
+
+        renderDailyAnchor(card, orientation, isRepeat, stored.anchor || null);
+
+        if (stored.anchor) return;
+        if (dailyCoreEl) dailyCoreEl.classList.add("is-reading-loading");
+        if (dailyTakeawayEl) dailyTakeawayEl.classList.add("is-reading-loading");
+        try {
+          const cardName = card.name_en || card.name || "Unknown";
+          const raw = await generateDailyAnchor(cardName, orientation, currentLang);
+          const parsed = parseDailyAnchorResponse(raw);
+          if (parsed && (parsed.core || parsed.takeaway || parsed.moment)) {
+            updateStoredDailyAnchor(parsed);
+            renderDailyAnchor(card, orientation, isRepeat, parsed);
+          }
+        } catch (e) {
+          console.warn("daily anchor API:", e);
+        } finally {
+          if (dailyCoreEl) dailyCoreEl.classList.remove("is-reading-loading");
+          if (dailyTakeawayEl) dailyTakeawayEl.classList.remove("is-reading-loading");
+        }
       }
 
       chapter01El.addEventListener("click", () => {
