@@ -1066,11 +1066,24 @@
       function parseMainReadingResponse(text) {
         const tokens = tokenizeV7(text);
         const out = { keywords: "", core: "", bodyHtml: "", hook: "", takeaway: "" };
-        const rawKw = (tokens.KEYWORDS || "").trim();
+        let rawKw = (tokens.KEYWORDS || "").trim();
+        let rawCore = (tokens.CORE || "").trim();
+        // V7 CN prompt doesn't emit [KEYWORDS] — the model prefixes [CORE]
+        // with "X · Y · Z " anchor words. Split them off so they can render
+        // in the keywords slot instead of bleeding into the core paragraph.
+        if (!rawKw && rawCore) {
+          const m = rawCore.match(
+            /^\s*([^\s·•・,，、\/|\n]{1,10}(?:\s*[·•・,，、\/|]\s*[^\s·•・,，、\/|\n]{1,10}){1,3})[\s\n]+([\s\S]+)$/
+          );
+          if (m) {
+            rawKw = m[1].trim();
+            rawCore = m[2].trim();
+          }
+        }
         out.keywords = rawKw
           ? rawKw.split(/\s*[·•・,，、\/|]\s*/).filter(Boolean).join(" · ")
           : "";
-        out.core = tokens.CORE || "";
+        out.core = rawCore;
         out.hook = tokens.HOOK || "";
         out.takeaway = tokens.TAKEAWAY || "";
         const angleBlocks = [];
