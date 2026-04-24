@@ -17,9 +17,9 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  const apiKey = process.env.DEEPSEEK_API_KEY;
+  const apiKey = process.env.DEEPSEEK_API_KEY_back;
   if (!apiKey) {
-    res.status(500).json({ error: "Server missing DEEPSEEK_API_KEY env var" });
+    res.status(500).json({ error: "Server missing DEEPSEEK_API_KEY_back env var" });
     return;
   }
 
