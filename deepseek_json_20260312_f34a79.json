@@ -47,7 +47,25 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "新的开始",
+      "天真",
+      "随性",
+      "信任未知",
+      "冒险",
+      "潜力",
+      "全新起点"
+    ],
+    "reversed_keywords_zh": [
+      "鲁莽",
+      "幼稚",
+      "逃避承诺",
+      "愚蠢冒险",
+      "因恐惧停滞",
+      "偏离",
+      "退缩"
+    ]
   },
   {
     "id": 1,
@@ -96,7 +114,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "主动",
+      "技能",
+      "协同",
+      "专注意图",
+      "机智",
+      "创造力",
+      "赋能"
+    ],
+    "reversed_keywords_zh": [
+      "能量涣散",
+      "操控",
+      "自我怀疑",
+      "未用潜力",
+      "困惑",
+      "伎俩"
+    ]
   },
   {
     "id": 2,
@@ -145,7 +180,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "直觉",
+      "神秘",
+      "内在智慧",
+      "静默",
+      "潜意识",
+      "信任未知",
+      "深度倾听"
+    ],
+    "reversed_keywords_zh": [
+      "直觉受阻",
+      "困惑",
+      "回避真相",
+      "浅层思考",
+      "秘密",
+      "与自我脱节"
+    ]
   },
   {
     "id": 3,
@@ -194,7 +246,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "滋养",
+      "美",
+      "成长",
+      "创造力",
+      "丰饶",
+      "富足",
+      "自我照顾"
+    ],
+    "reversed_keywords_zh": [
+      "过度付出",
+      "停滞",
+      "忽视自我照顾",
+      "创作阻塞",
+      "依赖",
+      "忽视"
+    ]
   },
   {
     "id": 4,
@@ -244,7 +313,25 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "秩序",
+      "领导力",
+      "界限",
+      "稳定",
+      "权威",
+      "自律",
+      "保护"
+    ],
+    "reversed_keywords_zh": [
+      "僵化",
+      "控制问题",
+      "不稳定",
+      "专横",
+      "软弱",
+      "缺乏结构",
+      "支配"
+    ]
   },
   {
     "id": 5,
@@ -293,7 +380,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "教导",
+      "仪式",
+      "共同价值",
+      "传统",
+      "精神引导",
+      "遵循",
+      "信仰体系"
+    ],
+    "reversed_keywords_zh": [
+      "反叛",
+      "空洞规则",
+      "不一致",
+      "不墨守成规",
+      "挑战权威",
+      "个人真理"
+    ]
   },
   {
     "id": 6,
@@ -342,7 +446,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "结合",
+      "共鸣",
+      "选择",
+      "一致",
+      "爱",
+      "价值观",
+      "和谐"
+    ],
+    "reversed_keywords_zh": [
+      "疏离",
+      "不一致",
+      "犹豫",
+      "冲突",
+      "失衡",
+      "诱惑"
+    ]
   },
   {
     "id": 7,
@@ -391,7 +512,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "势头",
+      "专注",
+      "胜利",
+      "决心",
+      "意志力",
+      "掌控",
+      "前进"
+    ],
+    "reversed_keywords_zh": [
+      "失控",
+      "冲突",
+      "停滞",
+      "缺乏方向",
+      "攻击性",
+      "不堪重负"
+    ]
   },
   {
     "id": 8,
@@ -440,7 +578,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "勇气",
+      "柔软的力量",
+      "自我信任",
+      "耐心",
+      "慈悲",
+      "内在力量",
+      "韧性"
+    ],
+    "reversed_keywords_zh": [
+      "自我怀疑",
+      "脆弱",
+      "压抑情绪",
+      "不安全感",
+      "强制",
+      "攻击性"
+    ]
   },
   {
     "id": 9,
@@ -489,7 +644,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "退隐",
+      "智慧",
+      "清明",
+      "内省",
+      "独处",
+      "内在指引",
+      "耐心"
+    ],
+    "reversed_keywords_zh": [
+      "孤立",
+      "退缩",
+      "回避",
+      "孤独",
+      "停滞",
+      "害怕连接"
+    ]
   },
   {
     "id": 10,
@@ -538,7 +710,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "转变",
+      "时机",
+      "机会",
+      "循环",
+      "命运",
+      "变化",
+      "运气"
+    ],
+    "reversed_keywords_zh": [
+      "抗拒",
+      "时机不对",
+      "卡住的循环",
+      "意外挫折",
+      "宿命",
+      "失控"
+    ]
   },
   {
     "id": 11,
@@ -587,7 +776,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "清明",
+      "正直",
+      "责任",
+      "公平",
+      "真相",
+      "平衡",
+      "因果"
+    ],
+    "reversed_keywords_zh": [
+      "偏见",
+      "回避",
+      "失衡",
+      "不诚实",
+      "不公",
+      "合理化"
+    ]
   },
   {
     "id": 12,
@@ -636,7 +842,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "等待",
+      "换视角",
+      "释放",
+      "臣服",
+      "悬停",
+      "新视角",
+      "放下"
+    ],
+    "reversed_keywords_zh": [
+      "停滞",
+      "殉道",
+      "抗拒",
+      "不愿转变",
+      "延迟行动",
+      "执着"
+    ]
   },
   {
     "id": 13,
@@ -685,7 +908,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "结束",
+      "过渡",
+      "更新",
+      "转化",
+      "释放",
+      "放下",
+      "蜕变"
+    ],
+    "reversed_keywords_zh": [
+      "执着",
+      "害怕改变",
+      "停滞",
+      "拒绝放手",
+      "衰败",
+      "回避"
+    ]
   },
   {
     "id": 14,
@@ -734,7 +974,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "节制",
+      "流动",
+      "融合",
+      "平衡",
+      "耐心",
+      "治愈",
+      "整合"
+    ],
+    "reversed_keywords_zh": [
+      "过度",
+      "失衡",
+      "内在冲突",
+      "极端",
+      "摩擦",
+      "不和谐"
+    ]
   },
   {
     "id": 15,
@@ -783,7 +1040,24 @@
       "core_zh": "束缚正在松开——让它慢慢松，一次一次呼吸。",
       "moment_en": "Name one thing you are ready to release today.",
       "moment_zh": "说出一件你今天准备放下的事。"
-    }
+    },
+    "upright_keywords_zh": [
+      "诱惑",
+      "束缚",
+      "模式",
+      "执着",
+      "阴影",
+      "上瘾",
+      "物质主义"
+    ],
+    "reversed_keywords_zh": [
+      "释放",
+      "觉察",
+      "打破循环",
+      "自由",
+      "收回力量",
+      "脱离"
+    ]
   },
   {
     "id": 16,
@@ -832,7 +1106,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "崩塌",
+      "真相",
+      "震撼",
+      "觉醒",
+      "剧变",
+      "突变",
+      "揭示"
+    ],
+    "reversed_keywords_zh": [
+      "延迟的崩溃",
+      "害怕改变",
+      "内在剧变",
+      "回避真相",
+      "抗拒",
+      "虚假稳定"
+    ]
   },
   {
     "id": 17,
@@ -881,7 +1172,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "希望",
+      "平静",
+      "指引",
+      "灵感",
+      "更新",
+      "宁静",
+      "乐观"
+    ],
+    "reversed_keywords_zh": [
+      "气馁",
+      "失联",
+      "希望渐弱",
+      "悲观",
+      "怀疑",
+      "失去信念"
+    ]
   },
   {
     "id": 18,
@@ -929,7 +1237,23 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "直觉",
+      "幻象",
+      "感受",
+      "不确定",
+      "梦境",
+      "潜意识",
+      "恐惧"
+    ],
+    "reversed_keywords_zh": [
+      "清明浮现",
+      "恐惧缓解",
+      "隐藏真相显露",
+      "困惑消散",
+      "现实回归"
+    ]
   },
   {
     "id": 19,
@@ -978,7 +1302,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "成功",
+      "温暖",
+      "自信",
+      "喜悦",
+      "活力",
+      "乐观",
+      "清明"
+    ],
+    "reversed_keywords_zh": [
+      "暂时阴云",
+      "自我膨胀",
+      "延迟的喜悦",
+      "过度自信",
+      "被阻的幸福",
+      "怀疑"
+    ]
   },
   {
     "id": 20,
@@ -1027,7 +1368,24 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "召唤",
+      "清明",
+      "重生",
+      "觉醒",
+      "更新",
+      "自我评估",
+      "使命"
+    ],
+    "reversed_keywords_zh": [
+      "自我审判",
+      "犹豫",
+      "回避召唤",
+      "怀疑",
+      "羞愧",
+      "抗拒"
+    ]
   },
   {
     "id": 21,
@@ -1076,6 +1434,23 @@
       "core_zh": "",
       "moment_en": "Pause once today and ask where this pattern is showing up.",
       "moment_zh": "今天停一次，问自己这个模式出现在哪里。"
-    }
+    },
+    "upright_keywords_zh": [
+      "完成",
+      "圆满",
+      "整合",
+      "完整",
+      "成就",
+      "庆祝",
+      "旅行"
+    ],
+    "reversed_keywords_zh": [
+      "未竟循环",
+      "延迟",
+      "分裂",
+      "未完",
+      "缺乏收尾",
+      "卡住"
+    ]
   }
 ]
