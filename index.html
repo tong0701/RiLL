@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=52" />
+    <link rel="stylesheet" href="./styles.css?v=55" />
   </head>
   <body>
     <div id="home-flash" class="home-flash" aria-hidden="true"></div>
@@ -25,9 +25,9 @@
           <button class="home-hit" id="home-hit-main" type="button" aria-label="Go home"></button>
           <button class="back-arrow" id="back-arrow" type="button" aria-label="Back">←</button>
           <div class="top-link top-link-left lang-toggle" role="group" aria-label="Language">
-            <button class="lang-opt" type="button" data-lang="zh" id="lang-zh">Cn</button>
-            <span class="lang-sep" aria-hidden="true">/</span>
             <button class="lang-opt" type="button" data-lang="en" id="lang-en">En</button>
+            <span class="lang-sep" aria-hidden="true">/</span>
+            <button class="lang-opt" type="button" data-lang="zh" id="lang-zh">中文</button>
           </div>
           <button class="top-link top-link-right" type="button" id="menu-toggle" data-i18n="menu">Menu</button>
 
@@ -778,7 +778,12 @@
       let currentLang = "en";
       try {
         const stored = localStorage.getItem("rill-lang");
-        if (stored === "en" || stored === "zh") currentLang = stored;
+        if (stored === "en" || stored === "zh") {
+          currentLang = stored;
+        } else {
+          const nav = (navigator.language || "").toLowerCase();
+          if (nav.startsWith("zh")) currentLang = "zh";
+        }
       } catch (_) {}
 
       function t(key) {
