@@ -510,7 +510,6 @@
       </aside>
     </div>
 
-    <script src="./rill_api_config.js?v=9"></script>
     <script>
       const TAROT_DECK_EMBEDDED = null;
       let tarotDeck =
@@ -1128,71 +1127,46 @@
         };
       }
 
-      async function callDeepSeekProxy(messages) {
-        const response = await fetch("https://api.deepseek.com/chat/completions", {
+      async function callReadingApi(payload) {
+        const response = await fetch("/api/reading", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${DEEPSEEK_API_KEY}`,
-          },
-          body: JSON.stringify({
-            model: "deepseek-chat",
-            messages,
-          }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
         });
-        const data = await response.json();
+        const data = await response.json().catch(() => ({}));
         if (!response.ok) {
-          const errMsg = data && (data.error && data.error.message) ? data.error.message : response.statusText;
-          throw new Error(errMsg || "API request failed");
+          const msg = (data && data.error) ? data.error : (response.statusText || "API request failed");
+          throw new Error(msg);
         }
-        const content = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
-        if (!content || !String(content).trim()) {
-          throw new Error("Empty model response");
-        }
-        return String(content).trim();
-      }
-
-      function pickSystemPrompt(text, mode) {
-        const trimmed = String(text || "").trim();
-        const isZh = currentLang === "zh";
-        const hint = trimmed || (isZh ? "中文" : "English");
-        let prompt = typeof getSystemPrompt === "function"
-          ? getSystemPrompt(hint, mode)
-          : (typeof SYSTEM_PROMPT !== "undefined" ? SYSTEM_PROMPT : "");
-        prompt += isZh
-          ? "\n\n本次输出语言强制为中文。即使用户消息里出现英文标签（Intent / Card / Round 等）或英文牌名，也必须全部用中文回应。"
-          : "\n\nOutput language is locked to English regardless of any other-language text in the user message.";
-        return prompt;
+        const text = data && data.text;
+        if (!text || !String(text).trim()) throw new Error("Empty model response");
+        return String(text).trim();
       }
 
       async function generateReading(cardName, orientation, intent, question, round, sessionHistory) {
-        const historyBlock =
-          sessionHistory && String(sessionHistory).trim()
-            ? `\nSession history (brief, do not repeat earlier angles):\n${String(sessionHistory).trim()}`
-            : "";
-        const userContent = `Intent: ${intent}\nQuestion: ${question}\nCard: ${cardName} (${orientation})\nRound: ${round}${historyBlock}`;
-        return callDeepSeekProxy([
-          { role: "system", content: pickSystemPrompt(question, "reading") },
-          { role: "user", content: userContent },
-        ]);
+        return callReadingApi({
+          mode: "reading",
+          cardName, orientation, intent, question, round,
+          sessionHistory: sessionHistory || "",
+          language: currentLang === "zh" ? "zh" : "en",
+        });
       }
 
       async function generateAdviceReading(cardName, orientation, intent, question, sessionSummary) {
-        const ctx = sessionSummary && sessionSummary.trim() ? `\nContext from earlier reading:\n${sessionSummary.trim()}` : "";
-        const userContent = `Mode: advice card (final step).\nIntent: ${intent}\nQuestion: ${question}\nCard: ${cardName} (${orientation})${ctx}`;
-        return callDeepSeekProxy([
-          { role: "system", content: pickSystemPrompt(question, "advice") },
-          { role: "user", content: userContent },
-        ]);
+        return callReadingApi({
+          mode: "advice",
+          cardName, orientation, intent, question,
+          sessionSummary: sessionSummary || "",
+          language: currentLang === "zh" ? "zh" : "en",
+        });
       }
 
       async function generateDailyAnchor(cardName, orientation, lang) {
-        const langHint = lang === "zh" ? "中文" : "English";
-        const userContent = `Mode: Daily Anchor.\nCard: ${cardName} (${orientation})\nLanguage: ${langHint}`;
-        return callDeepSeekProxy([
-          { role: "system", content: pickSystemPrompt(lang === "zh" ? "中文" : "English", "anchor") },
-          { role: "user", content: userContent },
-        ]);
+        return callReadingApi({
+          mode: "anchor",
+          cardName, orientation,
+          language: lang === "zh" ? "zh" : "en",
+        });
       }
 
       function setReadingLoading(isLoading) {

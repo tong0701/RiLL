@@ -1,4 +1,5 @@
-const DEEPSEEK_API_KEY = "sk-812681b856a643a7bba10f2d141b31a9";
+// Auto-extracted from rill_api_config.js. Edit this file to update prompts.
+// The leading underscore keeps Vercel from exposing this as an API route.
 
 const SYSTEM_PROMPT_CN = `# Prompt_V7_CN
 
@@ -637,20 +638,47 @@ Anti-addiction:
 - One card per day
 - Same-day return shows today's card + "Today's anchor is set. Go live your day. If something specific comes up, try Reflection mode."`;
 
-function getSystemPrompt(text, mode) {
-  const isChinese = /[一-鿿㐀-䶿]/.test(String(text || ""));
-  const base = isChinese ? SYSTEM_PROMPT_CN : SYSTEM_PROMPT_EN;
+function getBasePrompt(language, mode) {
+  const isZh = language === "zh";
+  const base = isZh ? SYSTEM_PROMPT_CN : SYSTEM_PROMPT_EN;
   if (mode === "advice") {
-    return base + (isChinese
+    return base + (isZh
       ? "\n\n本次为建议牌流程。仅按 [ADVICE_CORE] / [ADVICE_BODY] / [ADVICE_ACTION] / [SESSION_END] 顺序输出，不要输出解读牌格式。"
       : "\n\nThis request is the Advice Card flow. Output only [ADVICE_CORE] / [ADVICE_BODY] / [ADVICE_ACTION] / [SESSION_END] in that order. Do not output the reading format.");
   }
   if (mode === "anchor") {
-    return base + (isChinese
+    return base + (isZh
       ? "\n\n本次为 Daily Anchor 流程。仅按 [ANCHOR_CORE] / [ANCHOR_COLOR] / [ANCHOR_OBJECT] / [ANCHOR_MOMENT] / [ANCHOR_TAKEAWAY] 顺序输出，不要输出解读牌或建议牌格式。"
       : "\n\nThis request is the Daily Anchor flow. Output only [ANCHOR_CORE] / [ANCHOR_COLOR] / [ANCHOR_OBJECT] / [ANCHOR_MOMENT] / [ANCHOR_TAKEAWAY] in that order. Do not output the reading or advice format.");
   }
   return base;
 }
 
-const SYSTEM_PROMPT = SYSTEM_PROMPT_EN;
+function buildSystemPrompt({ language, mode }) {
+  const isZh = language === "zh";
+  let prompt = getBasePrompt(language, mode);
+  prompt += isZh
+    ? "\n\n本次输出语言强制为中文。即使用户消息里出现英文标签（Intent / Card / Round 等）或英文牌名，也必须全部用中文回应。"
+    : "\n\nOutput language is locked to English regardless of any other-language text in the user message.";
+  return prompt;
+}
+
+function buildUserMessage({ mode, cardName, orientation, intent, question, round, sessionHistory, sessionSummary, language }) {
+  if (mode === "advice") {
+    const ctx = sessionSummary && String(sessionSummary).trim()
+      ? `\nContext from earlier reading:\n${String(sessionSummary).trim()}`
+      : "";
+    return `Mode: advice card (final step).\nIntent: ${intent || ""}\nQuestion: ${question || ""}\nCard: ${cardName} (${orientation})${ctx}`;
+  }
+  if (mode === "anchor") {
+    const langHint = language === "zh" ? "中文" : "English";
+    return `Mode: Daily Anchor.\nCard: ${cardName} (${orientation})\nLanguage: ${langHint}`;
+  }
+  // default: reading
+  const historyBlock = sessionHistory && String(sessionHistory).trim()
+    ? `\nSession history (brief, do not repeat earlier angles):\n${String(sessionHistory).trim()}`
+    : "";
+  return `Intent: ${intent || ""}\nQuestion: ${question || ""}\nCard: ${cardName} (${orientation})\nRound: ${round || 1}${historyBlock}`;
+}
+
+module.exports = { buildSystemPrompt, buildUserMessage };
